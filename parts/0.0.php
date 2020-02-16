@@ -18,5 +18,13 @@
 /**
  * ZAWSZE !!!
  *
- * W tej lekci to już wszystko. Dziękuję bardzo.
+ * W tej lekcji to już wszystko. Dziękuję bardzo.
+ */
+
+/**
+ * Wspomnieć o dwóch trybach pracy:
+ * - www
+ * - cli
+ * 
+ * https://www.php-fig.org/psr/psr-12/
  */

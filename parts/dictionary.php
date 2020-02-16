@@ -1,0 +1,2 @@
+FUNKCJE
+- argument
