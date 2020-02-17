@@ -44,6 +44,8 @@
     }
 */
 /**
+ * Powyższa konstrukcja to tak zwana: deklaracja funkcji
+ * 
  * nazwaFunkcji - jest po prostu nazwą, którą nadajemy funkcji, dzięki temu w przyszłości
  * będziemy w stanie funkcji użyć posługując się jej nazwą. Tutaj wygląda to analogicznie 
  * jak przy zmiennych. Zmiennej również nadajemy nazwę po to aby móc jej później użyć.
@@ -72,7 +74,7 @@
  */
 
 /**
-    // uruchomienie
+    // uruchomienie / wywołanie funkcji
     nazwaFunkcji(argumenty);
 
     // uruchomienie i przypisanie zwracanej wartości
@@ -249,7 +251,7 @@ function sayHello($firstName, $lastName)
 sayHello('John', 'Rambo');
 
 /**
- * Wartości domyślne.
+ * WARTOŚCI DOMYŚLNE
  * 
  * W ostatnim przykładzie musieliśmy przy wywołaniu funkcji podać oba parametry.
  * Gdybyśmy tego nie zrobili to podczas uruchomienia naszego programu zostałby zgłoszony błąd
@@ -321,6 +323,8 @@ function testDefault($arg1, $arg2 = 'foo', $arg3)
 }
 
 /**
+ * TYPOWANIE ARGUMENTÓW
+ * 
  * Na sam koniec rozmówek o argumentach zostawiłem bardzo waną rzecz.
  * Mianowicie typowanie argumentów.
  * 
@@ -331,7 +335,7 @@ function testDefault($arg1, $arg2 = 'foo', $arg3)
 /**
  * Powoli język PHP z typowania dynamicznego (czyli przypisania typów zmiennych w trakcie działania programu)
  * przechodzi do typowana statycznego. Jednak w tej chwili znajduje się trochę w rozkroku pomiędzy jednym a drugim.
- * Ponizej zaraz powiemy dlaczego.
+ * Poniżej zaraz powiemy dlaczego.
  * 
  * Jednak co to jest to typowanie i jego rodzaje.
  * 
@@ -344,10 +348,10 @@ function testDefault($arg1, $arg2 = 'foo', $arg3)
  * boolean - prawda lub fałsz true/false
  * array - tablice
  * object - obiekt
- * null - wartość niezdefiniowana, pojawia się wtedy gdy zmiennej nie przypiszemy zadnej wartości
+ * null - wartość niezdefiniowana, pojawia się wtedy gdy zmiennej nie przypiszemy żadnej wartości
  * resource - uchwyt do zasobu zewnętrznego 
  * 
- * Skoro przypomnieliśmy sobie jakie mamy typy danych mozemy juz przejść do samego typowania
+ * Skoro przypomnieliśmy sobie jakie mamy typy danych możemy juz przejść do samego typowania
  * Zaczniemy od typowania dynamicznego, które jest w PHP od samego początku.
  * 
  * Dzięki typowaniu dynamicznemu nie musimy podczas tworzenia zmiennej określać jej typu.
@@ -373,7 +377,7 @@ if (rand(0, 1)) {
  * Dopiero po sprawdzaniu warunku jest do zmiennej przypisywana konkretna wartość.
  * W trakcie przypisywania wartości jest określany typ zmiennej.
  * 
- * Idąc dalej, w kazdej chwili mozemy zmienić typ wartości przechowywanej w zmiennej poprzez 
+ * Idąc dalej, w każdej chwili możemy zmienić typ wartości przechowywanej w zmiennej poprzez 
  * zmianę samej wartości;
  */
 
@@ -382,7 +386,7 @@ if (rand(0, 1)) {
 
 /**
  * Nowa wartość przypisywana do zmiennej posiada zupełnie inny typ niz poprzednia wartość
- * co wymusza równiez zmianę typu zmiennej.
+ * co wymusza również zmianę typu zmiennej.
  * 
  * Innym przykładem języka typowanej dynamicznie jest JavaScript
  * 
@@ -398,23 +402,23 @@ if (rand(0, 1)) {
 
 /**
  * Na samym początku napiszę, ze PHP nie implementuje w pełni typowania statycznego.
- * W tej chwili (wersja 7.4 mozemy typować właściwości obiektów - jednak o tym pomówimy w rozdziale dotyczącym obiektów)
+ * W tej chwili (wersja 7.4 możemy typować właściwości obiektów - jednak o tym pomówimy w rozdziale dotyczącym obiektów)
  * 
- * Jednak na poczet wytłumaczenia samego typowania statycznego załózmy, ze mogło by to wyglądać następująco:
+ * Jednak na poczet wytłumaczenia samego typowania statycznego załóżmy, ze mogło by to wyglądać następująco:
  * 
  * int $foo = 1;
  * string $bar = 'text';
  * 
- * Róznica w stosunku do wersji dynamicznej jest
+ * Różnica w stosunku do wersji dynamicznej jest
  * dodanie informacji o przechowywanym typie przed nazwą zmiennej.
  * 
- * W takim przypadku niemozliwa staje się sytuacja zmiany typu przechowywanej wartości:
+ * W takim przypadku niemożliwa staje się sytuacja zmiany typu przechowywanej wartości:
  * 
  * int $foo = 44;
  * $foo = 'some text';
  * 
  * W takim przypadku zgłoszony zostanie błąd.
- * Niemozliwe będzie teź wykonanie:
+ * Niemożliwe będzie teź wykonanie:
  */ 
 /** 
     if (rand(0, 1)) {
@@ -424,7 +428,7 @@ if (rand(0, 1)) {
     }
 */
 /**
- * Poniewaz kompilator musi wiedzieć jakiego typu będzie przechowywana wartość w zmiennej jeszcze przed operacją przypisania
+ * Ponieważ kompilator musi wiedzieć jakiego typu będzie przechowywana wartość w zmiennej jeszcze przed operacją przypisania
  */
 /**
     int $zaz; 
@@ -435,28 +439,55 @@ if (rand(0, 1)) {
     }
 */
 /**
- * Teraz mozemy sobie pomyśleć:
- * Jakie jest sens w typowaniu statycznym, skoro widzimy ze tego nie mozemy, tamtego nie mozemy, musimy jeszcze zrobić to i to.
+ * Teraz możemy sobie pomyśleć:
+ * Jakie jest sens w typowaniu statycznym, skoro widzimy ze tego nie możemy, tamtego nie możemy, musimy jeszcze zrobić to i to.
  * Zalet jest kilka:
  * - bardziej panujemy nad tym co się dzieje w naszej aplikacji
  * - typowanie statyczne przyczynia się do polepszenia wydajności samej aplikacji
  * - dzięki typowaniu statycznego łatwiej poznajemy jak działa nasza aplikacja
  * 
  * Zalety typowania statycznego dostrzega się tak naprawdę z czasem, 
- * Im bardziej doświadczeni jesteśmy, tym lepiej uświadamiamy sobie jakie kozyscie to daje.
+ * Im bardziej doświadczeni jesteśmy, tym lepiej uświadamiamy sobie jakie korzyści to daje.
  * 
  * Dobrą analogią jest sam JavaScript, o którym juz wcześniej wspomniałem.
  * Z natury jest to język typowany dynamicznie.
- * Jednak kilka lat temu pojawił się TypeScript, o którym mozna powiedzieć ze to JS na sterydach.
- * W TypeScripcie juz występuje typowanie statyczne, chociaz tez go mona uzywać jak klasycznego JS'a
+ * Jednak kilka lat temu pojawił się TypeScript, o którym można powiedzieć ze to JS na sterydach.
+ * W TypeScripcie juz występuje typowanie statyczne, chociaż tez go mona używać jak klasycznego JS'a
  */
 
 /**
- * Ok, ale jak to jest z tym typowaniem w PHP, hmmm ... w tej chwili jest tendencja podązania w kierunku typowania statycznego.
- * Z kazdą nową wersją począwszy juz tak naprawdę od 5.0 systematycznie dodawane są nowe opcje z tym związane.
+ * Ok, ale jak to jest z tym typowaniem w PHP, hmmm ... w tej chwili jest tendencja podążania w kierunku typowania statycznego.
+ * Z każdą nową wersją począwszy juz tak naprawdę od 5.0 systematycznie dodawane są nowe opcje z tym związane.
  * W trakcie tego kursu krok po kroku dowiecie się jak to wygląda w PHP
  * 
- * Nadal wprawdzie nie mozemy określić typu deklarowanej zmiennej, ale ... przejdźmy do argumentów funkcji.  
+ * Nadal wprawdzie nie możemy określić typu deklarowanej zmiennej, ale ... wróćmy do argumentów funkcji.  
  */
 
- ... powiedziec o strict_type i rzutowaniu
+/**
+ * Od wersji 7.0 możemy określać typy argumentów które chcemy przekazać do funkcji.
+ * Wprawdzie od wersji 5.0, była możliwość już określania obiektów i interfejsów o czym już powiemy w następnej lekcji
+ * Jednak pełne wsparcie pojawiło się od wersji 7.0
+ * 
+ * Określenie typu uzyskujemy poprzez dodanie nazwy typu przed nazwą argumentu w deklaracji funkcji
+ */
+
+function sayHello(string $name)
+{
+    echo "Hello $name\n";
+}
+
+/**
+ * Teraz widzimy, że twórca funkcji założył, przy jej wywoływaniu przekazany argument musi być stringiem
+ */
+
+// działa
+sayHello('Tom');
+
+// co w przypadku gdy przekażemy liczbę całkowitą?
+sayHello(100);
+// niespodzianka - również działą
+// a tablicę 
+sayHello(['foo']);
+
+ //... powiedziec o strict_type i rzutowaniu
+ // (int $numb) - przekazany float
