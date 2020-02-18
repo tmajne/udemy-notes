@@ -489,5 +489,343 @@ sayHello(100);
 // a tablicę 
 sayHello(['foo']);
 
- //... powiedziec o strict_type i rzutowaniu
- // (int $numb) - przekazany float
+/**
+ * Myślimy sobie kurcze, co się dzieje, przecież określiliśmy, że chcemy przyjmować tylko stringa,
+ * a tu nagle przekazując integera również działą. WTF???
+ * 
+ * UWAGA, to co teraz powiem jest istotną rzeczą która została wprowadzona w php 7.0.
+ * Od wersji 7.0 PHP może pracować w jednym z dwóch trybów:
+ * - coercive - trym domyślny, dopuszczający rzutowanie
+ * - strict - ścisły, który nie dopuszcza rzutowania
+ * 
+ * Co to tak naprawdę znaczy.
+ * W trybie domyślnym, w którym przed chwilą uruchamialiśmy funkcją sayHello określeni typu jest wskazówką 
+ * dla PHP mówiącą na jaki typ musi zmienić wartość przekazaną do funkcji.
+ * 
+ * Zmodyfikujmy odrobinę naszą funkcję i przeanalizujmy ją jeszcze raz.
+ */
+
+function sayHello(string $name)
+{
+    var_dump($name);
+    echo "Hello $name\n";
+}
+
+sayHello('Tom');
+// w tym przypadku przekazujemy stringa, więc konwersja nie zachodzi
+
+$intValue = 100;
+var_dump($intValue);
+sayHello($intValue);
+/**
+ * tutaj widzimy, że przekazujemy int'a a wewnątrz funkcji widzimy że jest string
+ * zaszła konwersja z typu int na typ string
+ * to miałem na myśli mówiąc, że podając typ argumentu mówimy PHP'owi na jaki typ ma  
+ * skonwertować (rzutować) zmienną w trakcie przyjmowania 
+ * przez co wewnątrz funkcji będzie już innym typem.
+ * 
+ * Pamiętamy, że gdy przekazujemy wartość do funkcji to tak naprawdę wewnątrz funkcji powstaje
+ * kopia przekazanej wartości?
+ * Przez co tak naprawdę nie zmieniamy typu przekazanej zmiennej, tylko tworzymy kopię z nowym typem.
+ * 
+ * A co się dzieje w tym przypadku:
+ */ 
+
+sayHello(['foo']);
+
+/**
+ * PHP wyświetlił nam informację o błędzie, dlaczego?
+ * Powodem jest fakt, że nie jest w stanie dokonać konwersji tablicy na wartość tekstową. 
+ * W przypadkach gdy PHP automatycznie nie będzie w stanie dokonać konwersji to zawsze zwróci błąd.
+ * 
+ * Trym domyślny czasami bywa zdradliwy i trzeba na niego uważać, przykładowo
+ */
+
+function showNumber(int $number) {
+   var_dump($number);
+}
+
+$intNumber = 23;
+$floatNumber = 34.32;
+
+var_dump($intNumber);
+showNumber($intNumber);
+
+var_dump($floatNumber);
+showNumber($floatNumber);
+
+/**
+ * Jeśli do funkcji przekazujemy wartość int jak zadeklarowaliśmy przy argumencie to wszystko jest ok.
+ * Problem pojawia się gdy przekazaliśmy wartość typu float.
+ * PHP potrafi automatycznie przekonwertować typ float na int, ale jak widzimy wyświetlona wartość,
+ * nie jest do końca tą którą przekazaliśmy do funkcji. Obcięta została część po przecinku.
+ * Nie ma tutaj co narzekać na sam język, ponieważ zadziałał prawidłowo. 
+ * 
+ * Przecież zadeklarowaliśmy, że argument ma być typu int, tak więc zaszła konwersja.
+ * Skoro konwertujemy typ o dużej dokładności czyli float na tym o mniejszej dokładności czyli int
+ * to oczywistym się staje, że stracimy pewną dokładność. 
+ * 
+ * Podsumowując, ważne jest aby zdawać sobie sprawę z tego co już powiedzieliśmy i jeśli chcemy pracować
+ * w trybie domyślny to należy być ostrożnym.
+ */
+
+/**
+ * Teraz już możemy przejść do trybu ścisłego.
+ * 
+ * Aby włączyć tryb ścisły (strict) należy na początku pliku dodać linię:
+ * declare(strict_types=1);
+ * 
+ * Włączenie trybu strict musi się znaleźć zaraz na początku pliku, zaraz po tagu otwierającym, czyli <?php
+ * Pomiędzy włączeniem a tagiem otwierającym mogą się znaleźć tylko białe znaki (spacja, enter) i komentarze.
+ * 
+ * Tryb strict obowiązuje tylko dla pliku, w którym został włączony, tak więc jeśli chcemy aby był włączony
+ * w całym naszym projekcie, musimy go włączyć w każdym pliku .php który znajduje się w projekcie.
+ * Dzieje się tak z powodu kompatybilności wstecznej. Gdyby trybem domyślnym PHP był tryb ścisły to zapewne
+ * po aktualizacji PHP z wersji 5.x na 7.x pół internetu przestało by działać. 
+ * Natomiast jeśli go używamy to włączamy go świadomie i jesteśmy przekonani, że nasz kod działa poprawnie
+ * w trybie ścisłym.
+ * 
+ * No dobrze, ale co to jest ten tryb ścisły.
+ * Wróćmy do przykładu
+ */
+
+declare(strict_types=1);
+
+function sayHello(string $name)
+{
+    var_dump($name);
+    echo "Hello $name\n";
+}
+
+sayHello('Tom');
+// w tym przypadku przekazujemy stringa, więc jest ok
+
+$intValue = 100;
+var_dump($intValue);
+sayHello($intValue);
+
+/**
+ * Już widzimy co się stało.
+ * Tryb ścisły nie dopuszcza konwersji.
+ * 
+ * Określając typ argumentu mówimy PHP'owi
+ * Funkcja przyjmuje argument tego i tylko tego typu, nie pozwalaj na jakąkolwiek konwersję.
+ * 
+ * UWAGA:
+ * Od tej reguły jest jeden malutki wyjątek.
+ * Mianowicie wtedy gdy przekazujemy wartość całkowitą (integer) a w definicji funkcji określiliśmy, 
+ * że będziemy używać wartości zmiennoprzecinkowej (float). 
+ * Tutaj język idzie nam na rękę, ponieważ nie tracimy nic jeśli chodzi o precyzję obliczeń. 
+ * Rzutowanie liczby całkowitej na zmiennoprzecinkową nie powoduje utraty jakichkolwiek danych.
+ * 
+ * Gdy pracujemy nad nowym projektem to tryb ścisły generalnie jest zalecany.
+ * Jednak to wszystko zależy od projektu i zespołu z którym w przyszłości przyjdzie nam pracować.
+ * Ja na podstawie własnych doświadczeń polecam rozpoczęcie przygody z trybem ścisłym od samego początku,
+ * aby wyrobić sobie dobre nawyki.
+ */
+
+ /**
+ * W wersji PHP 7.1 dostaliśmy możliwość określenia, że dany argument może przyjmować wartość null.
+ * A dokładniej wartość null lub wartość innego zdefiniowanego typu
+ * Aby to zrobić posłujemy się znakiem zapytania "?"
+ */
+
+function sayHello(?string $name)
+{
+    if ($name !== null) {
+        echo "Name: $name \n";
+    } else {
+        echo "Hello !!!";
+    }
+}
+
+/**
+ * Na koniec części o argumentach wymienimy jeszcze listę typów które możemy użyć dla argumentów podczas
+ * definiowania funkcji, wraz z wersją PHP w której zostały wprowadzone:
+ * 
+ * Te o których już wspominaliśmy:
+ * array - 5.1
+ * bool - 7.0
+ * float - 7.0
+ * int - 7.0
+ * string - 7.0
+ * 
+ * Te o których będziemy mówić już niedługo:
+ * class/interface - 5.0
+ * self - 5.0
+ * callable - 5.4
+ * iterable - 7.1
+ * object - 7.2
+ */
+
+
+/**
+ * WARTOŚCI ZWRACANE
+ * 
+ * Każda funkcja MOŻE ale nie musi zwracać jakieś dane.
+ * Co to znaczy?
+ * 
+ * Pamiętacie jak opowiadaliśmy sobie o zakresach widoczności zmiennych i o tym że zmienne
+ * zadeklarowane wewnątrz funkcji nie są widoczne poza tą funkcją?
+ * 
+ * Zwracana wartość powoduje to, że z wnętrza funkcji możemy coś przekazać na zewnątrz.
+ * 
+ * Osiągamy to przy użyciu słowa kluczowego "return"
+ */
+
+function countLetters(string $word)
+{
+    $count = strlen($word);
+    return $count;
+}
+
+function countLetters(string $word)
+{
+    return strlen($word);
+}
+
+/**
+ * Drugi zapis jest bardziej zwięzły, ale działa dokładnie tak samo
+ * 
+ * Instrukcja "return" oprócz tego, że zwraca wartość na zewnątrz funkcji 
+ * to również przerywa działanie funkcji, przez co cokolwiek co by się znalazło 
+ * poniżej instrukcji return nie zostanie wykonane,
+ * tak jak w przykładzie:
+ */
+
+function countLetters(string $word)
+{
+    var_dump('before return');
+    return strlen($word);
+    var_dump('after return');
+}
+
+/**
+ * Ok, funkcja nam coś zwraca, ale jak my możemy to wykorzystać. 
+ * Tutaj mamy kilka opcji.
+ */
+
+// zignorować, ponieważ nas nie interesuje
+countLetters('bar');
+
+// przypisać do zmiennej
+$count = countLetters('bar');
+echo $count;
+
+// od razu użyć:
+echo countLetters('bar');
+
+// użyć w wyrażeniu:
+if (countLetters('bar') > 10) {
+    // do something
+}
+
+// itp
+/**
+ * Generalnie, zwracaną wartość traktujemy jak każdą inną wartość, którą możemy gdzieś przypisać i użyć
+ */
+
+/**
+ * Wraz z wersją PHP 7.0 uzyskaliśmy możliwość definiowania typu zwracanej wartości przy definiowaniu funkcji.
+ * Mechanizm działą analogicznie jak typowanie argumentów funkcji, łącznie z obsługą trybu domyślnego i ścisłego
+ * to znaczy sytuacji czy konwersja typów jest dozwolona czy nie jest
+ * 
+ * Określenie typ wartości zwracanej wygląda następująco
+ */
+
+function countLetters(string $word): int
+{
+    return strlen($word);
+}
+
+/**
+ * Zaraz za listą argumentów po znaku "dwukropka" wpisujemy typ wartości którą funkcja będzie zwracać.
+ * 
+ * Podobnie jak z argumentami dobrą praktyką jest określanie zwracanego typu.
+ * 
+ * W przypadku gdy nasz funkcja nie będzie nic zwracać do podkreślenia tego faktu używamy słowa kluczowego "void"
+ * Wprowadzone w PHP 7.1
+ * 
+ * Jeśli jednak mimo użycia "void" coż zwrócimy to zostanie nam wyświetlony stosowny błąd
+ */
+
+function sayHello(string $name): void
+{
+    echo $name. "\n";
+}
+
+/**
+ * Przy zwracanym typie również możemy użyć konstrukcji ze znakiem zapytania,
+ * która poinformuje nas, że dana funkcja może zwrócić wartość null bądź wartość zadeklarowanego typu
+ */
+
+function returnSomething(int $number): ?int
+{
+    if ($number > 0) {
+        return $number;
+    } else {
+        return null;
+    }
+}
+
+
+
+/**
+ * FUNKCJE ANONIMOWE
+ * 
+ * Dla osób, które miały styczność z JavaScriptem funkcje anonimowe wyglądają znajomo i nie mylą się.
+ * 
+ * Funkcja anonimowa jest to funkcja bez nazwy.
+ */
+/*
+    function (argumenst): returnType
+    {
+        // ciało funkcji
+    }
+*/
+/**
+ * Hmm ... wygląda trochę dziwnie?
+ * Może, ale tylko na początku.
+ */
+function (string $name): void
+{
+    echo "Name: $name\n";
+};
+
+/**
+ * W powyższym przykładnie nasza funkcja jest bezużyteczna, ponieważ nie jesteśmy w stanie jej użyć. 
+ * 
+ * Co ciekawe funkcję anonimową możemy potraktować jak wartość i przypisać ją do zmiennej
+ */
+
+$myFunction = function (string $name): void
+{
+    echo "Name: $name\n";
+};
+
+/**
+ * W tej chwili jesteśmy już za pomocną nazwy zmiennej wywołać taką funkcję
+ */
+
+ $myFunction('Tom');
+
+/**
+ * Wcześniej wspominaliśmy o typie "callable" który może użyć do typowania argumentów lub zwracanych wartości.
+ * Funkcja anonimowa spełnia to wymaganie, możemy ją przekazać jako argument jak i zwrócić. 
+ * 
+ * Kwestia funkcji anonimowych w PHP dotyka już trochę bardziej zaawansowanych rzeczy, tak więc nie będziemy teraz
+ * dalej kontynułować tego tematu. Powrócimy do niego w następnym kursie, który dotknie już bardziej zaawansowanych rzeczy.
+ * W tej chwili istotne jest to aby zdawać sobie sprawę żę w PHP też istnieją funkcje anonimowe.
+ * 
+ * BONUS DLA JS'OWCÓW => funkcje strzałkowe też istnieją :) od 7.4
+ */
+
+/**
+ * Na zakończenie rozdziału o funkcjach wspomnę, że sam język PHP posiada już ogromną listę zdefiniwanych już funkcji, 
+ * które możemy w każdej chwili użyć. Spójrzmy chociaż na listę funkcji powiozanych z obsługą stringów
+ * @link https://www.php.net/manual/en/ref.strings.php
+ * Znajdziemy również na niej funkcję którą już użyliśmy czyli "strlen" zwracającą ilość znaków w stringu.
+ * 
+ * Polecam przeglądnięcie dokumentacji, jednak nie polecam uczenia się jej na pamięć. 
+ * No chyba że ktoś lubi takie wyzwania :D
+ */
