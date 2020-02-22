@@ -28,3 +28,7 @@
  * 
  * https://www.php-fig.org/psr/psr-12/
  */
+
+ /**
+  * Dodać podsumowanie na końcu każdego rozdziału??
+  */
