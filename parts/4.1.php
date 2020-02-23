@@ -145,12 +145,13 @@ $myFlat->type = 'M4';
 var_dump($myFlat);
 var_dump($myFlat->type);
 
-
-
 /**
- * W poprzednim przykładzie widzieliśmy pusty obiekt
- * Teraz widzimy, że zawiera w sobie zdefiniowaną przez nas właściwość
+ * Zanim przejdziemy dalej warto wspomnieć o nowości która została wprowadzona z wersją 7.4
+ * mianowicie o typowoaniu właściwości.
  */
+
+
+
 
  
  /** W PHP mamy trzy typy modyfikatorów dostępu.
