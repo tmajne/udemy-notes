@@ -50,9 +50,121 @@
  * Na podstawie jednej klasy można stworzyć wiele obiektów.
  * 
  * Podsumowując to co powiedzieliśmy do tej pory:
- * KLASA - szablon na podstawie
+ * KLASA - szablon na podstawie którego możemy stworzyć obiekt (plan mieszkania)
+ * OBIEKT - jest instancją danej klasy (konkretne wybudowane mieszkanie)
  * 
  * 
+ * Teraz przejdźmy do kodu i stwórzmy naszą pierwszą klasę
+ */
+
+class Flat
+{
+
+}
+
+/**
+ * Na razie nie wygląda to skomplikowanie.
+ * Aby utworzyć nową klasę musimy posłużyć się słowem "class" 
+ * za nim podajemy nazwę naszej klasy
+ * 
+ * Konstrukcja wygląda następująco
+ */
+
+/*
+    class NazwaKlasy
+    {
+        // ciało klasy
+    }
+*/
+
+/**
+ * Standardem jest, że nazwa klasy powinna się zaczynać z dużej litery.
+ * 
+ * PHP wprawdzie dopuszcza użycie małej litery na początku nazwy klasy, jednak nie jest "mile" widziane
+ * 
+ * Nasza klasa już istniej więc teraz możemy utworzyć obiekt na jej podstawie.
+ * W tym celu używamy słowa "new". 
+ * Za słowem "new" wpisujemy nazwę klasy którą chcemy utworzyć. 
+ */
+
+$myFlat = new Flat();
+
+var_dump($myFlat);
+
+/**
+ * Utworzyliśmy właśnie nowy obiekt na podstawie klasy Flat.
+ * Możemy też powiedzieć, że:
+ * utworzyliśmy obiekt, który jest instancją klasy Flat.
+ * 
+ * Pewne zastanowienie może wzbudzić fakt, dlaczego to co jest za słowem "new" wygląda jak wywołanie funkcji.
+ * Wrócimy do tego już za moment.
+ */
+
+/**
+ * WŁAŚCIWOŚCI KLASY
+ * 
+ * Wspominaliśmy już wcześniej że klasa może posiadać cechy, które ją opisują. 
+ * Cechy te nazywamy WŁAŚCIWOŚCIAMI KLASY lub po prostu WŁAŚCIWOŚCIAMI. 
+ * Po angielsku PROPERTY.
+ * 
+ * Właściwość można przyrównać do zmiennej tylko umieszczonej wewnątrz obiektu.
+ * Generalnie wszystko to co do tej pory mówiliśmy o zmiennych ma odniesienie do właściwości.
+ * Definiujemy je następująco.
+ */
+
+class Flat
+{
+    public $type;
+}
+
+/**
+ * Dodaliśmy właściwość, która będzie mówiła nam o typie mieszkania np M1, M2 itp.
+ * 
+ * Jednak oprócz nazwy właściwości pojawiło się nam słowo "public".
+ * Jest to tak zwany MODYFIKATOR DOSTĘPU a którym będziemy mówić już za chwilę,
+ * skończymy tylko temat właściwości i metod
+ * 
+ * W tej chwili możemy już posługiwać się tą właściwością
+ */
+
+$myFlat = new Flat();
+var_dump($myFlat);
+
+// aby odwołać się do właściwości obiektu używamy strzałki "->"
+// pobranie
+$myFlatType = $myFlat->type;
+var_dump($myFlatType);
+
+// oczywiście możemy się odwołać bezpośrednio do właściwości, bez konieczności
+// przypisywania jej do zmiennej
+var_dump($myFlat->type);
+
+// przypisanie wartości do właściwości
+$myFlat->type = 'M4';
+
+var_dump($myFlat);
+var_dump($myFlat->type);
+
+
+
+/**
+ * W poprzednim przykładzie widzieliśmy pusty obiekt
+ * Teraz widzimy, że zawiera w sobie zdefiniowaną przez nas właściwość
+ */
+
+ 
+ /** W PHP mamy trzy typy modyfikatorów dostępu.
+ * - public
+ * - private
+ * - protected
+ * 
+ * Ich funkcją jest określenie i pilnowanie zakresu widoczności danej właściwości.
+ * W naszym przypadku określiliśmy, że właściwość $type jest publiczna.
+ * A to znaczy że można się do niej odwołać z zewnątrz, a nie tylko z wnętrza obiektu.
+ */
+
+ 
+ /* 
  * https://kobietydokodu.pl/0-programowanie-obiektowe/
  * https://pl.wikibooks.org/wiki/PHP/Czym_jest_programowanie_obiektowe%3F
  * https://kursphp.com/programowanie-obiektowe/
