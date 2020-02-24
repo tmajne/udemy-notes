@@ -1,1 +1,3 @@
 // NAMESPACES
+
+// WYJATKI

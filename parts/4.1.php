@@ -576,7 +576,14 @@ $object = new SomeClass();
  * W konstruktorze nie mozemy zadeklarowac zwracanego typu.
  * Próba deklaracji skończy się informacją o błędzie gdzy będziemy próbowali utworzyć nowy obiekt.
  * 
- * Czy to oznacza e
+ * Teraz mozna zadać sobie pytanie. 
+ * Po co nam konstruktor, przeciez do tej pory dobrze sobie bez niego radziliśmy.
+ * 
+ * Konstruktor słuzy do wstępnego skonfigurowania nowo powstającego obiektu, 
+ * poprzez odpowiednie ustawienie jego właściwości
+ * Do tej pory nie potrzebowaliśmy tego robić, dlatetego nie uzywaliśmy konstrukora.
+ * 
+ * Przyjzyjmy sie jednak naszej klasie Flat trochę uwazniej
  */
 
 class Flat
@@ -605,7 +612,104 @@ class Flat
     }
 }
 
+/**
+ * Widzimy, ze na stałe mamy przypisany kod do drzwi.
+ * I kazdy nowo powstaly obiekt mieszkania ma taki sam.
+ * Logicznie myśląc to chyba coś jest nie tak.
+ * Nie chcielibyśmy aby do wszystki sprzedanych mieszkań powstałych na planie naszej klasy
+ * był ustawiony taki sam kod.
+ * 
+ * Wiemy ze konstruktor to tak naprawdę metoda, a metoda to funkcja osadzona wewnątrz klasy.
+ * Tak więc do konstruktora mozemy przekazywać parametry
+ */
 
+class Flat
+{
+    private int $doorLockCode;
+
+    private bool $closed = true;
+
+    public function __construct(int $dorrCode) 
+    {
+        if (strlen((string) $dorrCode) < 6) {
+            //TODO: zgłoś błąd
+        } else {
+            $this->doorLockCode = $dorrCode;
+        }
+    }
+
+    public function close(): void
+    {
+        $this->closed = false;
+    }
+
+    public function open(int $code): void
+    {
+        if ($code === $this->doorLockCode) {
+            $this->closed = true;
+        } else {
+            // logowanie informacji o próbie użycia niepoprawnego kodu
+        }
+    }
+
+    public function isOpen(): bool
+    {
+        return !$this->closed;
+    }
+}
+
+$newDorrCode = rand(100000, 999999);
+$flat = new Flat($newDorrCode);
+
+var_dump($flat);
+
+/**
+ * W konstruktorze, oprócz tego ze ustawiamy wartość początkową 
+ * mozemy tez dodać reguły walidacji dla przekazanego kodu, dzięki temu 
+ * będziemy pewni, ze mieszkanie jest odpowiednio zabezpieczone.
+ * 
+ * Do sprawdzania długości int, posłuzylem się sztuczką z zutowanie.
+ * 
+ * Oczywiście w konstruktorze mozemy zawrzec nie tylko regóły walidacji ale w sumie co tylko nam się podoba :)
+ * Ograniczeni jesteśmy tylko sesnsownością tego co tam się znajdzie.
+ */
+
+/**
+ * Gwoli ścisłości zaznaczę jeszcze ze istnieje opócz konstruktora równiez destruktor, 
+ * który jest automatycznie wyłowywany kiedy obiekt przestaje istnieć. 
+ * Jednak destroktory praktycznie nie są uzywane, wiec z czystym sumieniem mozna pominac ich temat
+ */
+
+ /** Wspomnę jeszcze ze o nasze klasy nalezy dbać. 
+ * To znaczy klasy a co za tym idzie obiekty które na ich podstawie tworzymy muszą być wyspecjalizowane.
+ * Odpowiadać za jedną spójną dziedzinę.
+ * Na początku jest pokusa aby do klas upychać wszystko jak popadnie. Jednak to nie jest słuszne podejście.
+ * 
+ * Drugą istotną sprawą jest trzymanie porządku w kodzie.
+ * Konstrukcja kalsy powinna wyglądać następująco
+ */
+/*
+    class SomeClass()
+    {
+        // Stałe publiczne - będziemy o nich mówić    
+        // Stałe prywante - będziemy o nich mówić    
+
+        // Właściwości statyczne publiczne - będziemy o nich mówić
+        // Właściwości statyczne prywatne - będziemy o nich mówić
+        // Metody statyczne publiczne - będziemy o nich mówić
+        // Metody statycznie prywatne - będziemy o nich mówić
+
+        // Właściwości publiczne
+        // Właściwości prywatne
+
+        // Konstruktor
+
+        // Metody publiczne
+        // Metody prywatne
+    }
+*/
+
+// stałe i staticy
 
 // ABSTRACT i FINAL
 
