@@ -548,9 +548,64 @@ class Flat
 
 
 
-
-
 // KONSTRUKTOR (destructor)
+
+/**
+ * Wspomniałem wcześniej, ze utworzenie nowego obiektu na podstawie klasy wygląda jak wywołanie funkcji.
+ * Tak naprawdę duzo nie rozmijamy się z prawdą w tym przypadku.
+ * Przy kadzdym tworzeniu obiektu wywołuje się konstruktor.
+ * 
+ * Konstruktor nies niczym innym jak metodą zdefinowaną w klasie.
+ * Nie musimy jej ręcznie wywoływać.
+ * Zostanie wywołan automatczynie gdy tylko będziesz tworzył nowy obiekt.
+ * 
+ * Jeśli chodzi o implementację kontruktora to metoda która nim jest ma specjalną nazwę: __construct
+ */
+
+class SomeClass {
+    public function __construct() 
+    {
+        echo "Hej to ja, konstruktor Twojej klasy. Ja istnieję !!!";
+    }
+}
+
+$object = new SomeClass();
+
+/**
+ * Co jeszcze odróznia konstruktor od zwykłajej metody.
+ * W konstruktorze nie mozemy zadeklarowac zwracanego typu.
+ * Próba deklaracji skończy się informacją o błędzie gdzy będziemy próbowali utworzyć nowy obiekt.
+ * 
+ * Czy to oznacza e
+ */
+
+class Flat
+{
+    private string $doorLockCode = '123qwe';
+
+    private bool $closed = true;
+
+    public function close(): void
+    {
+        $this->closed = false;
+    }
+
+    public function open(string $code): void
+    {
+        if ($code === $this->doorLockCode) {
+            $this->closed = true;
+        } else {
+            // logowanie informacji o próbie użycia niepoprawnego kodu
+        }
+    }
+
+    public function isOpen(): bool
+    {
+        return !$this->closed;
+    }
+}
+
+
 
 // ABSTRACT i FINAL
 
