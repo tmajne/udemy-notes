@@ -552,14 +552,14 @@ class Flat
 
 /**
  * Wspomniałem wcześniej, ze utworzenie nowego obiektu na podstawie klasy wygląda jak wywołanie funkcji.
- * Tak naprawdę duzo nie rozmijamy się z prawdą w tym przypadku.
- * Przy kadzdym tworzeniu obiektu wywołuje się konstruktor.
+ * Tak naprawdę dużo nie rozmijamy się z prawdą w tym przypadku.
+ * Przy każdym tworzeniu obiektu wywołuje się konstruktor.
  * 
- * Konstruktor nies niczym innym jak metodą zdefinowaną w klasie.
+ * Konstruktor nie jest niczym innym jak metodą zdefiniowaną w klasie.
  * Nie musimy jej ręcznie wywoływać.
- * Zostanie wywołan automatczynie gdy tylko będziesz tworzył nowy obiekt.
+ * Zostanie wywołany automatycznie gdy tylko będziesz tworzył nowy obiekt.
  * 
- * Jeśli chodzi o implementację kontruktora to metoda która nim jest ma specjalną nazwę: __construct
+ * Jeśli chodzi o implementację konstruktora to metoda która nim jest ma specjalną nazwę: __construct
  */
 
 class SomeClass {
@@ -572,18 +572,18 @@ class SomeClass {
 $object = new SomeClass();
 
 /**
- * Co jeszcze odróznia konstruktor od zwykłajej metody.
- * W konstruktorze nie mozemy zadeklarowac zwracanego typu.
- * Próba deklaracji skończy się informacją o błędzie gdzy będziemy próbowali utworzyć nowy obiekt.
+ * Co jeszcze odróżnia konstruktor od zwykłej metody.
+ * W konstruktorze nie możemy zadeklarować zwracanego typu.
+ * Próba deklaracji skończy się informacją o błędzie gdy będziemy próbowali utworzyć nowy obiekt.
  * 
- * Teraz mozna zadać sobie pytanie. 
- * Po co nam konstruktor, przeciez do tej pory dobrze sobie bez niego radziliśmy.
+ * Teraz można zadać sobie pytanie. 
+ * Po co nam konstruktor, przecież do tej pory dobrze sobie bez niego radziliśmy.
  * 
- * Konstruktor słuzy do wstępnego skonfigurowania nowo powstającego obiektu, 
+ * Konstruktor służy do wstępnego skonfigurowania nowo powstającego obiektu, 
  * poprzez odpowiednie ustawienie jego właściwości
- * Do tej pory nie potrzebowaliśmy tego robić, dlatetego nie uzywaliśmy konstrukora.
+ * Do tej pory nie potrzebowaliśmy tego robić, dlatego nie używaliśmy konstruktora.
  * 
- * Przyjzyjmy sie jednak naszej klasie Flat trochę uwazniej
+ * Przyjrzyjmy sie jednak naszej klasie Flat trochę uważniej
  */
 
 class Flat
@@ -614,13 +614,13 @@ class Flat
 
 /**
  * Widzimy, ze na stałe mamy przypisany kod do drzwi.
- * I kazdy nowo powstaly obiekt mieszkania ma taki sam.
+ * I każdy nowo powstały obiekt mieszkania ma taki sam.
  * Logicznie myśląc to chyba coś jest nie tak.
- * Nie chcielibyśmy aby do wszystki sprzedanych mieszkań powstałych na planie naszej klasy
+ * Nie chcielibyśmy aby do wszystkich sprzedanych mieszkań powstałych na planie naszej klasy
  * był ustawiony taki sam kod.
  * 
  * Wiemy ze konstruktor to tak naprawdę metoda, a metoda to funkcja osadzona wewnątrz klasy.
- * Tak więc do konstruktora mozemy przekazywać parametry
+ * Tak więc do konstruktora możemy przekazywać parametry
  */
 
 class Flat
@@ -665,34 +665,34 @@ var_dump($flat);
 
 /**
  * W konstruktorze, oprócz tego ze ustawiamy wartość początkową 
- * mozemy tez dodać reguły walidacji dla przekazanego kodu, dzięki temu 
+ * możemy tez dodać reguły walidacji dla przekazanego kodu, dzięki temu 
  * będziemy pewni, ze mieszkanie jest odpowiednio zabezpieczone.
  * 
- * Do sprawdzania długości int, posłuzylem się sztuczką z zutowanie.
+ * Do sprawdzania długości int, posłużyłem się sztuczką z rzutowaniem.
  * 
- * Oczywiście w konstruktorze mozemy zawrzec nie tylko regóły walidacji ale w sumie co tylko nam się podoba :)
- * Ograniczeni jesteśmy tylko sesnsownością tego co tam się znajdzie.
+ * Oczywiście w konstruktorze możemy zawrżec nie tylko reguły walidacji ale w sumie co tylko nam się podoba :)
+ * Ograniczeni jesteśmy tylko sensownością tego co tam się znajdzie.
  */
 
 /**
- * Gwoli ścisłości zaznaczę jeszcze ze istnieje opócz konstruktora równiez destruktor, 
- * który jest automatycznie wyłowywany kiedy obiekt przestaje istnieć. 
- * Jednak destroktory praktycznie nie są uzywane, wiec z czystym sumieniem mozna pominac ich temat
+ * Gwoli ścisłości zaznaczę jeszcze ze istnieje oprócz konstruktora również destruktor, 
+ * który jest automatycznie wywoływany kiedy obiekt przestaje istnieć. 
+ * Jednak destruktory praktycznie nie są używane, wiec z czystym sumieniem można pominąć ich temat
  */
 
- /** Wspomnę jeszcze ze o nasze klasy nalezy dbać. 
+ /** Wspomnę jeszcze ze o nasze klasy należy dbać. 
  * To znaczy klasy a co za tym idzie obiekty które na ich podstawie tworzymy muszą być wyspecjalizowane.
  * Odpowiadać za jedną spójną dziedzinę.
  * Na początku jest pokusa aby do klas upychać wszystko jak popadnie. Jednak to nie jest słuszne podejście.
  * 
  * Drugą istotną sprawą jest trzymanie porządku w kodzie.
- * Konstrukcja kalsy powinna wyglądać następująco
+ * Konstrukcja klasy powinna wyglądać następująco
  */
 /*
     class SomeClass()
     {
         // Stałe publiczne - będziemy o nich mówić    
-        // Stałe prywante - będziemy o nich mówić    
+        // Stałe prywatne - będziemy o nich mówić    
 
         // Właściwości statyczne publiczne - będziemy o nich mówić
         // Właściwości statyczne prywatne - będziemy o nich mówić
@@ -709,7 +709,199 @@ var_dump($flat);
     }
 */
 
-// stałe i staticy
+
+
+
+// STAŁE ORAZ METODY I WŁAŚCIWOŚCI STATYCZNE
+
+/**
+ * O stałych w kontekście globalnym, czyli widocznych w dowolnym miejscu kodu który tworzymy mówiliśmy już na początku kursu.
+ * Widocznych - mam na myśli, że możemy się do nich odwołać i użyć. 
+ * 
+ * Istnieje jeszcze jeden rodzaj stałych, mianowicie stałe klasy.
+ * Definiujemy je w klasie przy użyciu słowa 'const'.
+ */
+
+class SomeClass
+{
+    const BAR = 'bar'; // publiczna
+    public const FOO = 'foo';
+    private const ZAZ = 'zaz';
+
+    public function doSomething()
+    {
+        echo self::ZAZ;
+    }
+}
+
+echo SomeClass::FOO . "\n";
+echo SomeClass::ZAZ . "\n";
+
+$object = new SomeClass();
+$object->doSomething();
+
+/**
+ * Od wersji 7.1 możemy używać modyfikatorów dostępu w kontekście stałych.
+ * Jeśli nie użyjemy żadnego to stała domyślnie jest publiczna.
+ * 
+ * Przy nazewnictwie stałych obowiązują te same dobre praktyki co przy stałych globalnych.
+ * Do stałej musimy przypisać konkretną wartość np. string, tablica, nie mogą to być jednak wyrażenia, 
+ * czyli zmienne, właściwości czy rezultat zwrócony przez wywołanie funkcji/metody
+ * 
+ * Do stałej odwołujemy się przez nazwę klasy oraz użycie podwójnego dwukropka "::"
+ * Z wnętrza klasy do prywatnej (nie tylko) stałej odwołujemy się za pomocą słowa "self", które wskazuje na nazwę klasy.
+ * Istotny jest fakt, że nie potrzebujemy używać znaku dolara "$" przed nazwą stałej.
+ * 
+ * Stałe są inicjalizowane tylko raz gdy PHP wczyta kod klasy 
+ * a nie za każdym razem gdy tworzymy nowy obiekt danej klasy.
+ * Ważne jest to aby o tym wiedzieć. 
+ */
+
+
+/**
+ * STATYKI
+ * 
+ * Właściwości i metody żyją/egzystują tylko i wyłącznie z obiektami.
+ * W klasie je tylko definiujemy a w obiektach operujemy na nich.
+ * Każdy obiekt stanowi tak jakby zamknięto całość. 
+ * To co dzieje się wewnątrz obiektu nie wychodzi poza ten obiekt.
+ * To znaczy, że jak dla jednego obiektu ustawimy właściwość na pewną wartość
+ * To w innych obiektach ta wartość się nie zmieni.
+ * 
+ * A co w przypadku gdybyśmy chcieli jednak posiadać właściwość lub metodę 
+ * współdzieloną pomiędzy wszystkie obiekty, które powstały z danej klasy.
+ * Zmiana wartości tej metody automatycznie byłaby widoczna we wszystkich obiektach
+ * utworzonych z tej klasy.
+ * 
+ * Powyższą funkcjonalność możemy uzyskać za pomocą właściwości i metod statycznych (static).
+ * Tworzymy je za pomocą słowa 'static' dodawanego przed nazwą właściwości/metody.
+ * Tutaj również mają zastosowanie modyfikatory widoczności.
+ */
+
+class SomeClass
+{
+    public static $foo;
+    private static $baz;
+
+    public static function doSomething()
+    {
+        self::$baz = 'Wartość prywatnej zmiennej statycznej';
+    }
+}
+
+SomeClass::$foo = 'foo foo';
+SomeClass::doSomething();
+SomeClass::$baz; // ERROR
+
+/**
+ * Dostęp do statycznej właściwości/metody uzyskujemy przez użycie podwójnego dwukropka: "::"
+ * Z zewnątrz klasy musimy się nazwą klasy aby uzyskać dostęp do właściwości/metod statycznych.
+ * Natomiast z wnętrza klasy posługujemy się słowem "self" które wskazuje na klasę w której się znajduje.
+ * 
+ * W odróżnieniu od stałych właściwościom statycznym jak najbardziej możemy zmieniać przypisane do nich wartości.
+ * Konwencja nazewnicza obowiązuje taka jak przy nazywaniu zmiennych.
+ * Musimy używać znaku dolara "$" przy odwoływaniu się do właściwości/metody statycznej
+ * 
+ * Widzimy, że aby użyć parametrów statycznych nie musimy w cale tworzyć nowych obiektów.
+ * Dzieje się tak dlatego że parametry statyczne są związane z klasą a nie z obiektem.
+ * Istnieją bez potrzeby utworzenia choćby jednego obiektu danej klasy.
+ * Nawet posiadają swój odpowiednik $this, którym jest "self" o którym wspomnieliśmy przed momentem.
+ * 
+ * Oczywiście możemy używać jednocześnie właściwości/metod statyczny i zwykłych.
+ * 
+ * UWAGA:
+ * Z zewnątrz do właściwości statycznych/metod można odwołać się też przy użyciu nazwy obiektu:
+ * $object::$staticProperty
+ * $object::staticMethod();
+ * Do metod można się też odwołać za pomocą strzałki
+ * $object->staticMethod();
+ * Ja osobiście unikam powyższych możliwości, ponieważ powodują niepotrzebne zaciemnianie kodu.
+ * Dzięki temu, że jesteśmy konsekwentni i używamy nazwy klasy nasz kod i nasze intencje stają się czytelniejsze
+ * 
+ * Rozważmy problem biznesowy:
+ * Wyobraźmy sobie sytuację, że nasza klasa Flat jest szablonem mieszkań które developer buduje i chce sprzedać. 
+ * Developer musi wiedzieć ile mieszkań się sprzedało do tej pory aby nie sprzedać więcej niż wybudował. 
+ * 
+ * Jedno z możliwych rozwiązań mogłoby wyglądać następująco.
+ * 
+ * Mocno upraszczam naszą klasę Flat, aby wyeksponować to co nas w danej chwili interesuje.
+ */
+
+class Flat
+{
+    private const BUILT = 5;
+    
+    private static int $sold = 0;
+
+    public static function sold(): int
+    {
+        return self::$sold;
+    }
+
+    public function __construct()
+    {
+        if (self::$sold < self::BUILT) {
+            self::$sold += 1;
+        } else {
+            echo "Sprzedano wszystkie mieszkania\n";
+            //TODO: zgłoszenie błędu o niemożliwości sprzedaży
+        }
+    }
+}
+
+$flat1 = new Flat();
+var_dump(Flat::sold());
+$flat2 = new Flat();
+new Flat();
+new Flat();
+new Flat();
+var_dump(Flat::sold());
+new Flat();
+new Flat();
+
+/**
+ * W prywatnej stałej umieściliśmy informację o liczbie wybudowanych mieszkań. 
+ * 
+ * Przy tworzeniu nowego obiektu klasy Flat zwiększamy licznik sprzedaży o 1 za pomocą konstruktora,
+ * który jak pamiętamy wykonuje się zawsze przy kreacji obiektu. Zmiana ta będzie automatycznie widoczna we 
+ * wszystkich wcześniej już utworzonych obiektach.
+ * 
+ * Sprawdzamy też ile mieszkań do tej pory się sprzedało. Jeśli została przekroczona liczba sprzedanych mieszkań
+ * to informujemy o tym użytkownika i zgłaszamy odpowiedni błąd.
+ * 
+ * Właściwość statyczna "sold" jest prywatna, dlatego, że chcemy mieć pełną kontrolę nad tym ile mieszkań się sprzedało.
+ * Wykluczamy sytuację, że ktoś kto będzie używał naszej klasy ręcznie zmodyfikuje wartość która jest przechowywana w $sold.
+ * Nie ma po prostu takiej możliwości.
+ * 
+ * Oczywiście jeśli ktoś pokusi się o modyfikacje naszego kodu, może choćby zmienić widoczność naszej właściwości, 
+ * ale na to już nic nie poradzimy.
+ * 
+ * UWAGA.
+ * W metodach statycznych nie można używać właściwości $this, natomiast w zwykłych metodach jak najbardziej możemy używać "self". 
+ * Wytłumaczenie jest bardzo logiczne.
+ * Self - istnieje zawsze i odwołuje się do klasy, natomist $this istnieje tylko w kontekście obiektu
+ */
+
+class SomeClass
+{
+    private strint $foo;
+
+    public static function test()
+    {
+        $this->foo = 'value';
+    }
+}
+
+/**
+ * Podczas użycia metody statycznej "test" nie mamy pojęcia czy istnieje już jakiś obiekt aby się do niego odwołać.
+ * Jednak nawet gdyby istniało kilka obiektów to do którego obiektu $this ma się odnosić?
+ * Dlatego z tych przycyn użycie $this w metodach statycznych jest zabronione
+ */
+
+
+ 
+
+// DZIEDZICZENIE
 
 // ABSTRACT i FINAL
 

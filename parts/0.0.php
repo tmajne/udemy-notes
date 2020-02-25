@@ -32,3 +32,9 @@
  /**
   * Dodać podsumowanie na końcu każdego rozdziału??
   */
+
+  // powiedzieć aby kodowali razem z kursem, nie tylko słuchali
+
+// to nie będzie kurs gdzie będę wymieniał funkcjonalności języka od A do Z
+// będę się starał przemycić również informację o dobrych praktykach programowania
+// jakieś ciekawostki itp
