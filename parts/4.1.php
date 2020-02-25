@@ -876,10 +876,14 @@ new Flat();
  * Oczywiście jeśli ktoś pokusi się o modyfikacje naszego kodu, może choćby zmienić widoczność naszej właściwości, 
  * ale na to już nic nie poradzimy.
  * 
- * UWAGA.
+ * UWAGA 1.
  * W metodach statycznych nie można używać właściwości $this, natomiast w zwykłych metodach jak najbardziej możemy używać "self". 
  * Wytłumaczenie jest bardzo logiczne.
  * Self - istnieje zawsze i odwołuje się do klasy, natomist $this istnieje tylko w kontekście obiektu
+ * 
+ * UWAGA 2.
+ * Przedstawione rozwiązanie nie jest najlepszym rozwiązaniem zaistniałego problemu, ale powinno działać 
+ * i dobrze obrazuje zastoswoanie statyków, a to był główny cel tego przykładu.
  */
 
 class SomeClass
@@ -902,6 +906,15 @@ class SomeClass
  
 
 // DZIEDZICZENIE
+
+/**
+ * Przechodzimy do kwintesencji naszego rozdziału o klasach i obiektach.
+ * 
+ * 
+ * Przed Tobą wielka rzecz w temacie programowania obiektowego - dziedziczenie. Pewnie rozumiesz samo pojęcie dziedziczenia poza programowaniem (na przykład dziecko dziedziczy kolor oczu po matce). W programowaniu mamy podobnie: tworzona klasa może dziedziczyć po innej klasie, to znaczy przejąć jej właściwości oraz metody. Rzecz jasna klasa, która dziedziczy również może mieć swoje metody czy właściwości.
+ *
+ * A więc pozostając przy tematyce ludzi, spójrzmy na jakiś przykład. Wyobraź sobie, że mamy system obsługujący przychodnię lekarską i dzieci oraz osoby dorosłe muszą być inaczej potraktowane. Jest jednak sporo informacji, jakie należy zebrać na temat każdej osoby: imię i nazwisko, adres, PESEL i tak dalej. Zapiszmy to przy użyciu klasy bazowej i dwóch klas dziedziczących.
+ */
 
 // ABSTRACT i FINAL
 
