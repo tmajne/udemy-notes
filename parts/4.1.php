@@ -910,11 +910,283 @@ class SomeClass
 /**
  * Przechodzimy do kwintesencji naszego rozdziału o klasach i obiektach.
  * 
+ * Z dziedziczeniem w programowaniu jest trochę tak jak w rzeczywistości.
+ * Istnieje rodzić, w PHP tylko jeden i istnieje dziecko lub dzieci.
+ * Dzieci dziedziczą geny, czyli właściwości i metody po rodzicu, ale mogą również wykształcić 
+ * własne geny, czyli właściwości i metody.
  * 
- * Przed Tobą wielka rzecz w temacie programowania obiektowego - dziedziczenie. Pewnie rozumiesz samo pojęcie dziedziczenia poza programowaniem (na przykład dziecko dziedziczy kolor oczu po matce). W programowaniu mamy podobnie: tworzona klasa może dziedziczyć po innej klasie, to znaczy przejąć jej właściwości oraz metody. Rzecz jasna klasa, która dziedziczy również może mieć swoje metody czy właściwości.
- *
- * A więc pozostając przy tematyce ludzi, spójrzmy na jakiś przykład. Wyobraź sobie, że mamy system obsługujący przychodnię lekarską i dzieci oraz osoby dorosłe muszą być inaczej potraktowane. Jest jednak sporo informacji, jakie należy zebrać na temat każdej osoby: imię i nazwisko, adres, PESEL i tak dalej. Zapiszmy to przy użyciu klasy bazowej i dwóch klas dziedziczących.
+ * Jak to wygląda od strony technicznej?
+ * Dziedziczenie opiera się na istnieniu klasy bazowej (rodzica), 
+ * która może się dzielić z klasami potomnymi (dziećmi) swoimi funkcjonalnościami (właściwości i metody).
+ * Klasa potomna (dziecko) może dziedziczyć tylko po jednej klasie bazowej.
+ * 
+ * A jak to wygląda od strony kodu?
  */
+
+class Parent 
+{
+
+}
+
+class Child extends Parent
+{
+
+}
+
+/**
+ * Aby móc zastosować dziedziczenie trzeba użyć słowa "extends".
+ * Po lewej stronie "extends" mamy klasę która będzie dzieckiem, 
+ * natomiast po prawej wskazujemy klasę, która będzie rodzicem.
+ * 
+ * Nasz przykład jest hmm ... trochę wydumany, 
+ * więc posłużmy sie teraz trochę bardziej realnym przykładem.
+ */
+
+class User 
+{
+    public string $login = 'userLogin';
+    private string $topSecret = 'secret';
+}
+
+
+class Client extends User
+{
+    public int $number = 111;
+
+    public function __construct()
+    {   
+        var_dump($this->login);
+        var_dump($this->number);
+        var_dump($this->topSecret);
+    }
+}
+
+
+class Admin extends User
+{
+    public string $role = 'superuser';
+
+    public function __construct()
+    {   
+        var_dump($this->login);
+        var_dump($this->role);
+        var_dump($this->topSecret);
+    }
+}
+
+
+$user = new User();
+$client = new Client();
+$admin = new Admin();
+
+/**
+ * Mamy klasę User, która jest rodzicem dla klas Client i Admin.
+ * Przykład nadal jest dość abstrakcyjny ale już odrobinę bardziej obrazowy.
+ * 
+ * Klasa User ma zdefiniowane dwie właściwości, jedną publiczną i drugą prywatną. 
+ * W klasach potomnych czyli dzieciach czyli Client i Admin
+ * tworzymy konstruktor w którym wyświetlamy właściwości pochodzące od rodzica.
+ * Uzyskany efekt może nie być do końca taki jak na początku sobie założyliśmy.
+ * 
+ * Widzimy że właściwość publiczną udało się wyświetlić w obu klasach potomnych.
+ * Jednak jest problem z właściwością prywatną. 
+ * Jednak cofnijmy się parę lekcji wstecz i przypomnijmy sobie czym jest prywatny modyfikator dostępu.
+ * 
+ * Mówi on nam, że właściwość/metoda nie jest widoczna z poza obiektu który jest instancją danej klasy. 
+ * (skrótowo można powiedzieć, "z poza klasy")
+ * Teraz dochodzimy do sedna problemy. 
+ * 
+ * Obiekty utworzone z klasy potomnej nie mają dostępu do właściwości/metod prywatnych rodzica.
+ * Natomiast bez problemu uzyskują dostęp i dziedziczą publiczne właściwości/metody pochodzące od rodzica.
+ * To jest bardzo ważna informacja, którą trzeba zapamiętać.
+ * 
+ * A co w przypadku gdybyśmy jednak chcieli w klasach potomnych mieć odziedziczoną właściwość prywatną,
+ * ponieważ nie jest ona widoczna z zewnątrz klasy?
+ * Tutaj z pomocą przychodzi nam modyfikator PROTECTED, wspomnieliśmy o niem wcześniej, ale dopiero teraz 
+ * dysponujemy odpowiednią wiedzą, że sensowne jest jego omówienie.
+ * 
+ * PROTECTED - właściwość/metoda jest chroniona i nie ma do niej dostępu z poza obiektu, jednak w przeciwieństwie
+ * do PRIVATE jest dziedziczona i jest widoczna w klasach potomnych
+ */
+
+class User 
+{
+    public string $login = 'userLogin';
+    protected string $topSecret = 'secret protected';
+}
+
+
+class Client extends User
+{
+    public int $number = 111;
+
+    public function __construct()
+    {   
+        var_dump($this->login);
+        var_dump($this->number);
+        var_dump($this->topSecret);
+    }
+}
+
+
+class Admin extends User
+{
+    public string $role = 'superuser';
+
+    public function __construct()
+    {   
+        var_dump($this->login);
+        var_dump($this->role);
+        var_dump($this->topSecret);
+    }
+}
+
+
+$user = new User();
+$client = new Client();
+$admin = new Admin();
+
+/**
+ * Po zmianie modyfikatora z prywatnego na protected nasz przykład nie zgłasza już żadnego błędu
+ * oraz mamy już dostęp do właściwości $secret pochodzącej z rodzica.
+ * 
+ * Klasy potomne mogą rozszerzać funkcjonalność rodzica poprzez definiowanie nowych właściwości/metod,
+ * co możemy zaobserwować w naszym przykładzie.
+ * Dzięki czemu stają się coraz bardziej wyspecjalizowane.
+ * 
+ * Dziedziczenie możemy sobie zobrazować jak odwrócone drzewo, gdzie na samej górze jest główny korzeń
+ * z którego wychodzą kolejne gałęzie reprezentujące tak zwany "poziom dziedziczenia".
+ * 
+ * O dziedziczeniu możemy też powiedzieć, że jest to droga od ogółu do szczegółu, 
+ * to znaczy od klas najbardziej ogólnych do najbardziej wyspecjalizowanych.
+ * 
+ * Np.
+ * class Vehicle
+ * 
+ * class Train extends Vehicle
+ * class Plane extends Vehicle
+ * class Car extends Vehicle
+ * 
+ * CargoTrain extends Train
+ * PassengerTrain extends Train
+ * 
+ * Fighter extends Plane
+ * Bomber extends Plane
+ * 
+ * StealthFighter extends Fighter
+ * ...
+ * 
+ * Widzimy, że poziomów dziedziczenia możemy tworzyć bardzo dużo.
+ * Dochodząc do coraz bardzie wyspecjalizowanych obiektów.
+ * 
+ * UWAGA. Dobra praktyką jest jednak nie przesadzanie ze zbyt dużą liczbą poziomów dziedziczenia.
+ * Starajmy się zamknąć maksymalnie w trzech poziomach.
+ * Oczywiście gdy wyjdzie nam o jeden poziom więcej to świat się nie zawali, ale to będzie już oznaczało
+ * że coś trochę przekombinowaliśmy i może warto się głębiej zastanowić nad naszym projektem.
+ * 
+ * UWAGA. Spotkacie się pewnie ze stwierdzeniem.
+ * Kompozycja ponad dziedziczenie.
+ * Stwierdzenie to jest jak najbardziej słuszne. Kompozycja to już bardziej zaawansowany temat.
+ * W dużym uproszczeniu mówi on nam, że lepiej komponować obiekty z innych obiektów, 
+ * polegać głównie na dziedziczeniu i budować bardzo duże drzewa dziedziczenia.
+ * 
+ * PS. Tak, do właściwości w obiektach możemy przypisywać inne obiekty
+ */
+
+/**
+ * Bardzo ważną kwestią przy dziedziczeniu są konstruktory.
+ * 
+ * Rozważmy następujący przykład.
+ */
+
+class Rodzic
+{
+    protected ?string $nazwa = null;
+
+    public function __construct(string $nazwa)
+    {
+        $this->nazwa = $nazwa;
+    }
+
+    public function pobierzNazwe(): ?string
+    {
+        return $this->nazwa;
+    }
+}
+
+$obiektRodzica = new Rodzic('testowa nazwa rodzica');
+var_dump($obiektRodzica->pobierzNazwe());
+
+class Dziecko extends Rodzic
+{
+
+}
+
+$obiektDziecko = new Dziecko('testowa nazwa dziecka');
+var_dump($obiektDziecko->pobierzNazwe());
+
+/**
+ * W tym przykładnie specjalnie posługujemy się polskimi nazwami, 
+ * jednak tylko po to aby zobrazować jak to dziwnie wygląda.
+ * 
+ * Pamiętajmy, że język angielski jest językiem nauki oraz językiem IT
+ * 
+ * Dokończę już temat konstruktorów w języku polskim, jednak świadomie w kodzie już go nie będę używał.
+ *
+ * Wracając jednak do przykładu.
+ * Widzimy że w klasie potomnej nie zadeklarowaliśmy kostruktora.
+ * W takim przypadku standardowo będzie on odziedziczony z kalsy rodzica i wszystko działa tak jak należy
+ */
+
+class Rodzic
+{
+    protected ?string $nazwa = null;
+
+    public function __construct(string $nazwa)
+    {
+        $this->nazwa = $nazwa;
+    }
+
+    public function pobierzNazwe(): ?string
+    {
+        return $this->nazwa;
+    }
+}
+
+$obiektRodzica = new Rodzic('testowa nazwa rodzica');
+var_dump($obiektRodzica->pobierzNazwe());
+
+class Dziecko extends Rodzic
+{
+    public function __construct(int $numer, string $tekst)
+    {
+        
+    }
+}
+
+$obiektDziecko = new Dziecko('testowa nazwa dziecka');
+var_dump($obiektDziecko->pobierzNazwe());
+
+
+
+
+/**
+ * CIEKAWOSTKA: pobranie prywatnej przez metodę z rodzica w dziecku
+ * 
+ * nadpisywanie metod w dzieciach
+ */
+
+/**
+ * Ostatnią rzeczą w tej części kursu jest: "final"
+ */
+
+
+
+/**
+ * KLASY ABSTRAKCYJNE
+ */
+
+
 
 // ABSTRACT i FINAL
 
