@@ -1131,11 +1131,13 @@ var_dump($obiektDziecko->pobierzNazwe());
  * 
  * Pamiętajmy, że język angielski jest językiem nauki oraz językiem IT
  * 
- * Dokończę już temat konstruktorów w języku polskim, jednak świadomie w kodzie już go nie będę używał.
+ * Dokończę już temat konstruktorów w języku polskim, jednak później świadomie w kodzie już go nie będę używał.
  *
  * Wracając jednak do przykładu.
- * Widzimy że w klasie potomnej nie zadeklarowaliśmy kostruktora.
- * W takim przypadku standardowo będzie on odziedziczony z kalsy rodzica i wszystko działa tak jak należy
+ * Widzimy że w klasie potomnej nie zadeklarowaliśmy konstruktora.
+ * W takim przypadku standardowo będzie on odziedziczony z klasy rodzica i wszystko działa tak jak należy
+ * 
+ * Teraz dokonajmy drobnej modyfikacji w klasie dziecka
  */
 
 class Rodzic
@@ -1164,57 +1166,230 @@ class Dziecko extends Rodzic
     }
 }
 
-$obiektDziecko = new Dziecko('testowa nazwa dziecka');
+$obiektDziecko = new Dziecko(111, 'testowa nazwa dziecka');
 var_dump($obiektDziecko->pobierzNazwe());
 
+/**
+ * W klasie potomnej zawsze możemy nadpisać metodę/właściwość pochodzącą z klasy rodzica.
+ * W tym przypadku jest to konstruktor.
+ * 
+ * Wywołując metodę pobierzNazwe widzimy że dostajemy wartość NULL, czyli wartość domyślna, 
+ * w związku z tym widzimy, że nasza właściwość się nie ustawiła. 
+ * Dzieje się tak dlatego, że nadpisaliśmy konstruktor rodzica i tworząc obiekt dziecka wykonuje się konstruktor z dziecka.
+ * 
+ * Istnieje jednak sposób na wykonanie konstruktora rodzica dzięki zastosowaniu słowa "parent".
+ * Dzięki temu słowu jesteśmy w stanie odwołać się do dowolnej metody pochodzącej z rodzica i wywołać ją taką jaka była w rodzicu.
+ * W naszym przypadku jest to właśnie konstruktor.
+ */
+
+class Dziecko extends Rodzic
+{
+    public function __construct(string $nazwa, int $numer)
+    {
+        parent::__construct($nazwa);
+    }
+}
+
+$obiektDziecko = new Dziecko('testowa nazwa dziecka', 111);
+var_dump($obiektDziecko->pobierzNazwe());
+
+/**
+ * Teraz z powrotem nasz przykład działa tak jak powinien.
+ * 
+ * UWAGA:
+ * W klasie potomnej możemy nadpisać każdą metodę z klasy rodzica łącznie z konstruktorem.
+ * Trzeba jednak pamiętać aby "definicja" nowej metody rozszerzała "definicję" metody rodzica.
+ * 
+ * Mocno upraszczając deklaracja funkcji/metody to zbiór informacji o niej, czyli
+ * - nazwa
+ * - informacja o liści argumentów do niej przekazanych
+ * - informacja o typie zwracanych danych
+ * 
+ * Jeśli wprowadzone przez nas zmiany w definicji metody, którą nadpisujemy zmienią ją na tyle, 
+ * że PHP uzna że już nie jest "kompatabilna" z definicją rodzica to zostaniemy o tym poinformowani
+ * stosownym komunikatem błędu.
+ * "Declaration of Dziecko::pobierzNazwe(?int $bar, string $cos): ?string should be compatible with Rodzic::pobierzNazwe()"
+ * Nasz kod wprawdzie się wykona, ale zostaniemy i tak poinformowani o tym, że coś jest nie tak.
+ * Ten temat już odrobinę wykracza poza zakres tego kursu, więc wrócimy do niego w następnych kursach już na trochę wyższym 
+ * stopniu zaawansowania.
+ * 
+ * Napomknę jednak, że jeśli chodzi o konstruktory to tutaj mamy trochę inną sytuację. 
+ * Mianowicie, możemy bez konsekwencji zmieniać listę łącznie z typami argumentów przekazywanymi do konstruktóra.
+ * Co zrobiliśmy w naszym przykładzie.
+ * 
+ * UWAGA:
+ * Dobrą zasadą jest to aby utrzymywać jak największa spójność definicji konstruktora w dziecku z rodzicem.
+ * Mimo, że możemy go całkiem zmienić, to jednak przykładowo jeśli potrzebujemy dodać nowy argument, to 
+ * dodajmy go na końcu listy argumentów, na początku pozostawiając te pochodzące z konstruktora rodzica.
+ * Oczywiście jeśli nadal te argumenty są potrzebne.
+ * 
+ * Mając to na uwadze zmodyfikujemy jeszcze raz naszą klasę Dziecko.
+ */
+
+class Dziecko extends Rodzic
+{
+    public function __construct(int $numer, string $tekst)
+    {
+        parent::__construct($tekst);
+    }
+}
 
 
 
 /**
- * CIEKAWOSTKA: pobranie prywatnej przez metodę z rodzica w dziecku
+ * KLASY ABSTRAKCYJNE
  * 
- * nadpisywanie metod w dzieciach
+ * Omówiliśmy sobie klasy, teraz przyszła kolej na klasy abstrakcyjne.
+ * 
+ * Jeśli klasa jest wzorcem do tworzenia nowych obiektów,
+ * to w takim razie klasa abstrakcyjna jest wzorcem dla klas potomnych.
+ * 
+ * Różnicą pomiędzy zwykłą klasą, a klasą abstrakcyjną jest taka, 
+ * że z klasy abstrakcyjnej nie jesteśmy w stanie stworzyć obiektu.
+ * 
+ * Aby oznaczyć klasę jako abstrakcyjną używamy słowa "abstract" przed słowem "class"
  */
 
+class ClassParent {}
+class Child extends ClassParent {};
+
+$parent = new ClassParent();
+$child = new Child();
+var_dump($parent);
+var_dump($child);
+
+/**
+ * Tutaj wszystko jest ok,
+ * teraz zmodyfikujmy odrobinę nasz przykład
+ */
+
+abstract class AbstractParent {}
+class ChildFromAbstract extends AbstractParent {}
+
+$child = new ChildFromAbstract();
+var_dump($child);
+$parent = new AbstractParent();
+var_dump($parent);
+
+/**
+ * Przy próbie uruchomienia kodu dostajęmy błąd z informacją, żen ie możemy zinstancjonować klasy abstrakcyjnej.
+ * 
+ * Ok, wiemy już czego nie możemy zrobić z klasą abstrakcyjną, teraz powiedzmy co możemy.
+ * Wspomniałem na początku że klasa abstrakcyjna jest szablonem dla klas potomnych, które po niej dziedziczą. 
+ * 
+ * Klasa abstrakcyjne może (ale nie musi) posiadać tak jak normalna klasa zwykłe metody i właściwości.
+ * W klasie abstrakcyjnej dodatkowo możemy zadeklarować puste deklaracje metod. 
+ * Takie metody musimy oznaczyć jako abstrakcyjne.
+ * 
+ * Jeśli w klasie mamy choć jedną metodę abstrakcyjną to cała klasa musi zostać oznaczona jako abstrakcyjna.
+ */
+
+abstract class SomeClass 
+{
+    protected string $property;
+
+    abstract function doSomething(string $param1, array $param2): object;
+
+    public function property(): string
+    {
+        return $this->property;
+    }
+}
+
+/**
+ * W przykładzie widzimy, że zadeklarowaliśmy jedną metodę abstrakcyjną. 
+ * To co widzimy to tak naprawdę jest deklaracją metody, czyli określamy jej nazwę, listę argumentów i typ zwrotny.
+ * 
+ * Oznaczenie metody jako abstrakcyjnej oznacza, że wszystkie klasy które dziedziczą po klasie abstrakcyjnej
+ * muszą zaimplementować tą metodę (czyli stworzyć ciało metody).
+ * Klasa abstrakcyjna poprzez metody abstrakcyjne WYMUSZA to co musi znajdować się w klasach dziedziczących po niej.
+ * 
+ * Dobrym przykładem zastosowania klas abstrakcyjnych jest sytuacja, gdzie tworzymy jakąś bardzo ogólną klasę np. Vehicle.
+ * Potrafimy przewidzieć i od razu zaimplementować część metod które będą się znajdować w klasie Vehicle
+ */
+
+class Vehicle 
+{
+    private string $color;
+
+    public function color(): string
+    {
+        return $this->color;
+    }
+}
+
+/**
+ * Jednak nie jesteśmy przewidzieć jak zaimplementować pewne specyficzne zachowania w klasach potomnych, 
+ * które jednak wiemy że będą mieć miejsce.
+ * 
+ * Przykładowo, wiemy że każdy pojaz do poruszania sie potrzebuje paliwa i zużywa pewną jego ilość na jednostkę miary, powiedzmy 100km.
+ * Tak więc stwórzym sobię metodę: "fuelConsumption", dla uprszczenia przyjmujemy że domyślnie jednostką miary jest 100km.
+ * Zdajemy sobie sprawę, że każdy rodzaj pojazdu raz, że zużywa inne ilości paliwa, dwa to to że wyliczenie zużycia może odbywać się 
+ * na innch zasadach. 
+ * W związku z czym taką metodę oznaczamy jako abstrakcyjną. Ponieważ to już konkretny pojazd wie jak ma obiczyć swoje zużycie paliwa.
+ */
+
+abstract class Renderer
+{
+    protected string $text;
+
+    public function __construct(string $text)
+    {
+        $this->text = $text;
+    }
+}
+
+abstract class Vehicle 
+{
+    private string $color;
+
+    abstract public function fuelConsumption(): int;
+
+    public function color(): string
+    {
+        return $this->color;
+    }
+}
+
+class Plane extends Vehicle
+{
+    public function fuelConsumption(): int
+    {
+
+    }
+}
+
+class Truck extends Vehicle
+{
+    public function fuelConsumption(): int
+    {
+        
+    }
+}
+
+ /**
+ * UWAGA.
+ * Jeśli implementujemy funkcje abstrakcyjne w klasach potomnych to nie jesteśmy już w stanie zmienić w żaden sposób ich deklaracji,
+ * tak jak mieliśmy pewną taką możliwość jeśli przesłaniliśmy zwykłe metody (nie abstrkcyjne) odziedziczone z klasy rodzica
+ */
+
+
+
+
+
+
+
+
+ 
 /**
  * Ostatnią rzeczą w tej części kursu jest: "final"
  */
 
 
 
-/**
- * KLASY ABSTRAKCYJNE
- */
-
-
-
-// ABSTRACT i FINAL
-
 // INTERFEJSY
 
 
-
-
-
- /** W PHP mamy trzy typy modyfikatorów dostępu.
- * - public
- * - private
- * - protected
- * 
- * Ich funkcją jest określenie i pilnowanie zakresu widoczności danej właściwości.
- * W naszym przypadku określiliśmy, że właściwość $type jest publiczna.
- * A to znaczy że można się do niej odwołać z zewnątrz, a nie tylko z wnętrza obiektu.
- */
-
- 
- /* 
- * https://kobietydokodu.pl/0-programowanie-obiektowe/
- * https://pl.wikibooks.org/wiki/PHP/Czym_jest_programowanie_obiektowe%3F
- * https://kursphp.com/programowanie-obiektowe/
- * https://kursphp.com/programowanie-obiektowe-php/
- * https://webmastah.pl/jak-programowac-obiektowo-cz-1-wstep/
- * https://www.ikalkulator.pl/blog/mbank-zamkniecie-konta/
- */
 
 // foreach do itereowania po właściwościach
 
