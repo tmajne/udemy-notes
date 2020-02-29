@@ -1304,17 +1304,23 @@ abstract class SomeClass
  * muszą zaimplementować tą metodę (czyli stworzyć ciało metody).
  * Klasa abstrakcyjna poprzez metody abstrakcyjne WYMUSZA to co musi znajdować się w klasach dziedziczących po niej.
  * 
- * Dobrym przykładem zastosowania klas abstrakcyjnych jest sytuacja, gdzie tworzymy jakąś bardzo ogólną klasę np. Vehicle.
- * Potrafimy przewidzieć i od razu zaimplementować część metod które będą się znajdować w klasie Vehicle
+ * Dobrym przykładem zastosowania klas abstrakcyjnych jest sytuacja, gdzie tworzymy jakąś bardzo ogólną klasę np. Renderer.
+ * Zakładamy już na samym początku, że to będzie klasa bazowa po której będzie następowało dziedziczenie.
+ * Potrafimy przewidzieć i od razu zaimplementować część metod które będą się znajdować w klasie Renderer
  */
 
-class Vehicle 
+class Renderer 
 {
-    private string $color;
+    protected string $text;
 
-    public function color(): string
+    public function __construct(string $text)
     {
-        return $this->color;
+        $this->text = $text;
+    }
+
+    public function text(): string
+    {
+        return $this->text;
     }
 }
 
@@ -1322,11 +1328,9 @@ class Vehicle
  * Jednak nie jesteśmy przewidzieć jak zaimplementować pewne specyficzne zachowania w klasach potomnych, 
  * które jednak wiemy że będą mieć miejsce.
  * 
- * Przykładowo, wiemy że każdy pojaz do poruszania sie potrzebuje paliwa i zużywa pewną jego ilość na jednostkę miary, powiedzmy 100km.
- * Tak więc stwórzym sobię metodę: "fuelConsumption", dla uprszczenia przyjmujemy że domyślnie jednostką miary jest 100km.
- * Zdajemy sobie sprawę, że każdy rodzaj pojazdu raz, że zużywa inne ilości paliwa, dwa to to że wyliczenie zużycia może odbywać się 
- * na innch zasadach. 
- * W związku z czym taką metodę oznaczamy jako abstrakcyjną. Ponieważ to już konkretny pojazd wie jak ma obiczyć swoje zużycie paliwa.
+ * Podstawową odpowiedzialności za którą będzie odpowiadać jest wyrenderowanie tekstu w konkretnym formacie, np html, json itp
+ * W związku z czym brakuje nam metody "render" jednak w ogólnej klasie Renderer nie wiemy jaki format jest oczekiwany.
+ * Dlatego taką metodę oznaczamy jako abstrakcyjną, przez co klasy potomne będą musiały ją zaimplementować.
  */
 
 abstract class Renderer
@@ -1337,59 +1341,97 @@ abstract class Renderer
     {
         $this->text = $text;
     }
-}
 
-abstract class Vehicle 
-{
-    private string $color;
+    public abstract function render(): string;
 
-    abstract public function fuelConsumption(): int;
-
-    public function color(): string
+    public function text(): string
     {
-        return $this->color;
+        return $this->text;
     }
 }
 
-class Plane extends Vehicle
-{
-    public function fuelConsumption(): int
-    {
 
+class HtmlRenderer extends Renderer
+{
+    public function render(): string
+    {
+        return '<html><head></head><body><div>' . $this->text . '</div></body></html>';
     }
 }
 
-class Truck extends Vehicle
+class JsonRenderer extends Renderer
 {
-    public function fuelConsumption(): int
+    public function render(): string
     {
-        
+        return json_encode($this->text);
     }
 }
 
- /**
+/**
+ * Klasy HtmlRenderer i JsonRenderer są już mocną wyspecjalizowane, dzięki temu są świadome w jaki sposób mają zaimplementować
+ * abstrakcyjną metodę odziedziczoną po rodzicu
+ */
+
+/**
  * UWAGA.
  * Jeśli implementujemy funkcje abstrakcyjne w klasach potomnych to nie jesteśmy już w stanie zmienić w żaden sposób ich deklaracji,
- * tak jak mieliśmy pewną taką możliwość jeśli przesłaniliśmy zwykłe metody (nie abstrkcyjne) odziedziczone z klasy rodzica
+ * tak jak mieliśmy pewną taką możliwość jeśli przesłanialiśmy zwykłe metody (nie abstrakcyjne) odziedziczone z klasy rodzica
  */
 
 
 
-
-
+/**
+ * INTERFEJSY
+ * 
+ * Przed chwilą mówiliśmy o klasach abstrakcyjnych, które są wzorcami dla klas które po nich dziedziczą.
+ * 
+ * Interfejsy wychodzą jeszcze o poziom wyżej.
+ * 
+ * Spotkacie sie zapewne z wieloma definicjami interfejsu, które znaczą generalnie to samo.
+ * 
+ * W interfejsie znajdują się deklaracje metod oraz stałe.
+ * Ja interfejsy postrzegam jako kontrakt
+ */
 
 
 
  
+
 /**
- * Ostatnią rzeczą w tej części kursu jest: "final"
+ * FINAL
+ * 
+ * Język PHP daje możliwość zabronienie dziedziczenia.
+ * Uzyskuje się to przez użycie słowa "final" przed "class"
+ * 
+ * Klasa która jest oznaczona jako finalna nie może być dziedziczona. 
  */
 
+final class Vehicle {}
+class Car extends Vehicle {}
 
+/**
+ * Czasami może się zdarzyć tak, że z jakiś powodów nie chcemy aby któraś konkretna metoda z naszej klasy nie mogła być nadpisana.
+ * W takim przypadku wystarczy że zadeklarujemy tą metodę jako finalną. 
+ */
 
-// INTERFEJSY
+class Vehicle
+{
+    final public function doSomething(): void
+    {
+        echo 'foo';
+    }
+}
 
+class Car extends Vehicle
+{
+    public function doSomething(): void
+    {
+        echo 'bar';
+    }
+}
 
+//https://www.phpdevs.pl/programowanie-obiektowe/8-interfejsy
+//http://geekster.pl/php/interfejs/
 
 // foreach do itereowania po właściwościach
 
