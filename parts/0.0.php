@@ -1,6 +1,11 @@
 <?php
 
-
+/**
+ * Opisać wymagania dla Junior developera.
+ * 
+ * Powiedzieć, ze kurs nie stworzy z Ciebie seniora, ale da podstawy
+ * które trzeba znać i ubiegać się na stanowisko Junior PHP developera
+ */
 
 /**
  * Tematy do poruszenia na sam początek:

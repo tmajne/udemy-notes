@@ -1386,16 +1386,157 @@ class JsonRenderer extends Renderer
  * Przed chwilą mówiliśmy o klasach abstrakcyjnych, które są wzorcami dla klas które po nich dziedziczą.
  * 
  * Interfejsy wychodzą jeszcze o poziom wyżej.
+ * W interfejsie znajdują się deklaracje metod oraz stałe które mają się znaleźc w klasach,
+ * które ten interfejs implementują. 
  * 
- * Spotkacie sie zapewne z wieloma definicjami interfejsu, które znaczą generalnie to samo.
+ * Aby utworzyć interfejs uzywamy słowa: "interface",
+ * natomiast aby go zaimplementować nalezy uzyć "implements"
+ */
+ 
+interface ExampleInterface
+{
+    public function doSomething1(int $arg): string;
+    public function doSomething2(string $arg1, string $arg2): void;
+}
+ 
+class Example implements ExampleInterface
+{
+    public function doSomething1(int $arg): string
+    {
+        return 'bar';
+    }
+
+    public function doSomething2(string $arg1, string $arg2): void
+    {
+        // ...
+    }
+}
+
+/**
+ * Widzimy, ze w przykładowym interfejsie deklarujemy dwie metody.
+ * Klasa, która implementuje ten interfejs musi obie zaimplementować
+ * w przeciwnym wypadku zostanie zgłoszony błąd.
  * 
- * W interfejsie znajdują się deklaracje metod oraz stałe.
- * Ja interfejsy postrzegam jako kontrakt
+ * Co musimy wiedzieć o interfejsach:
+ * - mogą zawierać tylko stałe i deklaracje metod
+ * - stałe i metody muszą być publiczne
+ * - metody nie mogą zawierać ciała, czyli implementacji
+ * - klasa moze implementować więcej niz jeden interfejs
+ * - interfejsy mogą dziedziczyć po innych interfejsach ale nie po klasach
+ * - w klasach, które implementują interfejs nie mozna zmieniać definicji metod pochodzących z interfejsu
+ * - klasa które implementuje interfejs moze mieć równie inne metody nie pochodzące z interfejsu
  */
 
 
 
+/** 
+ * Ja interfejsy postrzegam jako kontrakt.
+ * Zapisujemy w nim wymagania jakie będzie musiała spełnić klasa, która będzie go implementować.
+ * Klasa, która zdecyduje się podpisać kontrakt (czyli zaimplementować interfejs), ma obowiązek
+ * spełnić, zapisy zawarte w kontrakcie, czyli zaimplementować metody zawarte w kontrakcie.
+ * 
+ * Sam interfejs nie narzuca jak ma być dana metoda zaimplementowana, to lezy w odpowiedzialności
+ * klasy. Mamy tutaj pełną dowolność. Najwazniejsze z punktu widzenia interfejsu jest aby były
+ * spełnione wymagania co do nazwy, listy argumentów i zwracanych danych.
+ * 
+ * Interfejs mozna potraktować tez jako instrukcję obsługi klasy, która go implementuje.
+ * Pamiętamy o tym, ze uzywamy nazw metod, argumentów, zmiennych które są opisowe.
+ * Dzięki temu otwierając interfejs i przeglądając deklaracje metod juz wiemy jak 
+ * mozemy danej klasy uzywać. Nie musimy wgryzać się w sam kod klasy jeśli chcemy jej tylko uzyć.
+ * Wystarczy, ze zapoznamy się z interfejsem który implementuje.
+ * 
+ * UWAGA: pamiętać o odpowiednim nazewnictwie.
+ * 
+ * 
+ * Często zapewne spotkacie się z pytaniem czym rózni się klasa abstrakcyjna od interfejsu?
+ * 
+ * Podstawową róznicą jest fakt, ze klasa abstrakcyjna moze zawierać oprócz metod abstrakcyjnych 
+ * inne metody w pełni zaimplementowane. Moze równiez zawierać właściwości, oraz moze uzywać
+ * modyfikatorów nie tylko publicznych do określania wydoczności właściwości/metod.
+ *  
+ * Pamiętajmy tez o tym, ze to jest klasa, czyli podlega dziedziczeniu, w związku z tym klasa potomna
+ * moze dziedziczyć tylko po jednej klasie. Natomiast jak juz wiemy, klasa moze implementować wiele 
+ * interfejsów.
+ * 
+ * Klasa abstrakcyjna równiez moze implementować interfejsy
+ */
+
+/**
+ * Wróćmy do naszego przykładu
+ */
+
  
+abstract class Renderer
+{
+    protected string $text;
+
+    public function __construct(string $text)
+    {
+        $this->text = $text;
+    }
+
+    public abstract function render(): string;
+
+    public function text(): string
+    {
+        return $this->text;
+    }
+}
+
+
+class HtmlRenderer extends Renderer
+{
+    public function render(): string
+    {
+        return '<html><head></head><body><div>' . $this->text . '</div></body></html>';
+    }
+}
+
+class JsonRenderer extends Renderer
+{
+    public function render(): string
+    {
+        return json_encode($this->text);
+    }
+}
+ 
+/**
+ * Mozemy go teraz trochę zmodyfikować tak, aby uzyć interfejsu
+ */
+
+interface Renderable
+{
+    public function render(string $text): string;
+}
+
+class HtmlRenderer implements Renderable
+{
+    public function render(string $text): string
+    {
+        return '<html><head></head><body><div>' . $text . '</div></body></html>';
+    }
+}
+
+class JsonRenderer implements Renderable
+{
+    public function render(string $text): string
+    {
+        return json_encode($text);
+    }
+}
+
+/**
+ * Zmodyfikowaliśmy trochę nasz przykład, jednak dzięki temu mozemy zaobserwować jak działają interfejsy.
+ * 
+ * Na samym początku przygody z programowaniem, sens istnienia interfejsów moze wydawać się hmm ...
+ * jako niepotrzebny narzut. Jednak interfejsy stanowią podwaliny dobrego programowania. 
+ * Są mocno związane z tak zwanym SOLID'em, czyli zbiorem zasad dobrego programowania.
+ * 
+ * Być moze na początku nie będziecie ich uzywać często, ale warto zakodować sobie w pamięci co to jest
+ * i do czego słuzy. 
+ */
+
+
 
 /**
  * FINAL
@@ -1410,7 +1551,8 @@ final class Vehicle {}
 class Car extends Vehicle {}
 
 /**
- * Czasami może się zdarzyć tak, że z jakiś powodów nie chcemy aby któraś konkretna metoda z naszej klasy nie mogła być nadpisana.
+ * Czasami może się zdarzyć tak, że z jakiś powodów nie chcemy aby któraś konkretna metoda z 
+ * naszej klasy nie mogła być nadpisana.
  * W takim przypadku wystarczy że zadeklarujemy tą metodę jako finalną. 
  */
 
@@ -1430,28 +1572,11 @@ class Car extends Vehicle
     }
 }
 
-//https://www.phpdevs.pl/programowanie-obiektowe/8-interfejsy
-//http://geekster.pl/php/interfejs/
-
-// foreach do itereowania po właściwościach
-
-// strict_types
-// przestrzenie nazw
-// wspomnieć o foreach
-
-/*
-
-    Podsumujmy to, czego zdążyliśmy się dowiedzieć. Wbrew pozorom nowych pojęć nie ma wcale aż tak dużo:
-
-    Klasy - definiują pewien rodzaj obiektów o określonych właściwościach i zachowaniach
-    Obiekty - rzeczywiste byty, na których pracujemy.
-    Właściwości - pewne informacje charakteryzujące obiekt. W dalszej części będziemy je nazywać "polami" klasy bądź obiektu.
-    Zachowania - definiują, co obiekty danej klasy mogą robić. W dalszej części będziemy je nazywać "metodami".
-    Dziedziczenie - pozwala wyrażać zależności "X jest Y-kiem".
-    Polimorfizm - pamiętanie o prawdziwej naturze obiektów nawet, gdy rozpatrujemy je z punktu widzenia ogólniejszej klasy.
-    
-    Wiemy już, że programowanie obiektowe świetnie opisuje otaczającą nas rzeczywistość, 
-    dlatego teraz zastanowimy się, jak za jego pomocą opisać środowisko programu komputerowego, a w szczególności skryptu strony internetowej.
-
-
-// na koniec uzupełnić info o typowaniu
+/**
+ * Po krótce omówiliśmy najwazniejsze sprawy powiązane z programowaniem obiektowym.
+ * 
+ * Jako pracę domową pozostawiam zaznajomienie się z Trait'sami.
+ * Jednak Trait'y nie są zbyt często wykozystywane w php. 
+ * Dlatego w tym kursie nie będę ich omawiał, jednak do tematu na pewno powrócimy
+ * w przyszłych kursach.
+ */
