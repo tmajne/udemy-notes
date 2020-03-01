@@ -1386,11 +1386,11 @@ class JsonRenderer extends Renderer
  * Przed chwilą mówiliśmy o klasach abstrakcyjnych, które są wzorcami dla klas które po nich dziedziczą.
  * 
  * Interfejsy wychodzą jeszcze o poziom wyżej.
- * W interfejsie znajdują się deklaracje metod oraz stałe które mają się znaleźc w klasach,
+ * W interfejsie znajdują się deklaracje metod oraz stałe które mają się znaleźć w klasach,
  * które ten interfejs implementują. 
  * 
- * Aby utworzyć interfejs uzywamy słowa: "interface",
- * natomiast aby go zaimplementować nalezy uzyć "implements"
+ * Aby utworzyć interfejs używamy słowa: "interface",
+ * natomiast aby go zaimplementować należy użyć "implements"
  */
  
 interface ExampleInterface
@@ -1421,10 +1421,10 @@ class Example implements ExampleInterface
  * - mogą zawierać tylko stałe i deklaracje metod
  * - stałe i metody muszą być publiczne
  * - metody nie mogą zawierać ciała, czyli implementacji
- * - klasa moze implementować więcej niz jeden interfejs
+ * - klasa może implementować więcej niz jeden interfejs
  * - interfejsy mogą dziedziczyć po innych interfejsach ale nie po klasach
- * - w klasach, które implementują interfejs nie mozna zmieniać definicji metod pochodzących z interfejsu
- * - klasa które implementuje interfejs moze mieć równie inne metody nie pochodzące z interfejsu
+ * - w klasach, które implementują interfejs nie można zmieniać definicji metod pochodzących z interfejsu
+ * - klasa które implementuje interfejs może mieć równie inne metody nie pochodzące z interfejsu
  */
 
 
@@ -1435,30 +1435,30 @@ class Example implements ExampleInterface
  * Klasa, która zdecyduje się podpisać kontrakt (czyli zaimplementować interfejs), ma obowiązek
  * spełnić, zapisy zawarte w kontrakcie, czyli zaimplementować metody zawarte w kontrakcie.
  * 
- * Sam interfejs nie narzuca jak ma być dana metoda zaimplementowana, to lezy w odpowiedzialności
- * klasy. Mamy tutaj pełną dowolność. Najwazniejsze z punktu widzenia interfejsu jest aby były
+ * Sam interfejs nie narzuca jak ma być dana metoda zaimplementowana, to leży w odpowiedzialności
+ * klasy. Mamy tutaj pełną dowolność. Najważniejsze z punktu widzenia interfejsu jest aby były
  * spełnione wymagania co do nazwy, listy argumentów i zwracanych danych.
  * 
- * Interfejs mozna potraktować tez jako instrukcję obsługi klasy, która go implementuje.
- * Pamiętamy o tym, ze uzywamy nazw metod, argumentów, zmiennych które są opisowe.
+ * Interfejs można potraktować tez jako instrukcję obsługi klasy, która go implementuje.
+ * Pamiętamy o tym, ze używamy nazw metod, argumentów, zmiennych które są opisowe.
  * Dzięki temu otwierając interfejs i przeglądając deklaracje metod juz wiemy jak 
- * mozemy danej klasy uzywać. Nie musimy wgryzać się w sam kod klasy jeśli chcemy jej tylko uzyć.
+ * możemy danej klasy używać. Nie musimy wgryzać się w sam kod klasy jeśli chcemy jej tylko użyć.
  * Wystarczy, ze zapoznamy się z interfejsem który implementuje.
  * 
  * UWAGA: pamiętać o odpowiednim nazewnictwie.
  * 
  * 
- * Często zapewne spotkacie się z pytaniem czym rózni się klasa abstrakcyjna od interfejsu?
+ * Często zapewne spotkacie się z pytaniem czym różni się klasa abstrakcyjna od interfejsu?
  * 
- * Podstawową róznicą jest fakt, ze klasa abstrakcyjna moze zawierać oprócz metod abstrakcyjnych 
- * inne metody w pełni zaimplementowane. Moze równiez zawierać właściwości, oraz moze uzywać
- * modyfikatorów nie tylko publicznych do określania wydoczności właściwości/metod.
+ * Podstawową różnicą jest fakt, ze klasa abstrakcyjna może zawierać oprócz metod abstrakcyjnych 
+ * inne metody w pełni zaimplementowane. Może również zawierać właściwości, oraz może używać
+ * modyfikatorów nie tylko publicznych do określania widoczności właściwości/metod.
  *  
  * Pamiętajmy tez o tym, ze to jest klasa, czyli podlega dziedziczeniu, w związku z tym klasa potomna
- * moze dziedziczyć tylko po jednej klasie. Natomiast jak juz wiemy, klasa moze implementować wiele 
+ * może dziedziczyć tylko po jednej klasie. Natomiast jak juz wiemy, klasa może implementować wiele 
  * interfejsów.
  * 
- * Klasa abstrakcyjna równiez moze implementować interfejsy
+ * Klasa abstrakcyjna również moze implementować interfejsy
  */
 
 /**
@@ -1501,7 +1501,7 @@ class JsonRenderer extends Renderer
 }
  
 /**
- * Mozemy go teraz trochę zmodyfikować tak, aby uzyć interfejsu
+ * Możemy go teraz trochę zmodyfikować tak, aby użyć interfejsu
  */
 
 interface Renderable
@@ -1526,14 +1526,14 @@ class JsonRenderer implements Renderable
 }
 
 /**
- * Zmodyfikowaliśmy trochę nasz przykład, jednak dzięki temu mozemy zaobserwować jak działają interfejsy.
+ * Zmodyfikowaliśmy trochę nasz przykład, jednak dzięki temu możemy zaobserwować jak działają interfejsy.
  * 
  * Na samym początku przygody z programowaniem, sens istnienia interfejsów moze wydawać się hmm ...
  * jako niepotrzebny narzut. Jednak interfejsy stanowią podwaliny dobrego programowania. 
  * Są mocno związane z tak zwanym SOLID'em, czyli zbiorem zasad dobrego programowania.
  * 
- * Być moze na początku nie będziecie ich uzywać często, ale warto zakodować sobie w pamięci co to jest
- * i do czego słuzy. 
+ * Być moze na początku nie będziecie ich używać często, ale warto zakodować sobie w pamięci co to jest
+ * i do czego służy. 
  */
 
 
@@ -1573,10 +1573,10 @@ class Car extends Vehicle
 }
 
 /**
- * Po krótce omówiliśmy najwazniejsze sprawy powiązane z programowaniem obiektowym.
+ * Po krótce omówiliśmy najważniejsze sprawy powiązane z programowaniem obiektowym.
  * 
  * Jako pracę domową pozostawiam zaznajomienie się z Trait'sami.
- * Jednak Trait'y nie są zbyt często wykozystywane w php. 
+ * Jednak Trait'y nie są zbyt często wykożystywanie w php. 
  * Dlatego w tym kursie nie będę ich omawiał, jednak do tematu na pewno powrócimy
  * w przyszłych kursach.
  */

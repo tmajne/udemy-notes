@@ -74,7 +74,7 @@
  * W tej chwili to wszystko na ten temat.
  * W tej chwili dotkneliśm tyko skrawka wiedzy o przestrzeniach.
  * Jednak w trakcie implementacji naszego projektu zdobędziemy rzeczywistą wiedzę na ich temat.
- * Dzięki temu będziemy od razu wiedzieć jak mozna je zastowsować na realnych przykładzie
+ * Dzięki temu będziemy od razu wiedzieć jak można je zastowsować na realnych przykładzie
  * 
- * Do usłszenia juz za chwilę :)
+ * Do usłyszenia juz za chwilę :)
  */
