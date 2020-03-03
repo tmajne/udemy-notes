@@ -6,12 +6,13 @@
 
 <pre>
 project_dir
-├── src
-│   └── file1
-└── templates
-    ├── pages
-    │   └─ ...
-    └ layout.php
+  ├── src
+  │   └── ...
+  ├── templates
+  │   ├── pages
+  │   │   └─ ...
+  │   └ ...
+  └ index.php
 </pre>
 
 ## Cel
@@ -31,13 +32,13 @@ Zlinkujemy strony ze sobą.
 
 ## Krok po kroku
 
-* wyniesienie funkcji debagujących do osobnego pliku
-  * Importowanie plików
-    * include, include_once
-    * require, require_once
+1. wyniesienie funkcji debagujących do osobnego pliku
+   * Importowanie plików
+     * include, include_once
+     * require, require_once
 
-* połączenie html i php
+2. połączenie html i php
 
-* wyniesienie html do osobnych plików
+3. wyniesienie html do osobnych plików
 
-* utworzenie klasy widoku
+4. utworzenie klasy widoku

@@ -1,10 +1,10 @@
 <?php
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+declare(strict_types=1);
 
-require_once "./src/Database.php";
-require_once "./src/View.php";
+namespace App;
+
+require_once('src/Utils/debug.php');
 
 const ACTION_DEFAULT = 'list';
 

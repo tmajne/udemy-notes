@@ -4,7 +4,7 @@
         <meta charset="utf-8">
     </head>
 
-    <body>
+    <body class="body">
         <h1>Moje notatki</h1>
         <div>
             <ul>
@@ -12,7 +12,6 @@
                 <li><a href="/?action=create">Nowa notatka</a></li>
             </ul>
         </div>
-            <?php require_once __DIR__ . "/pages/$page.php"; ?>
-        </div>
+        <div>Tu będzie formularz</div>
     </body>
 </html>
