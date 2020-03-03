@@ -1,15 +1,11 @@
 <?php
 
+// pokazać że declare działa w obrębie typu
+// na podstawie display_errors tu i w index.php
 declare(strict_types=1);
-
-namespace App;
 
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
-
-dump('Test 1');
-dd('Test 2');
-echo 'fooo';
 
 function dump($var): void
 {

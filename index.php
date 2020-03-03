@@ -4,40 +4,23 @@ declare(strict_types=1);
 
 namespace App;
 
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
+require_once('src/Utils/debug.php');
 
-dump('Test 1');
-dd('Test 2');
-echo 'fooo';
+//$view = new View();
 
-function dump($var): void
-{
-    dd($var, false);
+const ACTION_DEFAULT = 'list';
+
+$viewParams = [];
+
+//TODO: powiedzieć dlaczego $page brana bezpośrednio z action to nie jest dobry pomysł (możliwość hakowania)
+$action = $_GET['action'] ?? ACTION_DEFAULT;
+switch ($action) {
+    case 'create':
+        $page = 'create';
+        break;
+    default:
+        $page = 'list';
+        break;
 }
 
-function dd($var, $exit = true, $details = false): void
-{
-    echo '<br/>';
-    echo '<div
-        style="
-            display: inline-block;
-            padding: 1px 10px;
-            border: 1px solid gray;
-            background: lightgray;
-        "
-    >';
-        echo '<pre>';
-            echo __FILE__ . ': '. __LINE__ . "\n";
-            if ($details) {
-                var_dump($var);
-            } else {
-                print_r($var);
-            }
-        echo '</pre>';
-    echo '</div>';
-    echo '<br/>';
-    if ($exit) {
-        exit;
-    }
-}
+//$view->render($page, $viewParams);
