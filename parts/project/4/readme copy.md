@@ -1,0 +1,1 @@
+### na koniec pomyśleć nat globalnym refaktoringiem
