@@ -36,9 +36,6 @@ Zlinkujemy strony ze sobą.
    * Importowanie plików
      * include, include_once
      * require, require_once
-
 2. połączenie html i php
-
 3. wyniesienie html do osobnych plików
-
 4. utworzenie klasy widoku

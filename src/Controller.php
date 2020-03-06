@@ -4,20 +4,38 @@ declare(strict_types=1);
 
 namespace App;
 
+require_once 'Database.php';
 require_once 'View.php';
+require_once 'Exception/ConfigException.php';
 
+use App\Exception\ConfigException;
+use App\Database;
 use App\View;
 
 class Controller
 {
     private const ACTION_DEFAULT = 'list';
 
+    private static array $config = [];
+
+    private Database $db;
+
     private array $request;
 
     private View $view;
 
+    public static function initConfiguration(array $config): void
+    {
+        self::$config = $config;
+    }
+
     public function __construct(array $request)
     {
+        if (empty(self::$config['db'])) {
+            throw new ConfigException('Database config missing');
+        }
+
+        $this->db = new Database(self::$config['db']);
         $this->request = $request;    
         $this->view = new View();
     }
