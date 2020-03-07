@@ -7,15 +7,12 @@
     <?php if ($params['note']): ?>
         <?php $note = $params['note']; ?>
         <ul>
-            <li>ID: <?php echo (int) $note['id'] ?></li>
-            <li>Tytuł: <?php echo htmlentities($note['title']) ?></li>
-            <li><?php echo htmlentities($note['description']) ?></li>
+            <li>ID: <?php echo $note['id'] ?></li>
+            <li>Tytuł: <?php echo $note['title'] ?></li>
+            <li><?php echo $note['description'] ?></li>
         </ul>
         <div>
             <a href="/"><button>Powrót do listy</button></a>
-            <a href="/?action=edit&id=<?php echo $note['id'] ?>">
-                <button>Edytuj</button>
-            </a>
         </div>
     <?php else: ?>
         <div>Brak danych do wyświetlenia</div>

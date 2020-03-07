@@ -2,26 +2,23 @@
 
 declare(strict_types=1);
 
-spl_autoload_register(function ($class) {
-    //TODO: dorobić sprawdzanie czy plik istnieje
-    $pathToClass = str_replace(["\\", 'App/'], ["/", ""], $class);
-    include __DIR__.'/src/' . $pathToClass . '.php';
-});
-
 require_once('src/Utils/debug.php');
+require_once('src/Controller.php');
+require_once('src/Request.php');
+require_once('src/Exception/AppException.php');
+require_once('src/Exception/StorageException.php');
 
 $configuration = require_once('config/config.php');
 
-use App\Controller\Controller;
+use App\Controller;
 use App\Request;
 use App\Exception\AppException;
-use App\Exception\StorageException;
 
 
 try {
     Controller::initConfiguration($configuration);
     (new Controller(
-        new Request($_GET, $_POST, $_SERVER)
+        new Request($_GET, $_POST)
     ))->run();
 
 } catch (AppException | StorageException $e) {

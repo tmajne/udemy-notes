@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace App;
 
+require_once('Exception/ConfigException.php');
+require_once('Exception/StorageException.php');
+require_once('Exception/NotFoundException.php');
+
 use PDO;
 use PDOException;
 use App\Exception\ConfigException;
@@ -44,9 +48,11 @@ class Database
     public function getNotes(): array
     {
         try {
+
             $query = "SELECT * FROM notes";
             $notes = $this->connection->query($query, PDO::FETCH_ASSOC);
             return $notes->fetchAll();
+
         } catch (Throwable $e) {
             throw new StorageException('Nie udało się pobrać notatek', 400, $e);
         }
@@ -68,22 +74,6 @@ class Database
 
         } catch (Throwable $e) {
             throw new StorageException('Nie udało się utworzyć nowej notatki', 400, $e);
-        }
-    }
-
-    public function editNote(int $id, array $data): void
-    {
-        try {
-            $title = $this->connection->quote($data['title'], PDO::PARAM_STR);
-            $description = $this->connection->quote($data['description'], PDO::PARAM_STR);
-            $query = "
-                UPDATE notes
-                SET title = $title, description = $description
-                WHERE id = $id
-            ";
-            $this->connection->exec($query);
-        } catch (Throwable $e) {
-            throw new StorageException('Nie udało się zaktualizować notatki', 400, $e);
         }
     }
 
