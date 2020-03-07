@@ -4,22 +4,23 @@ declare(strict_types=1);
 
 require_once('src/Utils/debug.php');
 require_once('src/Controller.php');
-require_once('src/Request.php');
 require_once('src/Exception/AppException.php');
 require_once('src/Exception/StorageException.php');
 
 $configuration = require_once('config/config.php');
 
 use App\Controller;
-use App\Request;
 use App\Exception\AppException;
 
+$requestData = [
+    'get' => $_GET,
+    'post' => $_POST
+];
 
 try {
+    
     Controller::initConfiguration($configuration);
-    (new Controller(
-        new Request($_GET, $_POST)
-    ))->run();
+    (new Controller($requestData))->run();
 
 } catch (AppException | StorageException $e) {
     echo "<h2>{$e->getMessage()}</h2>";

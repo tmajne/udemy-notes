@@ -21,7 +21,7 @@ class Controller
     private static array $config = [];
 
     private Database $db;
-    private Request $request;
+    private array $request;
     private View $view;
 
     public static function initConfiguration(array $config): void
@@ -29,7 +29,7 @@ class Controller
         self::$config = $config;
     }
 
-    public function __construct(Request $request)
+    public function __construct(array $request)
     {
         if (empty(self::$config['db'])) {
             throw new ConfigException('Database config missing');
@@ -48,7 +48,7 @@ class Controller
         switch ($action) {
             case 'show':
                 $page = 'show';
-                $noteId = (int) $this->request->getParam('id');
+                $noteId = (int) $this->requestGetValue('id');
                 if (!$noteId) {
                     header('Location: /?error=noteIdMissing');
                 }
@@ -64,7 +64,7 @@ class Controller
             case 'create':
                 $page = 'create';
                 $viewParams['created'] = false;
-                $postData = $this->request->postParams();
+                $postData = $this->requestPostData();
                 
                 if (!empty($postData)) {
                     $data = [
@@ -79,8 +79,8 @@ class Controller
             default:
                 $page = 'list';
                 $viewParams = [
-                    'before' => $this->request->getParam('before'),
-                    'error' => $this->request->getParam('error'),
+                    'before' => $this->requestGetValue('before'),
+                    'error' => $this->requestGetValue('error'),
                     'notes' => $this->db->getNotes()
                 ];
                 break;
@@ -92,5 +92,20 @@ class Controller
     private function action(): string
     {
         return $_GET['action'] ?? self::ACTION_DEFAULT;
+    }
+
+    private function requestGetValue(string $key)
+    {
+        return $this->request['get'][$key] ?? null;
+    }
+
+    private function requestGetData(): array
+    {
+        return $this->request['get'] ?? [];
+    }
+
+    private function requestPostData(): array
+    {
+        return $this->request['post'] ?? [];
     }
 }
