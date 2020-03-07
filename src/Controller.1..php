@@ -48,7 +48,7 @@ class Controller
         switch ($action) {
             case 'show':
                 $page = 'show';
-                $noteId = (int) $this->requestGetData()['id'] ?? null;
+                $noteId = (int) $this->requestGetValue('id');
                 if (!$noteId) {
                     header('Location: /?error=noteIdMissing');
                 }
@@ -79,8 +79,8 @@ class Controller
             default:
                 $page = 'list';
                 $viewParams = [
-                    'before' => $this->requestGetData()['before'] ?? null,
-                    'error' => $this->requestGetData()['error'] ?? null,
+                    'before' => $this->requestGetValue('before'),
+                    'error' => $this->requestGetValue('error'),
                     'notes' => $this->db->getNotes()
                 ];
                 break;
@@ -92,6 +92,11 @@ class Controller
     private function action(): string
     {
         return $_GET['action'] ?? self::ACTION_DEFAULT;
+    }
+
+    private function requestGetValue(string $key)
+    {
+        return $this->request['get'][$key] ?? null;
     }
 
     private function requestGetData(): array

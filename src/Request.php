@@ -15,6 +15,11 @@ class Request
         $this->postParams = $post;
     }
 
+    public function hasGetParam(string $key): bool
+    {
+        return !empty($this->getParams[$key]);
+    }
+
     public function getParam(string $key)
     {
         return $this->getParams[$key] ?? null;

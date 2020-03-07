@@ -19,3 +19,9 @@
 3. VIEW
    * automatczne eskejpowanie
    * rekurencja przy eskejpowaniu
+4. DB
+   * zmiana Database na klasę Modelu
+   * utworzenie klasy abstrakcyjnej modelu
+     * metody pobierające dane query i gueryAll
+   * metoda eskejpująca
+   * wprowadyenie interfejsu

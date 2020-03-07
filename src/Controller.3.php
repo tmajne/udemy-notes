@@ -89,19 +89,11 @@ class Controller
     public function run(): void
     {
         $action = $this->action();
-
-        $viewParams = [];
-        switch ($action) {
-            case 'show':
-                $this->showAction();
-                break;
-            case 'create':
-                $this->createAction();
-                break;
-            default:
-                $this->listAction();
-                break;
+        $actionName = $action.'Action';
+        if (!\method_exists($this, $actionName)) {
+            $actionName = self::ACTION_DEFAULT.'Action';
         }
+        $this->$actionName();
     }
 
     private function action(): string
