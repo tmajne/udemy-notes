@@ -1,23 +1,17 @@
-# Baza danych i wyjątki
-
-* wprowadzenie teoretyczne do baz danych - TOOD
-* wprowadzenie teoretyczne do wyjątków - TODO
+# Listing notatek oraz wyświetlenie notatki
 
 ## Cel
 
-* Wdrożenie obsługi bazy danych. Zapisywanie notatek w DB.
-* Wprowadzenie obsługi błędów.
+* wyświetlenie listingu notatek w systemie
+* możliwość wyświetlenia szczegółów wybranej notatki
 
 ## Krok po kroku
 
-1. utworzenie konfiguracji dla aplikacji
-2. przekazanie konfiguracji do kontrolera
-3. utworzenie biblioteki do obsługi bazy danych
-   * metoda do walidacji konfiguracji
-   * nawiązywanie połączenia
-   * dodanie obsługi błędów - ustawienie ENV
-4. utworzenie tabeli w DB
-5. dodanie metod odpowiedzialnych za zapis
+1. dodanie metody pobierającej notatki z bazy danych
+2. stworzenie widoku wyświetlającego dane
+3. dodanie przycisku na listingu "wyświetl szczegóły"
+4. metoda do pobrania konkretnej notatki z bazy danych
+5. prezentacja szczegółów notatki
 6. refaktoryzacja DB:
    * metoda eskejpująca
    * zmiana Database na klasę Modelu

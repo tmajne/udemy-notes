@@ -1,4 +1,4 @@
-# Baza danych i wyjątki
+# Baza danych - zapis notatki oraz wyjątki
 
 * wprowadzenie teoretyczne do baz danych - TOOD
 * wprowadzenie teoretyczne do wyjątków - TODO

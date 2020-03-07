@@ -23,6 +23,19 @@ class Database
         $this->connection = $this->createConnection($config);
     }
 
+    public function getNotes(): array
+    {
+        try {
+
+            $query = "SELECT * FROM notes";
+            $notes = $this->connection->query($query, PDO::FETCH_ASSOC);
+            return $notes->fetchAll();
+
+        } catch (Throwable $e) {
+            throw new StorageException('Nie udało się pobrać notatek', 400, $e);
+        }
+    }
+
     public function createNote(array $data): void
     {
         try {
@@ -35,10 +48,10 @@ class Database
                 INSERT INTO notes (title, description, created) 
                 VALUES ($title, $description, $created)
             ";
-
             $this->connection->exec($query);
+
         } catch (Throwable $e) {
-            throw new StorageException('Nie udało się utworzyć nowej noatatki', 400, $e);
+            throw new StorageException('Nie udało się utworzyć nowej notatki', 400, $e);
         }
     }
 
@@ -57,7 +70,7 @@ class Database
     private function createConnection(array $config): PDO
     {
         try {
-            //$this->config = $config;
+            
             $dsn = 'mysql:dbname=' . $config['name'] . ';host=' . $config['host'] . ';charset=utf8';
             return new PDO(
                 $dsn,
@@ -67,6 +80,7 @@ class Database
                     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION //TODO: wyjaśnić po co
                 ]
             );
+
         } catch (PDOException $e) {
             throw new StorageException('Storage connection error: PDO',  $e->getCode(), $e);
         } catch (Throwable $e) {

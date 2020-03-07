@@ -63,6 +63,9 @@ class Controller
                 break;
             default:
                 $page = 'list';
+                $viewParams = [
+                    'before' => $this->requestGetData()['before'] ?? null
+                ];
                 break;
         }
 

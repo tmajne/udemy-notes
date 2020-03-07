@@ -50,7 +50,7 @@ class Controller
                 $page = 'create';
                 $viewParams['created'] = false;
                 $postData = $this->requestPostData();
-        
+                
                 if (!empty($postData)) {
                     $data = [
                         'title' => $postData['title'],
@@ -59,10 +59,14 @@ class Controller
                     $this->db->createNote($data);
                     header('Location: /?before=created');
                 }
-        
+                
                 break;
             default:
                 $page = 'list';
+                $viewParams = [
+                    'before' => $this->requestGetData()['before'] ?? null,
+                    'notes' => $this->db->getNotes()
+                ];
                 break;
         }
 
