@@ -6,7 +6,7 @@ namespace App\Exception;
 
 require_once('AppException.php');
 
-class ConfigException extends AppException
+class StorageException extends AppException
 {
 
 }

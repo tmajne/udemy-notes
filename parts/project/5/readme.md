@@ -18,7 +18,3 @@
    * dodanie obsługi błędów - ustawienie ENV
 4. utworzenie tabeli w DB
 5. dodanie metod odpowiedzialnych za zapis
-6. refaktoryzacja DB:
-   * metoda eskejpująca
-   * zmiana Database na klasę Modelu
-   * wprowadyenie interfejsu
