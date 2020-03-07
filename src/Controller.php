@@ -46,6 +46,12 @@ class Controller
         $viewParams = [];
         
         switch ($action) {
+            case 'show':
+                $page = 'show';
+                $noteId = (int) $this->requestGetData()['idd'] ?? null;
+                $note = $db->getNote($noteId);
+                $viewParams['note'] = $note;
+                break;
             case 'create':
                 $page = 'create';
                 $viewParams['created'] = false;
