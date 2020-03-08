@@ -4,6 +4,9 @@
 // na podstawie display_errors tu i w index.php
 declare(strict_types=1);
 
+
+define('ENV', 'dev');
+
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 

@@ -33,6 +33,13 @@
         border-bottom: solid 1px rgba(255,255,255,0.1);
     }
 
+    .error {
+        margin: 25px 10px;
+        text-align: center;
+        font-weight: 700;
+        color: #ff0000;
+    }
+
     .message {
         margin: 25px 10px;
         text-align: center;
@@ -64,18 +71,26 @@
 </style>
 <div class="list">
     <section>
+        <div class="error">
+            <?php
+                if (!empty($params['error'])) {
+                    switch ($params['error']) {
+                        case 'noteIdMissing':
+                            echo 'Braki identyfikatora notatki';
+                            break;
+                        case 'noteNotFound':
+                            echo 'Notatka nie istnieje';
+                            break;
+                    }
+                }
+            ?>
+        </div>
         <div class="message">
             <?php
                 if (!empty($params['before'])) {
                     switch ($params['before']) {
-                        case 'edited':
-                            echo 'Notatka zostało uaktualniona';
-                            break;
                         case 'created':
                             echo 'Notatka zostało utworzona';
-                            break;
-                        case 'deleted':
-                            echo 'Notatka zostało utsunięta';
                             break;
                     }
                 }
@@ -87,7 +102,7 @@
             $currentPage = $pagination['page'] ?? 1;
             $pageSize = $pagination['size'] ?? 10;
             $pages = $pagination['pages'] ?? 1;
-
+            
             $sort = $params['sort'] ?? [];
             $sortBy = $sort['by'] ?? 'created';
             $sortOrder = $sort['order'] ?? 'desc';
@@ -129,6 +144,7 @@
                 <tr>
                     <th>Id</th>
                     <th>Tytuł</th>
+                    <th>Data utworzenia</th>
                     <th>Opcje</th>
                 </tr>
                 </thead>
@@ -137,20 +153,21 @@
         <div class="tbl-content">
             <table cellpadding="0" cellspacing="0" border="0">
                 <tbody>
-                <?php foreach ($params['notes'] ?? [] as $note): ?>
-                    <tr>
-                        <td><?php echo $note['id'] ?></td>
-                        <td><?php echo $note['title'] ?></td>
-                        <td>
-                            <a href="/?action=show&id=<?php echo $note['id'] ?>">
-                                <button>Szczegóły</button>
-                            </a>
-                            <a href="/?action=delete&id=<?php echo $note['id'] ?>">
-                                <button>Usuń</button>
-                            </a>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
+                    <?php foreach ($params['notes'] ?? [] as $note): ?>
+                        <tr>
+                            <td><?php echo $note['id'] ?></td>
+                            <td><?php echo $note['title'] ?></td>
+                            <td><?php echo $note['created'] ?></td>
+                            <td>
+                                <a href="/?action=show&id=<?php echo $note['id'] ?>">
+                                    <button>Szczegóły</button>
+                                </a>
+                                <a href="/?action=delete&id=<?php echo $note['id'] ?>">
+                                    <button>Usuń</button>
+                                </a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
 

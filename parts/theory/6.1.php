@@ -1,1 +1,1 @@
-Bazy danych
+WYJĄTKI
