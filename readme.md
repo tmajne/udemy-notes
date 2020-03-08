@@ -1,13 +1,16 @@
-# Listing notatek - paginacja
+# Refactoring time
 
 ## Cel
 
-* ułatwienie obsługi listy notatek
-  * dodanie opcji paginacji dla listingu notatek
+* poprawa jakości kodu
 
 ## Krok po kroku
 
-1. wyświetlenie na listingu sekcji z numerami stron
-2. obsługa paginacji w kontrollerach
-3. obsługę paginacji po stronie bazy danych
-   * metod do zwracana informacji o liczbie wpisów
+1. usprawnienia w klasie Request
+2. DB
+   * refaktoryzacja metod 
+   * zmiana Database na klasę Modelu
+   * utworzenie klasy abstrakcyjnej modelu
+     * metody pobierające dane query i gueryAll
+   * metoda eskejpująca
+   * wprowadyenie interfejsu

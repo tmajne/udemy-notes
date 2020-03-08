@@ -32,14 +32,14 @@ class Request
         return !empty($this->get[$key]);
     }
 
-    public function getParam(string $key, $default = null)
+    public function getParam(string $key)
     {
-        return $this->get[$key] ?? $default;
+        return $this->get[$key] ?? null;
     }
 
-    public function postParam(string $key, $default = null)
+    public function postParam(string $key)
     {
-        return $this->post[$key] ?? $default;
+        return $this->post[$key] ?? null;
     }
 
     public function getParams(): array
