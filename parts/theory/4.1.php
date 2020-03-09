@@ -1576,7 +1576,7 @@ class Car extends Vehicle
  * Po krótce omówiliśmy najważniejsze sprawy powiązane z programowaniem obiektowym.
  * 
  * Jako pracę domową pozostawiam zaznajomienie się z Trait'sami.
- * Jednak Trait'y nie są zbyt często wykożystywanie w php. 
+ * Jednak Trait'y nie są zbyt często wykorzystywanie w php. 
  * Dlatego w tym kursie nie będę ich omawiał, jednak do tematu na pewno powrócimy
  * w przyszłych kursach.
  */

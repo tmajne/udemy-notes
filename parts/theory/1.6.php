@@ -326,7 +326,7 @@ $employees = [
 /* 
    I oto krok po kroku dostaliśmy się do tego co potrzebowaliśmy.
   
-   Warto również wiedzieć że tablice mogą mieć jeszcze więcej poziomów.
+   Warto również wiedzieć że tablice mogą mieć jeszcze więcej poziomów. 
    Możemy utworzyć tablicę tablic tablic
    lub tablicę tablic tablic tablic ... tablic
    Jednak generalnie wystarczają maksymalnie tablice dwuwymiarowe.
