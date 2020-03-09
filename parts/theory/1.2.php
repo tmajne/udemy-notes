@@ -8,7 +8,7 @@
  * To jest jedna z tak zwanych "dobrych regół programowania PHP" i będziemy się jej już trzymać do końca kursu.
  */
 
-/**
+/** 
  * Często będziemy potrzebowac zachować pewną informację na "później". Jesteśmy to w stanie zrobić używając zmiennych PHP
  * Jak sama nazwa wskazuje są to takie elementny języka, które mogą sie zmieniać a dokładniej przypisana do nich
  * wartość może się zmieniać

@@ -28,7 +28,7 @@ echo 'Witamy na kursie !!!';
  * Rozwiązanie tej zagadki znajdziecie w daleszj części kursu
  * @link http://php.net/manual/en/function.echo.php
  */
-echo ('Bardoz się cieszę, że zdecydowałeś sieę rozpocząć przygodę z PHP');
+echo ('Bardoz się cieszę, że zdecydowałeś się rozpocząć przygodę z PHP');
 
 ?>
 

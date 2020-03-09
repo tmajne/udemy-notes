@@ -42,7 +42,7 @@ var_dump($example3);
  * racji tego że język musi przeanalizować tekst. Nie są to jakieś ogromne różnice, ale warto uczyć się od
  * razu dobrych zasad ponieważ sumarycznie z wielu takich "drobnostek" może urodzić się większy problem.
  */
-
+ 
 /**
  * DLA DOCKIEKLIWYCH
  * Isnieją jeszcze dwa sposoby aby utworzyć łańcuch znaków, mianowicie: heredoc i nowdoc.

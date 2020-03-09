@@ -1,7 +1,7 @@
 <?php
 
 /* STAŁE */
-
+ 
 /**
  * Przed chwilą dowiedzieliśmy się co to są zmienne.
  * Teraz poznamy co to są STATLE.

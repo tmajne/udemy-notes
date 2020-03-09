@@ -56,7 +56,7 @@ var_dump($lorem);
  * - modulo: %
  * - potęgowanie: **
  */
-
+ 
 /**
  * dodawanie
  *
