@@ -15,12 +15,10 @@
  przyszłości.
  
  Konstrukcja pętli FOREACH jest następująca:
- */
-
- /*
-    foreach ($array as $arrayElement) {
-        // kod do wykonania
-    }
+ 
+  foreach ($array as $arrayElement) {
+      // kod do wykonania
+  }
 */
 
 /*
@@ -30,16 +28,19 @@
  Aby to lepiej zobrazować posłużymy się przykładem.
  */
 
-$cinemaMovies = [
-    'Joker',
-    '1917',
-    'Jumanji: The Next Level',
-    'Little Women'
-];
+// $cinemaMovies = [
+//     'Joker',
+//     '1917',
+//     'Jumanji: The Next Level',
+//     'Little Women',
+//     'Rambo'
+// ];
 
-foreach($cinemaMovies as $movie) {
-    echo $movie . "\n";
-}
+// foreach($cinemaMovies as $movie) {
+//   echo $movie . "\n";
+// }
+
+// echo "=======\n";
 
 /*
  Do pętli przekazujemy naszą tablicę z filmami.
@@ -57,18 +58,15 @@ foreach($cinemaMovies as $movie) {
  W pętli FOREACH wiele rzeczy dzieję się automatycznie, jednak tak naprawdę wszystko 
  dzieje sie za sprawą Iteratorów, dociekliwi znajdą więcej informacji 
  @link https://www.php.net/manual/en/class.iterator.php
- Kwestę iteratorów poruszymy zapewne w przyszłych kursach 
  */
 
 /*
  Jeśli potrzebujemy to możemy też uzyskać dostęp do indeksu - czyli numeru wiersza który przetwarzamy.
  W takim przypadku pętla FOREACH odrobinę zmienia swoją konstrukcję:
- */
-
- /*
-    foreach ($array as $index => $arrayElement) {
-        // kod do wykonania
-    }
+ 
+  foreach ($array as $key => $value) {
+      // kod do wykonania
+  }
 */
 
 /*
@@ -86,6 +84,8 @@ foreach($cinemaMovies as $movie) {
 //     'Little Women'
 // ];
 
+// print_r($cinemaMovies);
+
 // foreach($cinemaMovies as $index => $movie) {
 //     echo $index . ': ' . $movie . "\n";
 // }
@@ -98,18 +98,18 @@ foreach($cinemaMovies as $movie) {
  Posłużmy się trochę innym.
  */
 
-// $movieDetails = [
-//     'title' => 'Joker',
-//     'director' => 'Todd Phillips',
-//     'writers' => 'Todd Phillips, Scott Silver',
-//     'cast' => [
-//         'Joaquin Phoenix' => 'Arthur Fleck',
-//         'Robert De Niro' => 'Murray Franklin',
-//         'Zazie Beetz' => 'Sophie Dumond',
-//         'Frances Conroy' => 'Penny Fleck'
-//     ],
-//     'music' => 'Hildur Guðnadóttir'
-// ];
+$movieDetails = [
+    'title' => 'Joker',
+    'director' => 'Todd Phillips',
+    'writers' => 'Todd Phillips, Scott Silver',
+    'cast' => [
+        'Joaquin Phoenix' => 'Arthur Fleck',
+        'Robert De Niro' => 'Murray Franklin',
+        'Zazie Beetz' => 'Sophie Dumond',
+        'Frances Conroy' => 'Penny Fleck'
+    ],
+    'music' => 'Hildur Guðnadóttir'
+];
 
 // foreach ($movieDetails as $role => $element) {
 //     echo "$role: $element\n";
@@ -122,10 +122,24 @@ foreach($cinemaMovies as $movie) {
  Musimy naprawić nasz przykład
  */
 
+ 
+// $movieDetails = [
+//   'title' => 'Joker',
+//   'director' => 'Todd Phillips',
+//   'writers' => ['Todd Phillips', 'Scott Silver'],
+//   'cast' => [
+//       'Joaquin Phoenix' => 'Arthur Fleck',
+//       'Robert De Niro' => 'Murray Franklin',
+//       'Zazie Beetz' => 'Sophie Dumond',
+//       'Frances Conroy' => 'Penny Fleck'
+//   ],
+//   'music' => 'Hildur Guðnadóttir'
+// ];
+
 // foreach ($movieDetails as $role => $element) {
 //     if (is_array($element)) {
 //         foreach ($element as $insideKey => $insideValue) {
-//             echo "$role: $insideKey -> $insideValue\n";
+//           echo "$role: $insideKey -> $insideValue\n";
 //         }
 //     } else {
 //         echo "$role: $element\n";

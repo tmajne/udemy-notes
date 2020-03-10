@@ -1,6 +1,6 @@
 <?php
 
-// Tablice
+// Tablice 
 
 /*
    Tablice to takie pojemniki na dane do których możemy wkładać i wyciągać dane.

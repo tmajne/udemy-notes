@@ -4,8 +4,7 @@
 
 /*
  W tej części kursu omówimy dwa nowe rodzaje pętli.
- Pętla: WHILE i pętla DO-WHILE. Omówimy je obie ponieważ różnią się tylko 
- jednym drobnym szczegółem. 
+ Pętla: WHILE i pętla DO-WHILE. Omówimy je obie ponieważ różnią się tylko jednym drobnym szczegółem. 
  
  Tak więc do dzieła !!!
  
@@ -14,19 +13,17 @@
  */
 
 /*
-    while (warunek) {
-        // kod do wykonania
-    }
-**/
+  while (warunekDoSprawdzenia) {
+      // kod do wykonania
+  }
+*/
 
 /*
   Przypomnijmy sobie konstukcję pętli FOR
-/
 
-/*
-    for ( inicjalizacja ; warunek ; aktualizacja ) {
-        // kod do wykonania
-    }
+  for ( inicjalizacja ; warunekDoSprawdzenia ; aktualizacja ) {
+      // kod do wykonania
+  }
  */
 
 /*
@@ -45,24 +42,22 @@ $cinemaMovies = [
     'Little Women'
 ];
 
-$index = 0;
-$moviesCount = count($cinemaMovies);
-while($index < $moviesCount) {
-    echo $cinemaMovies[$index] . "\n";
-    $index++;
-}
+// $index = 0;
+// $moviesCount = count($cinemaMovies);
+
+// while($index < $moviesCount) {
+//     echo $cinemaMovies[$index] . "\n";
+//     $index++;
+// }
 
 /*
- W pętli WHILE sami musimy zadbać o to 
- aby zainicjalizować zmienne na początku oraz aktualizować je w taki sposób aby 
- pętla miała możliwość zakończenia.
+ W pętli WHILE sami musimy zadbać o to aby zainicjalizować zmienne na początku oraz aktualizować je w taki sposób aby pętla miała możliwość zakończenia.
  
  Upraszczając działanie pętli WHILE można opisać:
  
  Po napotkaniu pętli WHILE w pierwszym kroku sprawdzany jest warunek.
  Jeśli warunek jest prawdziwy to wykonywany jest kod z wnętrze pętli.
- W kodzie pętli powinniśmy zmodyfikować w parametry wchodzące do warunki aby była możliwość 
- zmiany jego wyniku.
+ W kodzie pętli powinniśmy zmodyfikować w parametry wchodzące do warunki aby była możliwość zmiany jego wyniku.
  Po wykonaniu kodu z pętli ponownie jest sprawdzany 'warunek' i jeśli nadal jest prawdziwy
  ponownie wykonywany jest kod z pętli.
  W przypadku gdy warunek nie jest prawdziwy to kod z pętli nie zostanie wykonany.
@@ -73,13 +68,13 @@ while($index < $moviesCount) {
 
 /*
  Przy użyciu pętli WHILE bardzo łatwo stworzyć pętlę nieskończoną.
- Przy standardowym użyciu PHP na ogół taka pętla nam się nigdy nie przyda,
- jednak czasami przy skryptach uruchamianych z konsoli jest przydatna.
- Jednak o tym będzie można usłyszeć w przyszłych kursach.
+ Przy standardowym użyciu PHP na ogół taka pętla nam się nigdy nie przyda, jednak czasami przy skryptach uruchamianych z konsoli jest przydatna.
  Tutaj pokażę tylko jak bardzo prosto można to zrobić.
  */
 
+
 // while(true) {
+//   var_dump('cokolwiek');
 //     // kod do wykonania
 // }
 
@@ -89,18 +84,14 @@ while($index < $moviesCount) {
  Proste, prawda :)
  */
 
-
-
 /*
  Pora przejść do pętli DO-WHILE
-*
-* Konstrukcja:
-*/
 
-/*
-    do {
-        // kod pętli do wykonania
-    } while (warunek)
+ Konstrukcja:
+
+  do {
+      // kod pętli do wykonania
+  } while (warunek)
 */
 
 /*
@@ -120,19 +111,21 @@ while($index < $moviesCount) {
  Na koniec jeszcze przepiszemy nasz przykład z użyciem pętli DO-WHILE
  */
  
-// $cinemaMovies = [
-//     'Joker',
-//     '1917',
-//     'Jumanji: The Next Level',
-//     'Little Women'
-// ];
+$cinemaMovies = [
+    'Joker',
+    '1917',
+    'Jumanji: The Next Level',
+    'Little Women'
+];
 
-// $index = 0;
-// $moviesCount = count($cinemaMovies);
-// do {
-//     echo $cinemaMovies[$index] . "\n";
-//     $index++;
-// } while($index < $moviesCount);
+
+$index = 0;
+$moviesCount = count($cinemaMovies);
+
+do {
+    echo $cinemaMovies[$index] . "\n";
+    $index++;
+} while($index < $moviesCount);
 
 /*
  Jeśli się chwilę zastanowimy nad naszym przykładem, to nie jest to najsensowniejsze

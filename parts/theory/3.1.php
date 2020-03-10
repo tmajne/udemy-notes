@@ -7,8 +7,7 @@
  nie zagłębialiśmy się w temat mówiąc że przyjdzie na to odpowiednia chwila.
  Ta chwila nadeszła właśnie teraz.
  
- Funkcje możemy podzielić na te które dostarcza nam język PHP, 
- oraz na te które sami stworzymy (tak możemy to zrobić).
+ Funkcje możemy podzielić na te które dostarcza nam język PHP, oraz na te które sami stworzymy (tak możemy to zrobić).
  
  Zanim zagłębimy się w temat warto powiedzieć czym tak naprawdę funkcja jest.
  
@@ -34,27 +33,20 @@
  
  Do definiowana nowej funkcji używamy słowa kluczowego "function"
  Sama konstrukcja wygląda następująco
-*/
 
-/*
-    // definicja
-    function nazwaFunkcji(argumenty): typWartościZwracanej
-    {
-        ciałoFunkcji
-    }
-*/
-/*
- Powyższa konstrukcja to tak zwana: deklaracja funkcji
+PHP 7.x
+function nazwaFunkcji(argumenty): typWartościZwracanej
+{
+    ciałoFunkcji
+}
+
+ nazwaFunkcji - jest po prostu nazwą, którą nadajemy funkcji, dzięki temu w przyszłości będziemy w stanie funkcji użyć posługując się jej nazwą. Tutaj wygląda to analogicznie jak przy zmiennych. Zmiennej również nadajemy nazwę po to aby móc jej później użyć.
  
- nazwaFunkcji - jest po prostu nazwą, którą nadajemy funkcji, dzięki temu w przyszłości
- będziemy w stanie funkcji użyć posługując się jej nazwą. Tutaj wygląda to analogicznie 
- jak przy zmiennych. Zmiennej również nadajemy nazwę po to aby móc jej później użyć.
  Istotną różnicą jest to, że przy nazwach funkcji NIE MOŻEMY użyć znaku dolara.
- Przy wybieraniu nazwy dla funkcji podobnie jak przy nazwach zmiennych bardzo ważne jest
- oby już sama nazwa funkcji opisywała to co sama funkcja robi. Tak aby po jej przeczytaniu
- wiedzielibyśmy za co odpowiada. 
- Wierzcie mi to bardzo pomaga, szczególnie gdy nad projektem pracuje więcej niż jedna osoba
- lub sami wracamy do kodu, który stworzyliśmy po jakimś czasie.
+
+ Przy wybieraniu nazwy dla funkcji podobnie jak przy nazwach zmiennych bardzo ważne jest oby już sama nazwa funkcji opisywała to co sama funkcja robi. Tak aby po jej przeczytaniu wiedzielibyśmy za co odpowiada. 
+
+ Wierzcie mi to bardzo pomaga, szczególnie gdy nad projektem pracuje więcej niż jedna osoba lub sami wracamy do kodu, który stworzyliśmy po jakimś czasie.
  Przykładowo nazwa funkcji, którą już użyliśmy w naszym kursie czyli "count" od razu 
  naprowadza nas na to co on robi.
  
@@ -65,23 +57,19 @@
  nie wymaga żadnych parametrów.
  
  typWartościZwracanej - tutaj określamy jakiego typu będą dane, które nasza funkcja zwrócić po skończonej pracy.
+
  Warto zaznaczyć, że funkcja nie musi nic zwracać, wtedy posługujemy się zapisem z użyciem słowa "void"
  Przy definicji funkcja ta część jest opcjonalna i nie musimy jej pisać, jednak zalecam robienie tego, 
  ze względów na spójność i czytelność kodu, jak również z faktu że traktuje się to jako dobrą praktykę programowania
  
- ciałoFunkcji - wiadomo, tutaj implementujemy to co funkcja ma robić.
- Możemy do tego użyć już całej naszej wiedzy, którą poznaliśmy na tym kursie.
-*/
+ ciałoFunkcji - wiadomo, tutaj implementujemy to co funkcja ma robić. Możemy do tego użyć już całej naszej wiedzy, którą poznaliśmy na tym kursie.
 
-/*
-    // uruchomienie / wywołanie funkcji
-    nazwaFunkcji(argumenty);
+  // uruchomienie / wywołanie funkcji
+  nazwaFunkcji(argumenty);
 
-    // uruchomienie i przypisanie zwracanej wartości
-    $result = nazwaFunkcji(argumenty);
-*/
+  // uruchomienie i przypisanie zwracanej wartości
+  $result = nazwaFunkcji(argumenty);
 
-/*
  Aby użyć funkcji wystarczy użyć jej nazwę i przekazać do niej argument, oczywiście jeśli są wymagane.
  
  Teraz przedstawię trochę dokładnie to o czym powiedzieliśmy chwilę wcześniej, posługując się mniej lub 
@@ -94,12 +82,12 @@
  Funkcja może być bezargumentowa, czyli aby ją wywołać nie potrzebujemy przekazać do niej żadnych danych.
 */
 
-function sayHello()
-{
-    echo "HELLO\n";
-}
+// function sayHello()
+// {
+//     echo "HELLO\n";
+// }
 
-sayHello();
+// sayHello();
 
 /*
  Utworzyliśmy nową funkcję 'sayHello' która nie wymaga żadnych argumentów i ją wywołaliśmy.
@@ -123,8 +111,7 @@ sayHello();
  Podczas wywołania funkcji pomiędzy nawiasy wpisujemy wartość która zostanie automatycznie 
  przypisana do argumentu, który zdefiniowaliśmy przy tworzeniu funkcji, czyli w naszym przypadku $name.
  
- Kiedy wywołamy naszą funkcję nie przekazując do niej żadnej wartości to zostanie zgłoszony błąd 
- przez PHP, który poinformuje nas, że funkcja wymaga przekazania parametru.
+ Kiedy wywołamy naszą funkcję nie przekazując do niej żadnej wartości to zostanie zgłoszony błąd przez PHP, który poinformuje nas, że funkcja wymaga przekazania parametru.
  
  No dobrze a dlaczego by nie zrobić czegoś takiego:
 */
@@ -144,9 +131,8 @@ sayHello();
  No ale jak to? Przecież przed definicją funkcji mamy ją zadeklarowaną.
  
  Tutaj teraz pierwszy raz poruszymy temat zakresu widoczności zmiennych (eng. scope).
- Prawda jest taka, że wewnątrz funkcji nie widzimy i nie mamy dostępu do tego co się znajduje na zewnątrz funkcji,
- czyli odnosząc się do naszego przypadku nie możemy użyć zmiennej $name, ponieważ jesteśmy wewnątrz funkcji
- i w zakresie funkcji ona nie istnieje. 
+ Prawda jest taka, że wewnątrz funkcji nie widzimy i nie mamy dostępu do tego co się znajduje na zewnątrz funkcji, czyli odnosząc się do naszego przypadku nie możemy użyć zmiennej $name, ponieważ jesteśmy wewnątrz funkcji i w zakresie funkcji ona nie istnieje. 
+ 
  Już wyjaśniam co to jest zakres funkcji. To jest wszystko to co się znajduję pomiędzy nawiasami { }, oraz
  argumenty które zostały przekazane do funkcji. 
  
@@ -167,10 +153,8 @@ sayHello();
  Tak właśnie jest.
  
  Wszystko to co stworzyliśmy we wnętrzu funkcji, nie jest widoczne poza funkcją. 
- Przypisanie wartości 'John' do zmiennej $name również odbywa się w trakcie wykonywania funkcji na samym początku
- i możemy w uproszczeniu potraktować to tak jakby się odbywało we wnętrzu funkcji. 
- Nówię w uproszczeniu, ponieważ sprawa jest trochę bardziej skomplikowana, jednak na to chwilę wystarczy to co sobie 
- już powiedzieliśmy.
+ Przypisanie wartości 'John' do zmiennej $name również odbywa się w trakcie wykonywania funkcji na samym początku i możemy w uproszczeniu potraktować to tak jakby się odbywało we wnętrzu funkcji. 
+ Nówię w uproszczeniu, ponieważ sprawa jest trochę bardziej skomplikowana, jednak na to chwilę wystarczy to co sobie już powiedzieliśmy.
  
  Rozważmy jeszcze jeden przykład.
 */
@@ -187,8 +171,8 @@ sayHello();
 
 // echo "OUTER: Hello $name\n";
 
-//IN FUNCTION: Hello John Rambo
-//OUTER: Hello John
+// IN FUNCTION: Hello John Rambo
+// OUTER: Hello John
 
 /*
  Sam przykład może nie jest jakiś wybitny, ale dobrze obrazuje to co chcę przedstawić.
@@ -201,6 +185,7 @@ sayHello();
  Na koniec wyświetlamy zmienną $name;
  
  Spodziewaliście się takiego rezultatu?
+
  Dzieje się tak ponieważ w naszym przykładzie tak jak już wspominaliśmy mamy dwa zakresy widoczności 
  Pierwszy to zakres zewnętrzny, drugi to zakres wewnątrz funkcji.
  W zakresie zewnętrznym cały czas odwołujemy się do zmiennej zdefiniowanej na początku skryptu, 
@@ -217,25 +202,39 @@ sayHello();
  
  Co to znaczy przekazywanie przez kopię?
  W momencie gdy wywołujemy funkcję i przekazujemy do niej dane przy użyciu zmiennych, czyli:
+ 
  $name = 'John';
- sayHellFor($name)
+ 
+function sayHello($name)
+{
+    echo "Hello $name\n";
+}
+
+sayHellFor($name)
+
  PHP odczytuje wartość przypisaną do zmiennej $name.
+
  Robi sobie jej kopię analogicznie do tego jakbyśmy kserowali coś na kopiarce
+ 
  Następnie wstrzykuję ją do wnętrza funkcji.
+ 
  Po czym we wnętrzu funkcji przypisuje ją do zmiennej $name.
+ 
  Gdzie $name z zewnątrz i $name z wnętrza funkcji to dwie różne zmienne, mają tylko taką samą nazwę
  co w naszym przypadku jest dobrane z premedytacją.
+ 
  Teraz modyfikując (wewnątrz funkcji) $name modyfikujemy tak naprawdę kopię którą przekazaliśmy do funkcji.
+ 
  W analogii do ksera, jeśli coś napiszemy na odbitce to to nie trafi w jakiś auto-magiczny sposób do oryginału.
- Podobnie modyfikując oryginał już po wywołaniu funkcji to nie wpływa na to co się znajduje w kopi, ponieważ
- zrobiliśmy to już po utworzeniu kopi.
+ 
+ Podobnie modyfikując oryginał już po wywołaniu funkcji to nie wpływa na to co się znajduje w kopi, ponieważ zrobiliśmy to już po utworzeniu kopi.
  
  Warto poświęcić chwilę na zrozumienie powyższych zasad, ponieważ są to jedne z kluczowych zasad które obowiązują w PHP
  
  UWAGA: W PHP istnieje też coś takiego jak zmienne globalne, które łamią powyższe zasady i są "widoczne wszędzie"
- Nie będę im poświęcał jednak czasu, ponieważ używanie ich jeśt traktowane jako żly nawyk i należy ich unikać,
- a my przecież nie chcemy się uczyć złych nawyków.
+ Nie będę im poświęcał jednak czasu, ponieważ używanie ich jeśt traktowane jako zly nawyk i należy ich unikać, a my przecież nie chcemy się uczyć złych nawyków.
 */
+
 
 /*
  Do tej pory stworzyliśmy funkcję z jednym argumentem.
@@ -250,6 +249,7 @@ sayHello();
 
 // sayHello('John', 'Rambo');
 
+
 /*
  WARTOŚCI DOMYŚLNE
  
@@ -262,13 +262,14 @@ sayHello();
 
 // function sayHello($name, $language = 'en') 
 // {
-//     if ($language === 'en') {
-//         echo "Hello $name\n";
-//     } else if ($language === 'pl') {
-//         echo "Witaj $name\n";
-//     } else {
-//         echo "Unsupported language";
-//     }
+//   var_dump($language);
+//   if ($language === 'en') {
+//       echo "Hello $name\n";
+//   } else if ($language === 'pl') {
+//       echo "Witaj $name\n";
+//   } else {
+//       echo "Unsupported language";
+//   }
 // }
 
 /*
@@ -282,9 +283,7 @@ sayHello();
 
 /*
  Jeśli chcemy wywołać funkcję z inną wartością argumentu niż wartość domyślna to po prostu ją podajemy.
-*/
 
-/*
  Oczywiście argumentów z wartościami domyślnymi może być więcej niż jeden, 
  równie dobrze wszystkie argumenty funkcji mogą mieć wartości domyślne,
  wtedy wywołanie funkcji mogłoby wyglądać jak wywołanie funkcji bezargumentowej
@@ -293,12 +292,14 @@ sayHello();
 // function testDefault($arg1 = 'foo', $arg2 = 'bar')
 // {
 //     // do something
+//     var_dump($arg1);
+//     var_dump($arg2);
 // }
 
 // testDefault(); // OK
 // testDefault('new foo'); // OK
 // testDefault('new foo', 'new bar'); // OK
-// testDefault( , 'new bar'); // ERROR
+// testDefault(, 'new bar'); // ERROR
 
 /*
  Dla argumentów z domyślnymi wartościami obowiązuje jedna zasada.
@@ -310,7 +311,6 @@ sayHello();
  listy argumentów, lub są z nimi przemieszane.
  W takim przypadku kompilator nie będzie wstanie rozpoznać tych wartości i zgłosi błąd
 */
-
  
 // function testDefault($arg1 = 'foo', $arg2) 
 // { 
@@ -320,7 +320,10 @@ sayHello();
 // function testDefault($arg1, $arg2 = 'foo', $arg3) 
 // { 
 //     // źle
+//     //echo 'dziala';
 // }
+
+// testDefault('bar');
 
 /*
  TYPOWANIE ARGUMENTÓW
@@ -331,10 +334,8 @@ sayHello();
  Zanim jednak omówimy jak to wygląda w połączeniu z argumentami powiem parę słów wstępu
 */
 
-
 /*
- Powoli język PHP z typowania dynamicznego (czyli przypisania typów zmiennych w trakcie działania programu)
- przechodzi do typowana statycznego. Jednak w tej chwili znajduje się trochę w rozkroku pomiędzy jednym a drugim.
+ Powoli język PHP z typowania dynamicznego (czyli przypisania typów zmiennych w trakcie działania programu) przechodzi do typowana statycznego. Jednak w tej chwili znajduje się trochę w rozkroku pomiędzy jednym a drugim.
  Poniżej zaraz powiemy dlaczego.
  
  Jednak co to jest to typowanie i jego rodzaje.
@@ -358,21 +359,23 @@ sayHello();
  Przykładowo:
 */
 
-// $foo = 1;
-// $bar = 'text';
+$foo = 1;
+$bar = 'text';
 
 /*
  Dopiero w trakcie działania programu, dla zmiennej określany jest typ na podstawie wartości którą do niej przypisujemy
 */
 
+// $zaz;
 // if (rand(0, 1)) {
 //     $zaz = 'some text';
 // } else {
 //     $zaz = 34;
 // }
 
+
 /*
- Funkcja rand w naszym przypadku losuje liczbę zero lub jedne.
+ Funkcja rand w naszym przypadku losuje liczbę zero lub jeden.
  Kompilator nie wie, co będzie przechowywane w zmiennej $zaz, 
  Dopiero po sprawdzaniu warunku jest do zmiennej przypisywana konkretna wartość.
  W trakcie przypisywania wartości jest określany typ zmiennej.
@@ -409,8 +412,7 @@ sayHello();
  int $foo = 1;
  string $bar = 'text';
  
- Różnica w stosunku do wersji dynamicznej jest
- dodanie informacji o przechowywanym typie przed nazwą zmiennej.
+ Różnica w stosunku do wersji dynamicznej jest dodanie informacji o przechowywanym typie przed nazwą zmiennej.
  
  W takim przypadku niemożliwa staje się sytuacja zmiany typu przechowywanej wartości:
  
@@ -419,14 +421,17 @@ sayHello();
  
  W takim przypadku zgłoszony zostanie błąd.
  Niemożliwe będzie teź wykonanie:
-/ 
+ 
+
 /* 
+    int $zaz;
     if (rand(0, 1)) {
         $zaz = 'some text';
     } else {
         $zaz = 34;
     }
 **/
+
 /*
  Ponieważ kompilator musi wiedzieć jakiego typu będzie przechowywana wartość w zmiennej jeszcze przed operacją przypisania
 */
@@ -438,6 +443,7 @@ sayHello();
         $zaz = 34;
     }
 */
+
 /*
  Teraz możemy sobie pomyśleć:
  Jakie jest sens w typowaniu statycznym, skoro widzimy ze tego nie możemy, tamtego nie możemy, musimy jeszcze zrobić to i to.
@@ -452,21 +458,24 @@ sayHello();
  Dobrą analogią jest sam JavaScript, o którym juz wcześniej wspomniałem.
  Z natury jest to język typowany dynamicznie.
  Jednak kilka lat temu pojawił się TypeScript, o którym można powiedzieć ze to JS na sterydach.
- W TypeScripcie juz występuje typowanie statyczne, chociaż tez go mona używać jak klasycznego JS'a
+ W TypeScripcie juz występuje typowanie statyczne, chociaż tez go moża używać jak klasycznego JS'a
 */
+
+
+
+
+
 
 /*
  Ok, ale jak to jest z tym typowaniem w PHP, hmmm ... w tej chwili jest tendencja podążania w kierunku typowania statycznego.
- Z każdą nową wersją począwszy juz tak naprawdę od 5.0 systematycznie dodawane są nowe opcje z tym związane.
- W trakcie tego kursu krok po kroku dowiecie się jak to wygląda w PHP
+ Z każdą nową wersją począwszy juz tak naprawdę od 5.0 systematycznie dodawane są nowe opcje z tym związane. W trakcie tego kursu krok po kroku dowiecie się jak to wygląda w PHP
  
  Nadal wprawdzie nie możemy określić typu deklarowanej zmiennej, ale ... wróćmy do argumentów funkcji.  
 */
 
 /*
  Od wersji 7.0 możemy określać typy argumentów które chcemy przekazać do funkcji.
- Wprawdzie od wersji 5.0, była możliwość już określania obiektów i interfejsów o czym już powiemy w następnej lekcji
- Jednak pełne wsparcie pojawiło się od wersji 7.0
+ Wprawdzie od wersji 5.0, była możliwość już określania obiektów i interfejsów o czym już powiemy w następnej lekcji. Jednak pełne wsparcie pojawiło się od wersji 7.0
  
  Określenie typu uzyskujemy poprzez dodanie nazwy typu przed nazwą argumentu w deklaracji funkcji
 */
@@ -488,6 +497,9 @@ sayHello();
 // niespodzianka - również działą
 // a tablicę 
 // sayHello(['foo']);
+
+
+
 
 /*
  Myślimy sobie kurcze, co się dzieje, przecież określiliśmy, że chcemy przyjmować tylko stringa,
@@ -828,4 +840,4 @@ sayHello(['foo']);
  
  Polecam przeglądnięcie dokumentacji, jednak nie polecam uczenia się jej na pamięć. 
  No chyba że ktoś lubi takie wyzwania :D
-/
+*/

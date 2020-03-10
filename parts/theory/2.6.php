@@ -18,30 +18,33 @@
  Posiadamy pewne środki w portfelu, jak również wypełniony koszyk.
  */
 
-$wallet = 1000;
-$cart = [
-    ['item' => 'myszka', 'price' => 100],
-    ['item' => 'papier do drukarki', 'price' => 10],
-    ['item' => 'klawiatura', 'price' => 200],
-    ['item' => 'laptop', 'price' => 5000],
-    ['item' => 'DOOM', 'price' => 159],
-];
+
 
 /*
- W celu przetestowania instrukcji break
- przyjmijmy założenie że jeśli podczas składania zamówienia przekroczymy kwotę, 
- którą mamy w portfelu nie kontynuujemy dalej procesu składania zamówienia.
+ W celu przetestowania instrukcji break przyjmijmy założenie że jeśli podczas składania zamówienia przekroczymy kwotę, którą mamy w portfelu nie kontynułujemy dalej procesu składania zamówienia.
  W tym celu posłużymy się pętlą FOREACH
  */
+// $wallet = 1000;
+// $cart = [
+//     ['item' => 'myszka', 'price' => 100],
+//     ['item' => 'papier do drukarki', 'price' => 10],
+//     ['item' => 'klawiatura', 'price' => 200],
+//     ['item' => 'laptop', 'price' => 5000],
+//     ['item' => 'DOOM', 'price' => 159],
+// ];
 
 // $cartValue = 0;
 // foreach ($cart as $item) {
 //     $cartValue += $item['price'];
+//     echo $item['item'] . "\n";
 //     if ($cartValue > $wallet) {
 //         echo 'Przekroczyłeś kwotę którą dysponujesz';
 //         break;
 //     }
 // }
+
+// echo "\n";
+// echo '=============';
 
 /*
  Tworzymy zmienną w której będziemy przechowywać wartość naszego koszyka.
@@ -56,30 +59,36 @@ $cart = [
 
 /*
  Zmodyfikujemy odrobinę nasz przypadek testowy.
- Założyliśmy sobie, że możemy kupić produktów których wartość przekracza 1000 pln
+ Założyliśmy sobie, że nie możemy kupić produktów których wartość przekracza 1000 pln
  Kod realizujący poniższa zadanie mógłby wyglądać następująco
  */
- 
-// $cartValue = 0;
-// foreach ($cart as $item) {
-//     if ($item['price'] >= 1000) {
-//         echo "Produkt: {$item['item']} kosztuje za dużo !!! Pomijamy\n";
-//         continue;
-//     }
-//     $cartValue += $item['price'];
-// }
 
-// echo "Wartość Twoich zakupów wynosi: $cartValue\n";
+$cart = [
+    ['item' => 'myszka', 'price' => 100],
+    ['item' => 'papier do drukarki', 'price' => 10],
+    ['item' => 'klawiatura', 'price' => 200],
+    ['item' => 'laptop', 'price' => 5000],
+    ['item' => 'DOOM', 'price' => 159],
+];
+
+$cartValue = 0;
+foreach ($cart as $item) {
+    echo "{$item['item']}\n";
+    if ($item['price'] >= 1000) {
+        echo "Produkt: {$item['item']} kosztuje za dużo !!! Odłuż go na półkę\n";
+        continue;
+    }
+    $cartValue += $item['price'];
+}
+
+echo "Wartość Twoich zakupów wynosi: $cartValue\n";
 
 /*
  Aby to zrealizować użyliśmy instrukcji: continue.
  Na samym początku przetwarzania elementu z koszyka sprawdzamy jego cenę, czy nie przekroczyła 
  zdefiniowanego limitu.
- Jeśli limit został przekroczony to informujemy o tym użytkownika
- oraz używamy instrukcji CONTINUE aby automatycznie przejść do kolejnego elementu koszyka
- przez to pomijamy aktualizację $cartValue, czyli aktualizację wartości koszyka.
- W przypadku gdyby cena produkty była niższa od naszego limitu to wyrażenie IF zostanie pominięte 
- i wartość koszyka zostanie zaktualizowana
+ Jeśli limit został przekroczony to informujemy o tym użytkownika oraz używamy instrukcji CONTINUE aby automatycznie przejść do kolejnego elementu koszyka przez to pomijamy aktualizację $cartValue, czyli aktualizację wartości koszyka.
+ W przypadku gdyby cena produkty była niższa od naszego limitu to wyrażenie IF zostanie pominięte i wartość koszyka zostanie zaktualizowana
  */
 
 /*
