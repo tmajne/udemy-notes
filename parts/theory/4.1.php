@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  PROGRAMOWANIE OBIEKTOWE
  */
@@ -57,10 +59,10 @@
  Teraz przejdźmy do kodu i stwórzmy naszą pierwszą klasę
  */
 
-class Flat
-{
+// class Flat
+// {
 
-}
+// }
 
 /*
  Na razie nie wygląda to skomplikowanie.
@@ -76,6 +78,11 @@ class Flat
         // ciało klasy
     }
 */
+
+// class Flat 
+// {
+
+// }
 
 /*
  Standardem jest, że nazwa klasy powinna się zaczynać z dużej litery.
@@ -96,8 +103,7 @@ class Flat
  Możemy też powiedzieć, że:
  utworzyliśmy obiekt, który jest instancją klasy Flat.
  
- Pewne zastanowienie może wzbudzić fakt, dlaczego to co jest za słowem "new" wygląda jak wywołanie funkcji.
- Wrócimy do tego już za moment.
+ Pewne zastanowienie może wzbudzić fakt, dlaczego to co jest za słowem "new" wygląda jak wywołanie funkcji. Wrócimy do tego już za moment.
  */
 
 /*
@@ -130,17 +136,17 @@ class Flat
 // $myFlat = new Flat();
 // var_dump($myFlat);
 
-// // aby odwołać się do właściwości obiektu używamy strzałki "->"
-// // pobranie
+// aby odwołać się do właściwości obiektu używamy strzałki "->"
+// pobranie
 
 // $myFlatType = $myFlat->type;
 // var_dump($myFlatType);
 
-// // oczywiście możemy się odwołać bezpośrednio do właściwości, bez konieczności
-// // przypisywania jej do zmiennej
-// var_dump($myFlat->type);
+// oczywiście możemy się odwołać bezpośrednio do właściwości, bez konieczności
+// przypisywania jej do zmiennej
+//var_dump($myFlat->type);
 
-// // przypisanie wartości do właściwości
+// przypisanie wartości do właściwości
 // $myFlat->type = 'M4';
 
 // var_dump($myFlat);
@@ -174,10 +180,10 @@ class Flat
 //     public string $type;
 // }
 
-// $myFlat = new Flat();
-// $myFlat->type = 11;
-// $myFlat->type = [];
-// $myFlat->type = 'string';
+//$myFlat = new Flat();
+//$myFlat->type = 11;
+//$myFlat->type = [];
+//$myFlat->type = 'M3';
 
 /*
  Wywołanie naszego kodu zgłosi błąd:
@@ -207,11 +213,15 @@ class Flat
 
 // class Flat
 // {
-//     public string $type = 'M';
+//     public string $type = 'M2';
 // }
 
 // $myFlat = new Flat();
 // var_dump($myFlat);
+
+// $flatType = $myFlat->type;
+// var_dump($flatType);
+
 
 /*
  Jeśli na samym początku chcielibyśmy jawnie nadać właściwości wartość NULL
@@ -230,8 +240,6 @@ class Flat
  Zapis ze znakiem zapytania, czyli: ?string
  jak pamiętamy oznacza, że właściwość może przechowywać typ NULL lub STRING
  */
-
-
 
 /*
  METODY
@@ -269,11 +277,13 @@ class Flat
 //     }
 // }
 
-// // wywołania
-// $myFlat = new Flat();
-// $myFlat->open();
-// $myFlat->close();
-// $myFlat->doSomething('bar');
+// wywołania
+//$myFlat = new Flat();
+//var_dump($myFlat);
+//$myFlat->open();
+//$myFlat->close();
+//$tmp = $myFlat->doSomething('foo');
+//var_dump($tmp);
 
 /*
  Widzimy że kwestia argumentów, wartości zwracanych wygąda dokładnie tak jak w przypadku funkcji
@@ -319,9 +329,9 @@ class Flat
 //     public function printType(): void
 //     {
 //         if ($this->isTypeSet()) {
-//             echo "Nasze mieszkanie to: " . $this->type;
+//             echo "Nasze mieszkanie to: " . $this->type . "\n";
 //         } else {
-//             echo "Jeszcze nie wiemy jakiego typu jest nasze mieszkanie";
+//             echo "Jeszcze nie wiemy jakiego typu jest nasze mieszkanie\n";
 //         }
 //     }
 // }
@@ -337,10 +347,11 @@ class Flat
  */
 
 
+
 /*
  MODYFIKATORY DOSTĘPU
  
- Jak pewnie zauważyliście bardo pobieżnie opisałem do czego służy PUBLIC używane przed właściwością i metodą. 
+ Jak pewnie zauważyliście bardo pobieżnie opisałem to do czego służy PUBLIC używane przed właściwością i metodą. 
  Teraz po nabyciu pewnej wiedzy wracamy do tematu.
  
  Istnieją trzy rodzaje modyfikatorów dostępu:
@@ -381,11 +392,12 @@ class Flat
 
 // $object = new SomeClass();
 
-// var_dump($object->foo);
-// var_dump($object->bar);
-// var_dump($object->baz);
-// $object->privFoo();
-// $object->printProperties();
+//var_dump($object->foo);
+//var_dump($object->bar);
+//var_dump($object->baz);
+
+//$object->privFoo();
+//$object->printProperties();
 
 /*
  Widzimy, że dostęp z zewnątrz obiektu jest tylko do właściwości publicznej.
@@ -422,12 +434,12 @@ class Flat
 
 //     public function close(): void
 //     {
-//         $this->closed = false;
+//         $this->closed = true;
 //     }
 
 //     public function open(): void
 //     {
-//         $this->closed = true;
+//         $this->closed = false;
 //     }
 // }
 
@@ -460,15 +472,17 @@ class Flat
 
 //     public function close(): void
 //     {
-//         $this->closed = false;
+//         $this->closed = true;
 //     }
 
 //     public function open(string $code): void
 //     {
 //         if ($code === $this->doorLockCode) {
-//             $this->closed = true;
+//             $this->closed = false;
+//             echo "Mieszkanie zostało otwarte\n";
 //         } else {
 //             // logowanie informacji o próbie użycia niepoprawnego kodu
+//             echo "Kod jest niepoparawny\n";
 //         }
 //     }
 
@@ -481,28 +495,27 @@ class Flat
 // $myFlat = new Flat();
 // $myFlat->open('123qwe');
 
+
 /*
  Teraz widzimy, że jedyny sposób otwarcia naszego mieszkania jest poprzez metodę "open"
  Nie ma innej możliwości aby to zrobić. 
  
  DOBRĄ CECHĄ w programowaniu jest dążenie do tego aby ukrywać to co się znajduje wewnątrz klasy,
  a później obiektu powstałego na podstawie tej klasy. Jednocześnie udostępniając na zewnątrz 
- zbiór metod za pomocą których można używać obiekty danej klasy.
+ zbiór metod za pomocą których można używać obiektów danej klasy.
  
  Dokładnie to zrobiliśmy w przykładzie powyżej, nie mamy żadnej publicznej właściwości, przez co nie 
  eksponujemy tego jak nasz obiekt wygląda wewnątrz. Udostępniamy tylko metody dzięki którym nasz 
  obiekt może wchodzić w interakcję z otoczeniem.
  
- Jednym z powodów dlaczego tak należy robić jest fakt, że w naszej pracy (prawie) nigdy nie będziemy pracować
- samodzielnie. Będziemy pracować w zespole realizując projekty przypisane do danego zespołu. 
- Tworząc klasę która ma zapewniać pewną funkcjonalność i która będzie używana przez inne osoby skupiamy się 
- nad tym jak ta klasa ma działać. Powodem jest fakt, że osoba która będzie używać obiektów tej klasy
- generalnie nie interesuje jej wewnętrzna struktura, tylko to jakie zapewnia możliwości, czyli jakie metody 
- udostępnia publicznie i co za ich pomocą można zrobić. 
+ Jednym z powodów dlaczego tak należy robić jest fakt, że w naszej pracy (prawie) nigdy nie będziemy pracować samodzielnie. Będziemy pracować w zespole realizując projekty przypisane do danego zespołu. 
+ Tworząc klasę która ma zapewniać pewną funkcjonalność i która będzie używana przez inne osoby skupiamy się nad tym jak ta klasa ma działać. Powodem jest fakt, że osoba która będzie używać obiektów tej klasy
+ generalnie nie interesuje jej wewnętrzna struktura, tylko to jakie zapewnia możliwości, czyli jakie metody udostępnia publicznie i co za ich pomocą można zrobić. 
  */
 
 /*
  Na pewno w swojej przygodzie z programowaniem spotkasz się z akkcesorami do właściwości czyli tak zwanymi
+
  getterami i setterami.
  
  Powróćmy do naszego pierwotnego przykładu.
@@ -519,9 +532,9 @@ class Flat
 //     }
 
 //     // seter
-//     public function setClosed(): void
+//     public function setClosed(bool $value): void
 //     {
-        
+//         $this->closed = $value;
 //     }
 // }
 
@@ -529,8 +542,7 @@ class Flat
  Wywołanie gettera powoduje zwrócenie wartości konkretnej właściwości
  Natomiast wywołanie settera powoduje ustawienie przesłanej wartości dla konkretnej właściwości.
  
- Tworzenie tego typu metod w obiektach nadal jest dosyć popularne, jednak od pewnego czasu można zaobserwować
- tendencje odchodzenia od tego.
+ Tworzenie tego typu metod w obiektach nadal jest dosyć popularne, jednak od pewnego czasu można zaobserwować tendencje odchodzenia od tego.
  Ma to związek z tym o czym wspominaliśmy na samym początku rozdziału o obiektach.
  Programowanie obiektowe to dążenie do odwzorowania rzeczywistości.
  
@@ -563,10 +575,11 @@ class Flat
  Jeśli chodzi o implementację konstruktora to metoda która nim jest ma specjalną nazwę: __construct
  */
 
-// class SomeClass {
-//     public function __construct() 
+//class SomeClass 
+// {
+//     public function __construct()
 //     {
-//         echo "Hej to ja, konstruktor Twojej klasy. Ja istnieję !!!";
+//         echo "Hej to ja, konstruktor Twojej klasy. Ja istnieję !!!\n";
 //     }
 // }
 
@@ -595,13 +608,13 @@ class Flat
 
 //     public function close(): void
 //     {
-//         $this->closed = false;
+//         $this->closed = true;
 //     }
 
 //     public function open(string $code): void
 //     {
 //         if ($code === $this->doorLockCode) {
-//             $this->closed = true;
+//             $this->closed = false;
 //         } else {
 //             // logowanie informacji o próbie użycia niepoprawnego kodu
 //         }
@@ -630,12 +643,12 @@ class Flat
 
 //     private bool $closed = true;
 
-//     public function __construct(int $dorrCode) 
+//     public function __construct(int $doorCode) 
 //     {
-//         if (strlen((string) $dorrCode) < 6) {
-//             //TODO: zgłoś błąd
+//         if (strlen((string) $doorCode) < 6) {
+//             echo "Kod jest za krótki \n";
 //         } else {
-//             $this->doorLockCode = $dorrCode;
+//             $this->doorLockCode = $doorCode;
 //         }
 //     }
 
@@ -660,9 +673,7 @@ class Flat
 // }
 
 // $newDorrCode = rand(100000, 999999);
-// $flat = new Flat($newDorrCode);
-
-// var_dump($flat);
+// $flat = new Flat(123);
 
 /*
  W konstruktorze, oprócz tego ze ustawiamy wartość początkową 
@@ -681,7 +692,7 @@ class Flat
  Jednak destruktory praktycznie nie są używane, wiec z czystym sumieniem można pominąć ich temat
  */
 
- /* Wspomnę jeszcze ze o nasze klasy należy dbać. 
+ /* Wspomnę jeszcze że o nasze klasy należy dbać. 
  To znaczy klasy a co za tym idzie obiekty które na ich podstawie tworzymy muszą być wyspecjalizowane.
  Odpowiadać za jedną spójną dziedzinę.
  Na początku jest pokusa aby do klas upychać wszystko jak popadnie. Jednak to nie jest słuszne podejście.
@@ -717,7 +728,6 @@ class Flat
 
 /*
  O stałych w kontekście globalnym, czyli widocznych w dowolnym miejscu kodu który tworzymy mówiliśmy już na początku kursu.
- Widocznych - mam na myśli, że możemy się do nich odwołać i użyć. 
  
  Istnieje jeszcze jeden rodzaj stałych, mianowicie stałe klasy.
  Definiujemy je w klasie przy użyciu słowa 'const'.
@@ -729,17 +739,21 @@ class Flat
 //     public const FOO = 'foo';
 //     private const ZAZ = 'zaz';
 
+//     private bool $tmp = true;
+
 //     public function doSomething()
 //     {
 //         echo self::ZAZ;
 //     }
 // }
 
-// echo SomeClass::FOO . "\n";
-// echo SomeClass::ZAZ . "\n";
+//echo SomeClass::FOO . "\n";
+//echo SomeClass::ZAZ . "\n";
 
-// $object = new SomeClass();
-// $object->doSomething();
+//$object = new SomeClass();
+//var_dump($object);
+//$object->doSomething();
+//var_dump(SomeClass::ZAZ);
 
 /*
  Od wersji 7.1 możemy używać modyfikatorów dostępu w kontekście stałych.
@@ -760,7 +774,7 @@ class Flat
 
 
 /*
- STATYKI
+STATYKI
  
  Właściwości i metody żyją/egzystują tylko i wyłącznie z obiektami.
  W klasie je tylko definiujemy a w obiektach operujemy na nich.
@@ -781,18 +795,21 @@ class Flat
 
 // class SomeClass
 // {
-//     public static $foo;
-//     private static $baz;
+//     public static string $foo;
+//     private static string $baz;
 
 //     public static function doSomething()
 //     {
 //         self::$baz = 'Wartość prywatnej zmiennej statycznej';
+//         echo "Metoda się wykonała\n";
+//         var_dump(self::$baz);
 //     }
 // }
 
-// SomeClass::$foo = 'foo foo';
-// SomeClass::doSomething();
-// SomeClass::$baz; // ERROR
+//SomeClass::$foo = 'foo foo';
+//var_dump(SomeClass::$foo);
+//SomeClass::doSomething();
+//SomeClass::$baz; // ERROR
 
 /*
  Dostęp do statycznej właściwości/metody uzyskujemy przez użycie podwójnego dwukropka: "::"
@@ -814,14 +831,14 @@ class Flat
  Z zewnątrz do właściwości statycznych/metod można odwołać się też przy użyciu nazwy obiektu:
  $object::$staticProperty
  $object::staticMethod();
+
  Do metod można się też odwołać za pomocą strzałki
  $object->staticMethod();
  Ja osobiście unikam powyższych możliwości, ponieważ powodują niepotrzebne zaciemnianie kodu.
  Dzięki temu, że jesteśmy konsekwentni i używamy nazwy klasy nasz kod i nasze intencje stają się czytelniejsze
  
  Rozważmy problem biznesowy:
- Wyobraźmy sobie sytuację, że nasza klasa Flat jest szablonem mieszkań które developer buduje i chce sprzedać. 
- Developer musi wiedzieć ile mieszkań się sprzedało do tej pory aby nie sprzedać więcej niż wybudował. 
+ Wyobraźmy sobie sytuację, że nasza klasa Flat jest szablonem mieszkań które developer buduje i chce sprzedać. Developer musi wiedzieć ile mieszkań się sprzedało do tej pory aby nie sprzedać więcej niż wybudował. 
  
  Jedno z możliwych rozwiązań mogłoby wyglądać następująco.
  
@@ -851,31 +868,29 @@ class Flat
 // }
 
 // $flat1 = new Flat();
-// var_dump(Flat::sold());
+// var_dump($flat1::sold());
 // $flat2 = new Flat();
 // new Flat();
-// new Flat();
+// $flat4 = new Flat();
 // new Flat();
 // var_dump(Flat::sold());
 // new Flat();
 // new Flat();
+// var_dump(Flat::sold());
 
 /*
  W prywatnej stałej umieściliśmy informację o liczbie wybudowanych mieszkań. 
  
  Przy tworzeniu nowego obiektu klasy Flat zwiększamy licznik sprzedaży o 1 za pomocą konstruktora,
- który jak pamiętamy wykonuje się zawsze przy kreacji obiektu. Zmiana ta będzie automatycznie widoczna we 
- wszystkich wcześniej już utworzonych obiektach.
+ który jak pamiętamy wykonuje się zawsze przy kreacji obiektu. Zmiana ta będzie automatycznie widoczna we wszystkich wcześniej już utworzonych obiektach.
  
- Sprawdzamy też ile mieszkań do tej pory się sprzedało. Jeśli została przekroczona liczba sprzedanych mieszkań
- to informujemy o tym użytkownika i zgłaszamy odpowiedni błąd.
+ Sprawdzamy też ile mieszkań do tej pory się sprzedało. Jeśli została przekroczona liczba sprzedanych mieszkań to informujemy o tym użytkownika i zgłaszamy odpowiedni błąd.
  
  Właściwość statyczna "sold" jest prywatna, dlatego, że chcemy mieć pełną kontrolę nad tym ile mieszkań się sprzedało.
  Wykluczamy sytuację, że ktoś kto będzie używał naszej klasy ręcznie zmodyfikuje wartość która jest przechowywana w $sold.
  Nie ma po prostu takiej możliwości.
  
- Oczywiście jeśli ktoś pokusi się o modyfikacje naszego kodu, może choćby zmienić widoczność naszej właściwości, 
- ale na to już nic nie poradzimy.
+ Oczywiście jeśli ktoś pokusi się o modyfikacje naszego kodu, może choćby zmienić widoczność naszej właściwości, ale na to już nic nie poradzimy.
  
  UWAGA 1.
  W metodach statycznych nie można używać właściwości $this, natomiast w zwykłych metodach jak najbardziej możemy używać "self". 
@@ -889,7 +904,7 @@ class Flat
 
 // class SomeClass
 // {
-//     private strint $foo;
+//     private string $foo;
 
 //     public static function test()
 //     {
@@ -897,14 +912,18 @@ class Flat
 //     }
 // }
 
+// SomeClass::test();
+
 /*
  Podczas użycia metody statycznej "test" nie mamy pojęcia czy istnieje już jakiś obiekt aby się do niego odwołać.
  Jednak nawet gdyby istniało kilka obiektów to do którego obiektu $this ma się odnosić?
- Dlatego z tych przycyn użycie $this w metodach statycznych jest zabronione
+ Dlatego z tych przyczn użycie $this w metodach statycznych jest zabronione
  */
 
 
  
+
+
 
 // DZIEDZICZENIE
 
@@ -924,12 +943,12 @@ class Flat
  A jak to wygląda od strony kodu?
  */
 
-// class Parent 
+// class ClassParent
 // {
 
 // }
 
-// class Child extends Parent
+// class Child extends ClassParent
 // {
 
 // }
@@ -947,6 +966,11 @@ class Flat
 // {
 //     public string $login = 'userLogin';
 //     private string $topSecret = 'secret';
+
+//     public function __construct() 
+//     {
+//         // ....
+//     }
 // }
 
 
@@ -958,10 +982,9 @@ class Flat
 //     {   
 //         var_dump($this->login);
 //         var_dump($this->number);
-//         var_dump($this->topSecret);
+//         //var_dump($this->topSecret);
 //     }
 // }
-
 
 // class Admin extends User
 // {
@@ -971,7 +994,7 @@ class Flat
 //     {   
 //         var_dump($this->login);
 //         var_dump($this->role);
-//         var_dump($this->topSecret);
+//         //var_dump($this->topSecret);
 //     }
 // }
 
@@ -1006,8 +1029,7 @@ class Flat
  Tutaj z pomocą przychodzi nam modyfikator PROTECTED, wspomnieliśmy o niem wcześniej, ale dopiero teraz 
  dysponujemy odpowiednią wiedzą, że sensowne jest jego omówienie.
  
- PROTECTED - właściwość/metoda jest chroniona i nie ma do niej dostępu z poza obiektu, jednak w przeciwieństwie
- do PRIVATE jest dziedziczona i jest widoczna w klasach potomnych
+ PROTECTED - właściwość/metoda jest chroniona i nie ma do niej dostępu z poza obiektu, jednak w przeciwieństwie do PRIVATE jest dziedziczona i jest widoczna w klasach potomnych
  */
 
 // class User 
@@ -1046,6 +1068,12 @@ class Flat
 // $user = new User();
 // $client = new Client();
 // $admin = new Admin();
+
+// $admin->topSecret;
+
+
+
+
 
 /*
  Po zmianie modyfikatora z prywatnego na protected nasz przykład nie zgłasza już żadnego błędu

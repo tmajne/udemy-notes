@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  Przyszła pora zabrać się za poważne rzeczy ;)
  
@@ -359,8 +361,8 @@ sayHellFor($name)
  Przykładowo:
 */
 
-$foo = 1;
-$bar = 'text';
+//$foo = 1;
+//$bar = 'text';
 
 /*
  Dopiero w trakcie działania programu, dla zmiennej określany jest typ na podstawie wartości którą do niej przypisujemy
@@ -465,12 +467,9 @@ $bar = 'text';
 
 
 
-
 /*
  Ok, ale jak to jest z tym typowaniem w PHP, hmmm ... w tej chwili jest tendencja podążania w kierunku typowania statycznego.
  Z każdą nową wersją począwszy juz tak naprawdę od 5.0 systematycznie dodawane są nowe opcje z tym związane. W trakcie tego kursu krok po kroku dowiecie się jak to wygląda w PHP
- 
- Nadal wprawdzie nie możemy określić typu deklarowanej zmiennej, ale ... wróćmy do argumentów funkcji.  
 */
 
 /*
@@ -482,6 +481,7 @@ $bar = 'text';
 
 // function sayHello(string $name)
 // {
+//     var_dump($name);
 //     echo "Hello $name\n";
 // }
 
@@ -490,13 +490,15 @@ $bar = 'text';
 */
 
 // działa
-// sayHello('Tom');
+//sayHello('Tom');
 
 // co w przypadku gdy przekażemy liczbę całkowitą?
-// sayHello(100);
+// $intValue = 100;
+// var_dump($intValue);
+// sayHello($intValue);
 // niespodzianka - również działą
 // a tablicę 
-// sayHello(['foo']);
+//sayHello(['foo']);
 
 
 
@@ -511,7 +513,7 @@ $bar = 'text';
  - strict - ścisły, który nie dopuszcza rzutowania
  
  Co to tak naprawdę znaczy.
- W trybie domyślnym, w którym przed chwilą uruchamialiśmy funkcją sayHello określeni typu jest wskazówką 
+ W trybie domyślnym, w którym przed chwilą uruchamialiśmy funkcją sayHello określenie typu jest wskazówką 
  dla PHP mówiącą na jaki typ musi zmienić wartość przekazaną do funkcji.
  
  Zmodyfikujmy odrobinę naszą funkcję i przeanalizujmy ją jeszcze raz.
@@ -523,7 +525,7 @@ $bar = 'text';
 //     echo "Hello $name\n";
 // }
 
-// sayHello('Tom');
+//sayHello('Tom');
 // // w tym przypadku przekazujemy stringa, więc konwersja nie zachodzi
 
 // $intValue = 100;
@@ -531,10 +533,7 @@ $bar = 'text';
 // sayHello($intValue);
 /*
  tutaj widzimy, że przekazujemy int'a a wewnątrz funkcji widzimy że jest string
- zaszła konwersja z typu int na typ string
- to miałem na myśli mówiąc, że podając typ argumentu mówimy PHP'owi na jaki typ ma  
- skonwertować (rzutować) zmienną w trakcie przyjmowania 
- przez co wewnątrz funkcji będzie już innym typem.
+ zaszła konwersja z typu int na typ string, to miałem na myśli mówiąc, że podając typ argumentu mówimy PHP'owi na jaki typ ma skonwertować (rzutować) zmienną w trakcie przyjmowania przez co wewnątrz funkcji będzie już innym typem.
  
  Pamiętamy, że gdy przekazujemy wartość do funkcji to tak naprawdę wewnątrz funkcji powstaje
  kopia przekazanej wartości?
@@ -542,8 +541,8 @@ $bar = 'text';
  
  A co się dzieje w tym przypadku:
 / 
-
-sayHello(['foo']);
+*/
+//sayHello('foo');
 
 /*
  PHP wyświetlił nam informację o błędzie, dlaczego?
@@ -560,8 +559,8 @@ sayHello(['foo']);
 // $intNumber = 23;
 // $floatNumber = 34.32;
 
-// var_dump($intNumber);
-// showNumber($intNumber);
+//var_dump($intNumber);
+//showNumber($intNumber);
 
 // var_dump($floatNumber);
 // showNumber($floatNumber);
@@ -571,7 +570,7 @@ sayHello(['foo']);
  Problem pojawia się gdy przekazaliśmy wartość typu float.
  PHP potrafi automatycznie przekonwertować typ float na int, ale jak widzimy wyświetlona wartość,
  nie jest do końca tą którą przekazaliśmy do funkcji. Obcięta została część po przecinku.
- Nie ma tutaj co narzekać na sam język, ponieważ zadziałał prawidłowo. 
+ Nie ma tutaj co narzekać na sam język, ponieważ to zadziałał prawidłowo. 
  
  Przecież zadeklarowaliśmy, że argument ma być typu int, tak więc zaszła konwersja.
  Skoro konwertujemy typ o dużej dokładności czyli float na tym o mniejszej dokładności czyli int
@@ -601,20 +600,27 @@ sayHello(['foo']);
  Wróćmy do przykładu
 */
 
-// declare(strict_types=1);
-
 // function sayHello(string $name)
 // {
 //     var_dump($name);
 //     echo "Hello $name\n";
 // }
 
-// sayHello('Tom');
+//sayHello('Tom');
 // // w tym przypadku przekazujemy stringa, więc jest ok
 
-// $intValue = 100;
+//$intValue = 100;
+//var_dump($intValue);
+//sayHello($intValue);
+
+// function test(float $number)
+// {
+//     var_dump($number);
+// }
+
+// $intValue = 2;
 // var_dump($intValue);
-// sayHello($intValue);
+// test($intValue);
 
 /*
  Już widzimy co się stało.
@@ -642,14 +648,18 @@ sayHello(['foo']);
  Aby to zrobić posłujemy się znakiem zapytania "?"
 */
 
-// function sayHello(?string $name)
+// function sayHello(?string $name = null)
 // {
 //     if ($name !== null) {
 //         echo "Name: $name \n";
 //     } else {
-//         echo "Hello !!!";
+//         echo "Hello !!!\n";
 //     }
 // }
+
+// sayHello('Tom');
+// sayHello(null);
+// sayHello();
 
 /*
  Na koniec części o argumentach wymienimy jeszcze listę typów które możemy użyć dla argumentów podczas
@@ -661,6 +671,7 @@ sayHello(['foo']);
  float - 7.0
  int - 7.0
  string - 7.0
+ ?int - 7.1
  
  Te o których będziemy mówić już niedługo:
  class/interface - 5.0
@@ -669,6 +680,9 @@ sayHello(['foo']);
  iterable - 7.1
  object - 7.2
 */
+
+
+
 
 
 /*
@@ -712,22 +726,28 @@ sayHello(['foo']);
 //     var_dump('after return');
 // }
 
+
 /*
  Ok, funkcja nam coś zwraca, ale jak my możemy to wykorzystać. 
  Tutaj mamy kilka opcji.
 */
 
+// function countLetters(string $word)
+// {
+//     return strlen($word);
+// }
+
 // // zignorować, ponieważ nas nie interesuje
 // countLetters('bar');
 
-// // przypisać do zmiennej
-// $count = countLetters('bar');
+// przypisać do zmiennej
+// $count = countLetters('bar bar');
 // echo $count;
 
-// // od razu użyć:
-// echo countLetters('bar');
+// od razu użyć:
+//var_dump(countLetters('bar'));
 
-// // użyć w wyrażeniu:
+// użyć w wyrażeniu:
 // if (countLetters('bar') > 10) {
 //     // do something
 // }
@@ -799,6 +819,7 @@ sayHello(['foo']);
  Hmm ... wygląda trochę dziwnie?
  Może, ale tylko na początku.
 */
+
 // function (string $name): void
 // {
 //     echo "Name: $name\n";
@@ -806,31 +827,55 @@ sayHello(['foo']);
 
 /*
  W powyższym przykładnie nasza funkcja jest bezużyteczna, ponieważ nie jesteśmy w stanie jej użyć. 
- 
  Co ciekawe funkcję anonimową możemy potraktować jak wartość i przypisać ją do zmiennej
 */
 
-// $myFunction = function (string $name): void
-// {
-//     echo "Name: $name\n";
-// };
+$myFunction = function (string $name): void
+{
+    echo "Name: $name\n";
+};
 
 /*
  W tej chwili jesteśmy już za pomocną nazwy zmiennej wywołać taką funkcję
 */
 
- //$myFunction('Tom');
+// function myCall(string $name, callable $func): void
+// {
+//     $func($name);
+// }
+
+// $myFunction = function(string $name): void {
+//     echo "$name\n";
+// };
+
+// myCall("TOM", $myFunction);
 
 /*
- Wcześniej wspominaliśmy o typie "callable" który może użyć do typowania argumentów lub zwracanych wartości.
- Funkcja anonimowa spełnia to wymaganie, możemy ją przekazać jako argument jak i zwrócić. 
+ Wcześniej wspominaliśmy o typie "callable" który może użyć do typowania argumentów lub zwracanych wartości. Funkcja anonimowa spełnia to wymaganie, możemy ją przekazać jako argument jak i zwrócić. 
  
- Kwestia funkcji anonimowych w PHP dotyka już trochę bardziej zaawansowanych rzeczy, tak więc nie będziemy teraz
- dalej kontynułować tego tematu. Powrócimy do niego w następnym kursie, który dotknie już bardziej zaawansowanych rzeczy.
+ Kwestia funkcji anonimowych w PHP dotyka już trochę bardziej zaawansowanych rzeczy, tak więc nie będziemy teraz dalej kontynułować tego tematu. Powrócimy do niego w następnym kursie, który dotknie już bardziej zaawansowanych rzeczy.
  W tej chwili istotne jest to aby zdawać sobie sprawę żę w PHP też istnieją funkcje anonimowe.
  
  BONUS DLA JS'OWCÓW => funkcje strzałkowe też istnieją :) od 7.4
 */
+// function ($value) 
+// {
+//     return $value * 2;
+// }
+
+//$myFunction = fn(int $value): int => $value * 2;
+
+$users = [
+    'Robert', 'Martin', 'John'
+];
+
+$hello = array_map(
+    fn($value) => "Hello ".$value,
+    $users
+);
+
+print_r($users);
+print_r($hello);
 
 /*
  Na zakończenie rozdziału o funkcjach wspomnę, że sam język PHP posiada już ogromną listę zdefiniwanych już funkcji, 
