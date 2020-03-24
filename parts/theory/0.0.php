@@ -1,5 +1,22 @@
 <?php
 
+/* 
+  Kilka słów o php.
+
+  PHP - interpretowany skryptowy język programowania. 
+
+  Głównie stosowany do tworzenia stron/serwisów po stronie serwera WWW.
+  Po za tym PHP można użyć do pisania skryptów, wykonujących przeróżne zadania, np analizę danych.
+  Istnieją również biblioteki za pomocą których możemy pisać aplikacje okienkowe, jednak nie są to zbyt popularne rozwiązania.
+
+  Kod php jest wykonywany w tak zwanym runtime, czyli jest przetwarzany w momencie wykonywania. Nie jest kompilowany
+  (chociaż serwery www, robią pewne sztuczki, które umożliwiają szybsze wykonanie kodu, bez jego ponownego przetworzenia)
+
+  W sieci można znaleźć wiele zestawień, jednak zdecydowana większość z nich mówi że około 80% wszystkich stron w internecie jest oparta o PHP
+  PHP jest używane między innymi przez facebook, yahoo, wikipedia.org, wordpress, slack, gog, tesla
+*/
+
+
 /**
  * Opisać wymagania dla Junior developera.
  * 
