@@ -4,6 +4,10 @@
     ini_set('display_errors', '1');
 
     if (!empty($_POST)) {
+
+        $email = $_POST['email'];
+        if(!$e)
+
         $config = [
             'host' => 'localhost',
             'name' => 'email',
@@ -14,7 +18,7 @@
         $dsn = 'mysql:dbname=' . $config['name'] . ';host=' . $config['host'] . ';charset=utf8';
         $db = new PDO($dsn, $config['user'], $config['password'], [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
     
-
+        
         print_r($_POST);
         exit('dd');
         $title = $this->connection->quote($data['title'], PDO::PARAM_STR);
