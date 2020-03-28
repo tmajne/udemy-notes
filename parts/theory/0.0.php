@@ -1,5 +1,13 @@
 <?php
 
+/*
+  Kilka słów o sobie
+  
+  Nazywam sie Tomasz Tomczyk i jestem programistą ...
+
+  Naszym projektem będzie notatnik ...
+ */
+
 /* 
   Kilka słów o php.
 
@@ -16,6 +24,27 @@
   PHP jest używane między innymi przez facebook, yahoo, wikipedia.org, wordpress, slack, gog, tesla
 */
 
+/*
+  Instalacja xamp'a
+  Instalacja php
+  Instalacja mysql
+*/
+
+/*
+  Instalacja vsc
+  Pluginy do php
+*/
+
+/*
+  Konfiguracja projektu.
+  Ustawienie vhosta
+  Dodanie wpisu do hosts (opcjonalne)
+*/
+
+/*
+  Uruchomienie kodu w przeglądarce
+  Uruchomienie kodu w konsoli
+*/
 
 /**
  * Opisać wymagania dla Junior developera.
@@ -29,6 +58,10 @@
  *
  * Interpreter PHP - co to jest - skupić się na prostym wytłumaczeniu
  */
+
+
+
+
 
 /**
  * ZAWSZE !!!
@@ -51,19 +84,12 @@
  * https://www.php-fig.org/psr/psr-12/
  */
 
- /**
-  * Dodać podsumowanie na końcu każdego rozdziału??
-  */
-
-  // powiedzieć aby kodowali razem z kursem, nie tylko słuchali
+// powiedzieć aby kodowali razem z kursem, nie tylko słuchali
 
 // to nie będzie kurs gdzie będę wymieniał funkcjonalności języka od A do Z
 // będę się starał przemycić również informację o dobrych praktykach programowania
 // jakieś ciekawostki itp
 
-// Traity w następnej części.
-
-// W przykładach opisać Error i Exception
 
 /**
  * Na koniec.
