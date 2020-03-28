@@ -63,11 +63,52 @@
 
 
 /*
-- [ ] tworzenie bazy w phpmyadmin - szybki przegląd
+    Tworzenie bazy w phpmyadmin - szybki przegląd
+
+    Omawiamy w trakcie
+    Nawiązujemy również do tworzenie użytkowników
 */
 
 /*
-- [ ] co to jest tabela, relacja, rekord, klucz
+    Co to jest tabela, relacja, rekord, klucz
+
+    Najpopularniejszym obrazowym porównaniem bazy danych do czegoś z czym mamy styczność, 
+    może nie na co dzień, ale w życiu pewnie się z tym zetknęliśmy jest porównanie do Excela.
+
+    Baza danych podobnie jak plik excela przechowuje dane.
+    
+    Dane w excelu zapisujemy w arkuszach, jeden plik może mieć wiele arkuszy.
+    Każdy z takich arkuszy może zostać przez nas nazwany, aby odwzorowywał to co się w danym arkuszu znajduje.
+    Dane pomiędzy arkuszami mogą być powiązane, np w jednym przechowujemy listę filmów wyświetlanych w "naszym kinie"
+    a w drugim szczegółową rozpiskę o dacie projekcji.
+
+    Odpowiednikiem arkuszy w bazie danych są tabele. 
+    W bazie możemy mieć wiele tabel. Dane pomiędzy tabelami mogą być ze sobą powiązane, to powiązanie nazywamy relacją. 
+    Dlatego mówimy o bazach relacyjnych. 
+
+    Rozróżniamy trzy typy relacji:
+    - 1:1
+    - 1:n
+    - n:m
+    Z racji tego, że relacje starają się odwzorować zasady ze świata rzeczywistego, więc do ich opisania posłużę się rzeczywistymi przypadkami
+    - 1:1 - jedna osoba posiada tylko i wyłącznie jeden adres zameldowania
+    - 1:n - jedna osoba może mieć wiele kont bankowych, jednak te kona należą tylko i wyłącznie do niej (przykład nie obejmuje kont współdzielonych)
+    - n:m - jedna osoba może należeć do wielu grup na FB jak również do jednej grupy może należeć wiele osób
+    
+    Schodząc coraz głębiej to w arkuszy mamy kolumny i wiersze.
+    Kolumna odźwierciedla rodzaj informacji jąką w niej chcemy przechowywać np. tytuł filmu.
+    Natomiast wiersze zawierają cały zbiór informacji powiązanych z konkretnym filmem.
+
+    Odpowiednikiem w bazie danych są kolumny i rekordy
+    kolumna => kolumna
+    wiersz => rekord 
+    Warto zaznaczyć że w bazie musimy wybrać typ danych które chcemy w danej kolumnie przechowywać np INT, TEXT, DATE, VARCHAR
+
+    
+    Klucze zostaną omówione podczas tworzenia pierwszej tabeli 
+
+    Każda tabela, musie posiadać klucz główny, ale co to jest ten klucz (primary key)
+
 */
 
 
