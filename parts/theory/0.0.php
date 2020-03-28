@@ -4,8 +4,6 @@
   Kilka słów o sobie
   
   Nazywam sie Tomasz Tomczyk i jestem programistą ...
-
-  Naszym projektem będzie notatnik ...
  */
 
 /* 
@@ -22,6 +20,30 @@
 
   W sieci można znaleźć wiele zestawień, jednak zdecydowana większość z nich mówi że około 80% wszystkich stron w internecie jest oparta o PHP
   PHP jest używane między innymi przez facebook, yahoo, wikipedia.org, wordpress, slack, gog, tesla
+*/
+
+/*
+  W pierwszej części kursu skupimy się bardziej na teorii, jednak podpartej licznymi przykładami aby nie zanudzać samym opowiadaniem.
+  Zaczniemy od samego początku, czyli od podstawowych podstaw.
+  W trakcie będziemy przechodzić do coraz bardziej zaawansowanych tematów, jednak cały czas skupiając się na tym co JUNIOR musi po prostu znać. 
+  Kurs jest skierowany dla osób które nigdy nie miały styczności lub dopiero zaczynających przygodę z php, więc z myślą o nich jest dobrany kontent.
+  Tematyka była dobrana w ten sposób aby poruszyć tematy/zagadnienia który MUSI znać osoba ubiegająca się o stanowisko JUNIOR PHP.
+
+  Jednak nie obawiajcie się, nie będziemy cały czas przynudzać o podstawach podstaw.
+  W drugiej części teoretycznej mocniej skupimy się na programowaniu obiektowym co jest tak naprawdę MUST HAVE w programowaniu PHP i nie tylko
+
+  Cały czas nie tylko w części teoretycznej bedę starał się przemycać "dobre zasady programowania", które może nie są mocno wymagane na poziomie juniorskim,
+  ale nie są na tyle skomplikowane, że warto je znać i mogą być dla was przydatne nie tylko podczas rozmowy o pracę
+
+  Druga część projektu to część praktyczna, gdzie naszym projektem będzie notatnik ...
+  Tutaj poznamy w prawdziwym boju to czego nauczyliśmy się w pierwszej części kursu.
+  Na koniec tej części czeka WAS niespodzianka a nawet dwie niespodzianki
+
+  Chciałbym abyście w tej części kursu programowali razem ze mną.
+  Nic nie utrwala wiedzy tak jak praktyka.
+
+  Wszystkie moje notatki, oraz kody źródłowe będą udostępnione wraz z kursem, tak więc oprócz nagrań wideo 
+  dostaniecie do dyspozycji bardzo dużo materiałów. Dzięki którym w łatwy sposób będziecie mogli sobie przypomnieć wybrane zagadnienia.
 */
 
 /*
@@ -43,57 +65,39 @@
 
 /*
   Uruchomienie kodu w przeglądarce
+  Dodanie php do zmiennych środowiskowych
   Uruchomienie kodu w konsoli
 */
 
-/**
- * Opisać wymagania dla Junior developera.
- * 
- * Powiedzieć, ze kurs nie stworzy z Ciebie seniora, ale da podstawy
- * które trzeba znać i ubiegać się na stanowisko Junior PHP developera
- */
 
-/**
- * Tematy do poruszenia na sam początek:
- *
- * Interpreter PHP - co to jest - skupić się na prostym wytłumaczeniu
- */
+/*
+  JUNIOR WYMAGANIA - MUST HAVE
 
+  Tematyka poruszona na kursie.
 
+  PHP 7.x
+    - znajomość składni
+    - programowania obiektowe OOP (object oriented programing)
+    - przestrzenie nazw
 
-
-
-/**
- * ZAWSZE !!!
- *
- * Witam serdecznie, w tej lekcji powiem .... (zajawka lekcji)
- */
+  MYSQL 
+    - wiedzieć do czego służą bazy danych
+    - wiedzieć jak są zorganizowane, czyli tabele, rekordy, indeksy, klucze główne i obce
+    - umieć posługiwać się przynajmniej zapytaniami SELECT, INSERT, DELETE, UPDATE
+    - znać i umieć używać JOIN'ów (INNER, LEFT, RIGHT) - znać różnicę między nimi
+    - umieć się połączyć z bazą danych z poziomu PHP
 
 
-/**
- * ZAWSZE !!!
- *
- * W tej lekcji to już wszystko. Dziękuję bardzo.
- */
+  Tematyka nie poruszona na kursie  
+  Dać info o przyszłych kursach?
+  
+  GIT
+  Composer
+  Znać przynajmniej w zakresie podstawowym jeden framework PHP, najlepiej jeden z dwóch Laravel lub Symfony
 
-/**
- * Wspomnieć o dwóch trybach pracy:
- * - www
- * - cli
- * 
- * https://www.php-fig.org/psr/psr-12/
- */
-
-// powiedzieć aby kodowali razem z kursem, nie tylko słuchali
-
-// to nie będzie kurs gdzie będę wymieniał funkcjonalności języka od A do Z
-// będę się starał przemycić również informację o dobrych praktykach programowania
-// jakieś ciekawostki itp
-
-
-/**
- * Na koniec.
- * Ten kurs nie wysycił tematu PHP, 
- * jest jeszcze wiele tematów do poruszenia, 
- * które będziemy się starać wdrozyć w następnych kursach
- */
+  Na pewno uzyskasz dodatkowe punkty znając, lub przynajmniej orientując się w:
+  
+  zagadnienia frontendowe
+  REST
+  PHPUnit
+*/
