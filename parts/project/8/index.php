@@ -3,9 +3,8 @@
 declare(strict_types=1);
 
 spl_autoload_register(function ($class) {
-    //TODO: dorobić sprawdzanie czy plik istnieje
     $pathToClass = str_replace(["\\", 'App/'], ["/", ""], $class);
-    include __DIR__.'/src/' . $pathToClass . '.php';
+    include __DIR__ . '/src/' . $pathToClass . '.php';
 });
 
 require_once('src/Utils/debug.php');
@@ -23,7 +22,6 @@ try {
     (new Controller(
         new Request($_GET, $_POST, $_SERVER)
     ))->run();
-
 } catch (AppException | StorageException $e) {
     echo "<h2>{$e->getMessage()}</h2>";
 } catch (\Throwable $e) {

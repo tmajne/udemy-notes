@@ -13,10 +13,10 @@ Omówić jaką aplikację będziemy tworzyć
 * własny vhost
 
 ```bash
-<VirtualHost *:8880>
-    ServerName udemy.localhost
-    DocumentRoot ".../udemy-course/"
-    <Directory ".../udemy-course/">
+<VirtualHost *:80>
+    ServerName notes.localhost
+    DocumentRoot ".../application/"
+    <Directory ".../application/">
         Require all granted
     </Directory>
 </VirtualHost>

@@ -1,7 +1,5 @@
 <?php
 
-// pokazać że declare działa w obrębie typu
-// na podstawie display_errors tu i w index.php
 declare(strict_types=1);
 
 error_reporting(E_ALL);
@@ -23,14 +21,14 @@ function dd($var, $exit = true, $details = false): void
             background: lightgray;
         "
     >';
-        echo '<pre>';
-            echo __FILE__ . ': '. __LINE__ . "\n";
-            if ($details) {
-                var_dump($var);
-            } else {
-                print_r($var);
-            }
-        echo '</pre>';
+    echo '<pre>';
+    echo __FILE__ . ': ' . __LINE__ . "\n";
+    if ($details) {
+        var_dump($var);
+    } else {
+        print_r($var);
+    }
+    echo '</pre>';
     echo '</div>';
     echo '<br/>';
     if ($exit) {

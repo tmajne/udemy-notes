@@ -3,17 +3,17 @@
 </style>
 
 <div>
-    <?php if($params['created']): ?>
+    <?php if ($params['created']) : ?>
         <div>
             <div>Tytuł: <?php echo $params['title'] ?></div>
-            <div>Opis:  <?php echo $params['description'] ?></div>
+            <div>Opis: <?php echo $params['description'] ?></div>
         </div>
-    <?php else: ?>
+    <?php else : ?>
         <form class="note-form" action="/?action=create" method="post">
             <ul>
                 <li>
                     <label>Tytuł <span class="required">*</span></label>
-                    <input type="text" name="title" class="field-long"/>
+                    <input type="text" name="title" class="field-long" />
                 </li>
                 <li>
                     <label>Opis</label>

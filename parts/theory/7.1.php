@@ -27,11 +27,11 @@
     Neo4j - grafowa baza danych
 
     W programowaniu nie ma czegoś takiego jak "złoty środek", nie ma algorytmu który rozwiąże nasze wszystkie problemy.
-    To samo dotyczy się również baz danych. Jeszcze nie tak dawno temu tyła "przepychanka" które bazy są lepsze.
+    To samo dotyczy się również baz danych. Jeszcze nie tak dawno temu była "przepychanka" które bazy są lepsze.
     relacyjne czy nie-relacyjne. Prawda jest jednak taka, że każda baza jest dobra, ale w zastosowaniu do którego została zaprojektowana.
 
     W naszym projekcie będziemy używać klasycznej czyli relacyjnej bazy danych. 
-    Nasz projekt jest "doś standardowy" i charakteryzuje się tym, że zawsze będziemy zapisywać dane o tej samej strukturze.
+    Nasz projekt jest "dość standardowy" i charakteryzuje się tym, że zawsze będziemy zapisywać dane o tej samej strukturze.
     To znaczy zawsze będą miały tytuł, opis i datę dlatego wybór bazy relacyjnej jest dobrym wyborem.
 
     Aby jeszcze odrobinę skomplikować sprawę to istnieje wiele silników baz relacyjnych.
@@ -40,8 +40,7 @@
     Natomiast trzy pierwsze są rozwiązaniami darmowymi.
     
     Ja zdecydowałem się na MySql z racji popularności tej bazy danych. Większość ofert pracy dotyczy właśnie połączenia PHP i MySla'a. 
-    Jednak nie martwcie się jeśli przyjdzie Wam pracować z inną bazą danych. Podstawy są te same, i jak opanujecie jedną to 
-    zmiana na inną przyjdzie już o wiele łatwiej.
+    Jednak nie martwcie się jeśli przyjdzie Wam pracować z inną bazą danych. Podstawy są te same, i jak opanujecie jedną to zmiana na inną przyjdzie już o wiele łatwiej.
 */
 
 /*
@@ -92,7 +91,7 @@
     - n:m
     Z racji tego, że relacje starają się odwzorować zasady ze świata rzeczywistego, więc do ich opisania posłużę się rzeczywistymi przypadkami
     - 1:1 - jedna osoba posiada tylko i wyłącznie jeden adres zameldowania
-    - 1:n - jedna osoba może mieć wiele kont bankowych, jednak te kona należą tylko i wyłącznie do niej (przykład nie obejmuje kont współdzielonych)
+    - 1:n - jedna osoba może mieć wiele kont bankowych, jednak te konta należą tylko i wyłącznie do niej (przykład nie obejmuje kont współdzielonych)
     - n:m - jedna osoba może należeć do wielu grup na FB jak również do jednej grupy może należeć wiele osób
     
     Schodząc coraz głębiej to w arkuszy mamy kolumny i wiersze.
@@ -188,7 +187,8 @@
             [(col_name [, col_name] ...)]
             { {VALUES | VALUE} (value_list) [, (value_list)] ... | VALUES row_constructor_list}
 
-        INSERT INTO tbl_name () VALUES();
+
+        INSERT INTO tbl_name (id, title, desc) VALUES(11, 'test', 'desc');
 
 
     UPDATE - aktualizacja rekordów

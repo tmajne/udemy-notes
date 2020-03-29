@@ -18,7 +18,7 @@ class Controller
 
     public function __construct(array $request)
     {
-        $this->request = $request;    
+        $this->request = $request;
         $this->view = new View();
     }
 
@@ -26,13 +26,13 @@ class Controller
     {
         $action = $this->action();
         $viewParams = [];
-        
+
         switch ($action) {
             case 'create':
                 $page = 'create';
                 $viewParams['created'] = false;
                 $postData = $this->requestPostData();
-        
+
                 if (!empty($postData)) {
                     $viewParams = [
                         'created' => true,
@@ -40,7 +40,7 @@ class Controller
                         'description' => htmlentities($postData['description'])
                     ];
                 }
-        
+
                 break;
             default:
                 $page = 'list';

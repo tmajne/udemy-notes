@@ -1075,6 +1075,9 @@ STATYKI
 
 
 
+
+
+
 /*
  Po zmianie modyfikatora z prywatnego na protected nasz przykład nie zgłasza już żadnego błędu
  oraz mamy już dostęp do właściwości $secret pochodzącej z rodzica.
@@ -1090,18 +1093,23 @@ STATYKI
  to znaczy od klas najbardziej ogólnych do najbardziej wyspecjalizowanych.
  
  Np.
+ --- rodzic
  class Vehicle
  
+ --- pierwszy poziom
  class Train extends Vehicle
  class Plane extends Vehicle
  class Car extends Vehicle
  
+ --- drugi poziom
  CargoTrain extends Train
  PassengerTrain extends Train
  
+ --- drugi poziom
  Fighter extends Plane
  Bomber extends Plane
  
+ --- trzeci poziom dziecziczenia
  StealthFighter extends Fighter
  ...
  
@@ -1121,6 +1129,9 @@ STATYKI
  
  PS. Tak, do właściwości w obiektach możemy przypisywać inne obiekty
  */
+
+
+
 
 /*
  Bardzo ważną kwestią przy dziedziczeniu są konstruktory.
@@ -1153,6 +1164,7 @@ STATYKI
 
 // $obiektDziecko = new Dziecko('testowa nazwa dziecka');
 // var_dump($obiektDziecko->pobierzNazwe());
+// var_dump($obiektDziecko);
 
 /*
  W tym przykładnie specjalnie posługujemy się polskimi nazwami, 
@@ -1175,6 +1187,7 @@ STATYKI
 
 //     public function __construct(string $nazwa)
 //     {
+//         var_dump("TO JEST KONSTRUKTOR RODZICA\n");
 //         $this->nazwa = $nazwa;
 //     }
 
@@ -1184,18 +1197,19 @@ STATYKI
 //     }
 // }
 
-// $obiektRodzica = new Rodzic('testowa nazwa rodzica');
-// var_dump($obiektRodzica->pobierzNazwe());
+//$obiektRodzica = new Rodzic('testowa nazwa rodzica');
+//var_dump($obiektRodzica->pobierzNazwe());
 
 // class Dziecko extends Rodzic
 // {
-//     public function __construct(int $numer, string $tekst)
+//     public function __construct(string $nazwa, int $numer)
 //     {
-        
+//         var_dump("TO JEST KONSTRUKTOR DZIECKA\n");
+//         parent::__construct($nazwa);
 //     }
 // }
 
-// $obiektDziecko = new Dziecko(111, 'testowa nazwa dziecka');
+// $obiektDziecko = new Dziecko('testowa nazwa dziecka', 111);
 // var_dump($obiektDziecko->pobierzNazwe());
 
 /*
@@ -1217,6 +1231,11 @@ STATYKI
 //     {
 //         parent::__construct($nazwa);
 //     }
+
+//     private function doSomethin(int $count): string
+//     {
+//         // ...
+//     }
 // }
 
 // $obiektDziecko = new Dziecko('testowa nazwa dziecka', 111);
@@ -1227,41 +1246,26 @@ STATYKI
  
  UWAGA:
  W klasie potomnej możemy nadpisać każdą metodę z klasy rodzica łącznie z konstruktorem.
- Trzeba jednak pamiętać aby "definicja" nowej metody rozszerzała "definicję" metody rodzica.
  
- Mocno upraszczając deklaracja funkcji/metody to zbiór informacji o niej, czyli
+ Deklaracja funkcji/metody to zbiór informacji o niej, czyli
  - nazwa
  - informacja o liści argumentów do niej przekazanych
  - informacja o typie zwracanych danych
  
- Jeśli wprowadzone przez nas zmiany w definicji metody, którą nadpisujemy zmienią ją na tyle, 
- że PHP uzna że już nie jest "kompatabilna" z definicją rodzica to zostaniemy o tym poinformowani
+ Jeśli wprowadzone przez nas zmiany w deklaracji metody, którą nadpisujemy zmienią ją na tyle, 
+ że PHP uzna że już nie jest "kompatabilna" z deklaracji rodzica to zostaniemy o tym poinformowani
  stosownym komunikatem błędu.
  "Declaration of Dziecko::pobierzNazwe(?int $bar, string $cos): ?string should be compatible with Rodzic::pobierzNazwe()"
  Nasz kod wprawdzie się wykona, ale zostaniemy i tak poinformowani o tym, że coś jest nie tak.
- Ten temat już odrobinę wykracza poza zakres tego kursu, więc wrócimy do niego w następnych kursach już na trochę wyższym 
- stopniu zaawansowania.
  
  Napomknę jednak, że jeśli chodzi o konstruktory to tutaj mamy trochę inną sytuację. 
- Mianowicie, możemy bez konsekwencji zmieniać listę łącznie z typami argumentów przekazywanymi do konstruktóra.
- Co zrobiliśmy w naszym przykładzie.
+ Mianowicie, możemy bez konsekwencji zmieniać listę łącznie z typami argumentów przekazywanymi do konstruktóra. Co zrobiliśmy w naszym przykładzie.
  
  UWAGA:
- Dobrą zasadą jest to aby utrzymywać jak największa spójność definicji konstruktora w dziecku z rodzicem.
- Mimo, że możemy go całkiem zmienić, to jednak przykładowo jeśli potrzebujemy dodać nowy argument, to 
- dodajmy go na końcu listy argumentów, na początku pozostawiając te pochodzące z konstruktora rodzica.
+ Dobrą zasadą jest to aby utrzymywać jak największa spójność deklaracji konstruktora w dziecku z rodzicem. Mimo, że możemy go całkiem zmienić, to jednak przykładowo jeśli potrzebujemy dodać nowy argument, to dodajmy go na końcu listy argumentów, na początku pozostawiając te pochodzące z konstruktora rodzica.
  Oczywiście jeśli nadal te argumenty są potrzebne.
- 
- Mając to na uwadze zmodyfikujemy jeszcze raz naszą klasę Dziecko.
  */
 
-// class Dziecko extends Rodzic
-// {
-//     public function __construct(int $numer, string $tekst)
-//     {
-//         parent::__construct($tekst);
-//     }
-// }
 
 
 
@@ -1297,8 +1301,8 @@ STATYKI
 
 // $child = new ChildFromAbstract();
 // var_dump($child);
-// $parent = new AbstractParent();
-// var_dump($parent);
+//$parent = new AbstractParent();
+//var_dump($parent);
 
 /*
  Przy próbie uruchomienia kodu dostajęmy błąd z informacją, żen ie możemy zinstancjonować klasy abstrakcyjnej.
@@ -1317,7 +1321,7 @@ STATYKI
 // {
 //     protected string $property;
 
-//     abstract function doSomething(string $param1, array $param2): object;
+//     abstract public function doSomething(string $param1, array $param2): object;
 
 //     public function property(): string
 //     {
@@ -1325,39 +1329,31 @@ STATYKI
 //     }
 // }
 
-/*
- W przykładzie widzimy, że zadeklarowaliśmy jedną metodę abstrakcyjną. 
- To co widzimy to tak naprawdę jest deklaracją metody, czyli określamy jej nazwę, listę argumentów i typ zwrotny.
- 
- Oznaczenie metody jako abstrakcyjnej oznacza, że wszystkie klasy które dziedziczą po klasie abstrakcyjnej
- muszą zaimplementować tą metodę (czyli stworzyć ciało metody).
- Klasa abstrakcyjna poprzez metody abstrakcyjne WYMUSZA to co musi znajdować się w klasach dziedziczących po niej.
- 
- Dobrym przykładem zastosowania klas abstrakcyjnych jest sytuacja, gdzie tworzymy jakąś bardzo ogólną klasę np. Renderer.
- Zakładamy już na samym początku, że to będzie klasa bazowa po której będzie następowało dziedziczenie.
- Potrafimy przewidzieć i od razu zaimplementować część metod które będą się znajdować w klasie Renderer
- */
-
-// class Renderer 
+// class Test extends SomeClass
 // {
-//     protected string $text;
-
-//     public function __construct(string $text)
+//     public function doSomething(string $param1, array $param2): object
 //     {
-//         $this->text = $text;
-//     }
-
-//     public function text(): string
-//     {
-//         return $this->text;
+//         return new splClass();
 //     }
 // }
 
 /*
+ W przykładzie widzimy, że zadeklarowaliśmy jedną metodę abstrakcyjną. 
+ To co widzimy to tak naprawdę jest deklaracją metody, czyli określamy jej nazwę, listę argumentów i typ zwrotny.
+ 
+ Oznaczenie metody jako abstrakcyjnej oznacza, że wszystkie klasy które dziedziczą po klasie abstrakcyjnej muszą zaimplementować tą metodę (czyli stworzyć ciało metody).
+
+ Klasa abstrakcyjna poprzez metody abstrakcyjne WYMUSZA to co musi znajdować się w klasach dziedziczących po niej.
+ 
+ Dobrym przykładem zastosowania klas abstrakcyjnych jest sytuacja, gdzie tworzymy jakąś bardzo ogólną klasę np. Renderer.
+
+ Zakładamy już na samym początku, że to będzie klasa bazowa po której będzie następowało dziedziczenie.
+ Potrafimy przewidzieć i od razu zaimplementować część metod które będą się znajdować w klasie Renderer
+ 
  Jednak nie jesteśmy przewidzieć jak zaimplementować pewne specyficzne zachowania w klasach potomnych, 
  które jednak wiemy że będą mieć miejsce.
  
- Podstawową odpowiedzialności za którą będzie odpowiadać jest wyrenderowanie tekstu w konkretnym formacie, np html, json itp
+ Podstawową odpowiedzialnością za którą będzie odpowiadać jest wyrenderowanie tekstu w konkretnym formacie, np html, json itp
  W związku z czym brakuje nam metody "render" jednak w ogólnej klasie Renderer nie wiemy jaki format jest oczekiwany.
  Dlatego taką metodę oznaczamy jako abstrakcyjną, przez co klasy potomne będą musiały ją zaimplementować.
  */
@@ -1371,7 +1367,7 @@ STATYKI
 //         $this->text = $text;
 //     }
 
-//     public abstract function render(): string;
+//     abstract public function render(): string;
 
 //     public function text(): string
 //     {
@@ -1384,7 +1380,9 @@ STATYKI
 // {
 //     public function render(): string
 //     {
-//         return '<html><head></head><body><div>' . $this->text . '</div></body></html>';
+//         return '<html><head></head><body><h2> ==>'
+//          . $this->text 
+//          . '<== </h2></body></html>';
 //     }
 // }
 
@@ -1396,15 +1394,25 @@ STATYKI
 //     }
 // }
 
+
+// class XmlRenderer extends Renderer
+// {
+//     public function render(): string
+//     {
+//         return "<xml><teks>{$this->text}</tekst></xml>";
+//     }
+// }
+
+// $html = new HtmlRenderer('Tekst do wyświetlenia');
+// echo $html->render();
+
 /*
- Klasy HtmlRenderer i JsonRenderer są już mocną wyspecjalizowane, dzięki temu są świadome w jaki sposób mają zaimplementować
- abstrakcyjną metodę odziedziczoną po rodzicu
+ Klasy HtmlRenderer i JsonRenderer są już mocną wyspecjalizowane, dzięki temu są świadome w jaki sposób mają zaimplementować abstrakcyjną metodę odziedziczoną po rodzicu
  */
 
 /*
  UWAGA.
- Jeśli implementujemy funkcje abstrakcyjne w klasach potomnych to nie jesteśmy już w stanie zmienić w żaden sposób ich deklaracji,
- tak jak mieliśmy pewną taką możliwość jeśli przesłanialiśmy zwykłe metody (nie abstrakcyjne) odziedziczone z klasy rodzica
+ Jeśli implementujemy metody abstrakcyjne w klasach potomnych to nie jesteśmy już w stanie zmienić w żaden sposób ich deklaracji, tak jak mieliśmy pewną taką możliwość jeśli przesłanialiśmy zwykłe metody (nie abstrakcyjne) odziedziczone z klasy rodzica
  */
 
 
@@ -1424,6 +1432,7 @@ STATYKI
  
 // interface ExampleInterface
 // {
+//     public const SOMETHING = 'bar';
 //     public function doSomething1(int $arg): string;
 //     public function doSomething2(string $arg1, string $arg2): void;
 // }
@@ -1452,7 +1461,7 @@ STATYKI
  - metody nie mogą zawierać ciała, czyli implementacji
  - klasa może implementować więcej niz jeden interfejs
  - interfejsy mogą dziedziczyć po innych interfejsach ale nie po klasach
- - w klasach, które implementują interfejs nie można zmieniać definicji metod pochodzących z interfejsu
+ - w klasach, które implementują interfejs nie można zmieniać deklaracji metod pochodzących z interfejsu
  - klasa które implementuje interfejs może mieć równie inne metody nie pochodzące z interfejsu
  */
 
@@ -1533,12 +1542,12 @@ STATYKI
  Możemy go teraz trochę zmodyfikować tak, aby użyć interfejsu
  */
 
-// interface Renderable
+// interface RenderInterface
 // {
 //     public function render(string $text): string;
 // }
 
-// class HtmlRenderer implements Renderable
+// class HtmlRenderer implements RenderInterface
 // {
 //     public function render(string $text): string
 //     {
@@ -1546,13 +1555,20 @@ STATYKI
 //     }
 // }
 
-// class JsonRenderer implements Renderable
+// class JsonRenderer implements RenderInterface
 // {
 //     public function render(string $text): string
 //     {
 //         return json_encode($text);
 //     }
 // }
+
+// $htmlRenderer = new HtmlRenderer();
+// $html1 = $htmlRenderer->render('cokolwiek');
+// $html2 = $htmlRenderer->render('cokolwiek dddd');
+
+// var_dump($html1);
+// var_dump($html2);
 
 /*
  Zmodyfikowaliśmy trochę nasz przykład, jednak dzięki temu możemy zaobserwować jak działają interfejsy.
@@ -1576,8 +1592,8 @@ STATYKI
  Klasa która jest oznaczona jako finalna nie może być dziedziczona. 
  */
 
-// final class Vehicle {}
-// class Car extends Vehicle {}
+//final class Vehicle {}
+//class Car extends Vehicle {}
 
 /*
  Czasami może się zdarzyć tak, że z jakiś powodów nie chcemy aby któraś konkretna metoda z 
@@ -1591,21 +1607,17 @@ STATYKI
 //     {
 //         echo 'foo';
 //     }
+
+//     public function doSomething2(): void
+//     {
+
+//     }
 // }
 
 // class Car extends Vehicle
 // {
-//     public function doSomething(): void
+//     public function doSomething2(): void
 //     {
 //         echo 'bar';
 //     }
 // }
-
-/*
- Po krótce omówiliśmy najważniejsze sprawy powiązane z programowaniem obiektowym.
- 
- Jako pracę domową pozostawiam zaznajomienie się z Trait'sami.
- Jednak Trait'y nie są zbyt często wykorzystywanie w php. 
- Dlatego w tym kursie nie będę ich omawiał, jednak do tematu na pewno powrócimy
- w przyszłych kursach.
- */
