@@ -98,18 +98,18 @@
  Posłużmy się trochę innym.
  */
 
-$movieDetails = [
-    'title' => 'Joker',
-    'director' => 'Todd Phillips',
-    'writers' => 'Todd Phillips, Scott Silver',
-    'cast' => [
-        'Joaquin Phoenix' => 'Arthur Fleck',
-        'Robert De Niro' => 'Murray Franklin',
-        'Zazie Beetz' => 'Sophie Dumond',
-        'Frances Conroy' => 'Penny Fleck'
-    ],
-    'music' => 'Hildur Guðnadóttir'
-];
+// $movieDetails = [
+//     'title' => 'Joker',
+//     'director' => 'Todd Phillips',
+//     'writers' => 'Todd Phillips, Scott Silver',
+//     'cast' => [
+//         'Joaquin Phoenix' => 'Arthur Fleck',
+//         'Robert De Niro' => 'Murray Franklin',
+//         'Zazie Beetz' => 'Sophie Dumond',
+//         'Frances Conroy' => 'Penny Fleck'
+//     ],
+//     'music' => 'Hildur Guðnadóttir'
+// ];
 
 // foreach ($movieDetails as $role => $element) {
 //     echo "$role: $element\n";

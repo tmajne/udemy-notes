@@ -35,12 +35,12 @@
  klientowi za pomocą pętli WHILE
  */
 
-$cinemaMovies = [
-    'Joker',
-    '1917',
-    'Jumanji: The Next Level',
-    'Little Women'
-];
+// $cinemaMovies = [
+//     'Joker',
+//     '1917',
+//     'Jumanji: The Next Level',
+//     'Little Women'
+// ];
 
 // $index = 0;
 // $moviesCount = count($cinemaMovies);
@@ -111,21 +111,21 @@ $cinemaMovies = [
  Na koniec jeszcze przepiszemy nasz przykład z użyciem pętli DO-WHILE
  */
  
-$cinemaMovies = [
-    'Joker',
-    '1917',
-    'Jumanji: The Next Level',
-    'Little Women'
-];
+// $cinemaMovies = [
+//     'Joker',
+//     '1917',
+//     'Jumanji: The Next Level',
+//     'Little Women'
+// ];
 
 
-$index = 0;
-$moviesCount = count($cinemaMovies);
+// $index = 0;
+// $moviesCount = count($cinemaMovies);
 
-do {
-    echo $cinemaMovies[$index] . "\n";
-    $index++;
-} while($index < $moviesCount);
+// do {
+//     echo $cinemaMovies[$index] . "\n";
+//     $index++;
+// } while($index < $moviesCount);
 
 /*
  Jeśli się chwilę zastanowimy nad naszym przykładem, to nie jest to najsensowniejsze

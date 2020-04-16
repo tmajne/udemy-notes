@@ -1,1 +1,3 @@
 WYJĄTKI
+
+- omówione w kursie

@@ -128,15 +128,15 @@
  W tablicy przechowujemy listę filmów, które w danej chwili możemy zobaczyć:
  */
 
-$cinemaMovies = [
-    'Joker',
-    '1917',
-    'Jumanji: The Next Level',
-    'Little Women',
-    'Rambo',
-    'Commando',
-    'Alien'
-];
+// $cinemaMovies = [
+//     'Joker',
+//     '1917',
+//     'Jumanji: The Next Level',
+//     'Little Women',
+//     'Rambo',
+//     'Commando',
+//     'Alien'
+// ];
 
 /*
  Chcielibyśmy wyświetlić potencjalnemu klientowi listę filmów, którą możemy zobaczyć

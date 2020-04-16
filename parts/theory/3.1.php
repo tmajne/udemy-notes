@@ -865,17 +865,17 @@ $myFunction = function (string $name): void
 
 //$myFunction = fn(int $value): int => $value * 2;
 
-$users = [
-    'Robert', 'Martin', 'John'
-];
+// $users = [
+//     'Robert', 'Martin', 'John'
+// ];
 
-$hello = array_map(
-    fn($value) => "Hello ".$value,
-    $users
-);
+// $hello = array_map(
+//     fn($value) => "Hello ".$value,
+//     $users
+// );
 
-print_r($users);
-print_r($hello);
+// print_r($users);
+// print_r($hello);
 
 /*
  Na zakończenie rozdziału o funkcjach wspomnę, że sam język PHP posiada już ogromną listę zdefiniwanych już funkcji, 

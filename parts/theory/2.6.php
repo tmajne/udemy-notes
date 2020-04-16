@@ -63,25 +63,25 @@
  Kod realizujący poniższa zadanie mógłby wyglądać następująco
  */
 
-$cart = [
-    ['item' => 'myszka', 'price' => 100],
-    ['item' => 'papier do drukarki', 'price' => 10],
-    ['item' => 'klawiatura', 'price' => 200],
-    ['item' => 'laptop', 'price' => 5000],
-    ['item' => 'DOOM', 'price' => 159],
-];
+// $cart = [
+//     ['item' => 'myszka', 'price' => 100],
+//     ['item' => 'papier do drukarki', 'price' => 10],
+//     ['item' => 'klawiatura', 'price' => 200],
+//     ['item' => 'laptop', 'price' => 5000],
+//     ['item' => 'DOOM', 'price' => 159],
+// ];
 
-$cartValue = 0;
-foreach ($cart as $item) {
-    echo "{$item['item']}\n";
-    if ($item['price'] >= 1000) {
-        echo "Produkt: {$item['item']} kosztuje za dużo !!! Odłuż go na półkę\n";
-        continue;
-    }
-    $cartValue += $item['price'];
-}
+// $cartValue = 0;
+// foreach ($cart as $item) {
+//     echo "{$item['item']}\n";
+//     if ($item['price'] >= 1000) {
+//         echo "Produkt: {$item['item']} kosztuje za dużo !!! Odłuż go na półkę\n";
+//         continue;
+//     }
+//     $cartValue += $item['price'];
+// }
 
-echo "Wartość Twoich zakupów wynosi: $cartValue\n";
+// echo "Wartość Twoich zakupów wynosi: $cartValue\n";
 
 /*
  Aby to zrealizować użyliśmy instrukcji: continue.

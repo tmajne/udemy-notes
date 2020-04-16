@@ -31,6 +31,7 @@ $employee3 = 'Jadwiga Kaczmarska';
 
    Nowy zapis osobom zaznajomiony z JavaScirpt powinien wydać się znajomy :)
  */
+
 //$user = array(); // $user = [];
 
 //$user = array('Jan Kowalski', 'Zbigniew Nowak', ' Jadwiga Kaczmarska');
@@ -74,6 +75,7 @@ $employee3 = 'Jadwiga Kaczmarska';
    W sukurs przychodzą nam właśnie indeksy, za ich pomocą możemy odwołać się do danej która znajduje się
    pod danym indeksem np:
  */
+
 //$users = ['Jan Kowalski', 'Zbigniew Nowak', 'Jadwiga Kaczmarska'];
 
 // $user1 = $users[0];
@@ -85,6 +87,7 @@ $employee3 = 'Jadwiga Kaczmarska';
   
    A co w sytuacji gdy chcemy zmienić wartość w tablicy znajdującej się pod danym kluczem?
  */
+
 // $index = 11;
 
 // $users = ['Jan Kowalski', 'Zbigniew Nowak', 'Jadwiga Kaczmarska'];
@@ -285,18 +288,18 @@ $employee3 = 'Jadwiga Kaczmarska';
    Nic nie stoi też na przeszkodzie aby użyć zapisu:
  */
 
-$employees = [
-    [
-        'firstName' => 'Jan',
-        'lastName' => 'Kowalski',
-        'age' => 22
-    ],
-    [
-        'firstName' => 'Karol',
-        'lastName' => 'Nowak',
-        'age' => 31
-    ]
-];
+// $employees = [
+//     [
+//         'firstName' => 'Jan',
+//         'lastName' => 'Kowalski',
+//         'age' => 22
+//     ],
+//     [
+//         'firstName' => 'Karol',
+//         'lastName' => 'Nowak',
+//         'age' => 31
+//     ]
+// ];
 
 //print_r($employees);
 

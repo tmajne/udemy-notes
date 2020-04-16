@@ -45,26 +45,3 @@
   Wszystkie moje notatki, oraz kody źródłowe będą udostępnione wraz z kursem, tak więc oprócz nagrań wideo 
   dostaniecie do dyspozycji bardzo dużo materiałów. Dzięki którym w łatwy sposób będziecie mogli sobie przypomnieć wybrane zagadnienia.
 */
-
-/*
-  Instalacja xamp'a
-  Instalacja php
-  Instalacja mysql
-*/
-
-/*
-  Instalacja vsc
-  Pluginy do php
-*/
-
-/*
-  Konfiguracja projektu.
-  Ustawienie vhosta
-  Dodanie wpisu do hosts (opcjonalne)
-*/
-
-/*
-  Uruchomienie kodu w przeglądarce
-  Dodanie php do zmiennych środowiskowych
-  Uruchomienie kodu w konsoli
-*/
