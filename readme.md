@@ -14,20 +14,20 @@ Jeśli ktoś jest zainteresowany to pniżej umieszczam link do kursu:
   * projects - dotyczy drugiej części kursu i w podkatalogach są zamieszczone kolejne "etapy" powstawania aplikacji
   * theory - dotyczy częście merytorycznej, w plikach znjduję się teoria z przykładami
   
-  ## UWAGA 1
+## UWAGA 1
   
-  W pliku `confit\config.php` umieszczone są dane dostępowe do bazy danych - pamiętajcie: 
+W pliku `confit\config.php` umieszczone są dane dostępowe do bazy danych - pamiętajcie: 
   
-  **NIGDY PRZENIGDY NIE UMIESZCZAJCIE TAKICH DANY W PUBLICZNYM REPOZYTORIUM !!!**
+**NIGDY PRZENIGDY NIE UMIESZCZAJCIE TAKICH DANY W PUBLICZNYM REPOZYTORIUM !!!**
   
-  Plik z takimi danymi należy dodać do .gitignore i posługiwać się zmiennymi środowiskowymi umieszczonymi w pliku .env lub analogicznym rozwiązaniem. Ja pozwoliłem sobie umieścić ten plik z danymi ponieważ serwer którego używałem już od dawana nie istnieje, tak więc mogłem takie dane umieścić w repo.
+ Plik z takimi danymi należy dodać do .gitignore i posługiwać się zmiennymi środowiskowymi umieszczonymi w pliku .env lub analogicznym rozwiązaniem. Ja pozwoliłem sobie umieścić ten plik z danymi ponieważ serwer którego używałem już od dawana nie istnieje, tak więc mogłem takie dane umieścić w repo.
   
-  ## UWAGA 2
+## UWAGA 2
   
-  To są tak naprawdę notatki, taki brudnopis. To nie jest repozytorumi z kodem, które ściągnięcie i od razu uruchomicie z kopyta.
-  Zdecydowałem się umieścić notatki w rezpozytoriu ze względu na to, że w części teoretycznej jest sporo wiedzy z której być może ktoś skożysta i czegoś się dowie. 
-  Projekt jak najbardziej można uruchomić, ale samą konfigurację serwera łącznie z bazą danych należy już uruchomić samodzielnie.
+To są tak naprawdę notatki, taki brudnopis. To nie jest repozytorumi z kodem, które ściągnięcie i od razu uruchomicie z kopyta.
+Zdecydowałem się umieścić notatki w rezpozytoriu ze względu na to, że w części teoretycznej jest sporo wiedzy z której być może ktoś skożysta i czegoś się dowie. 
+Projekt jak najbardziej można uruchomić, ale samą konfigurację serwera łącznie z bazą danych należy już uruchomić samodzielnie.
   
-  ## UWAGA 3
+## UWAGA 3
   
-  Jeśli przynajmiej jedna osoba dowie się czegoś nowego to już było warto :)
+Jeśli przynajmiej jedna osoba dowie się czegoś nowego to już było warto :)
