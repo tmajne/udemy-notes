@@ -2,7 +2,7 @@
 
 Materiały do kursu php umieszonego na platformie udemy.com. Kurs jest przeznaczony dla osób początkujących, którzy dopiero co zaczynają przygodę z programowaniem.
 
-Jeśli ktoś jest zainteresowany to pniżej umieszczam link do kursu:
+Jeśli ktoś jest zainteresowany to poniżej umieszczam link do kursu:
 
 [Programowanie w PHP 7.4 od podstaw - teoria i praktyka](https://www.udemy.com/course/kurs-programowanie-w-php/)
 
