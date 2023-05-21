@@ -137,3 +137,27 @@
  który mówi aby wyjść ze switcha, związku z tym kod poniżej tego konkretnego 'break' nie będzie już
  nawet analizowany.
  */
+
+
+// MATCH - TODO
+
+/*
+match jest jednym z operatorów wprowadzonych w PHP 8.0, który umożliwia porównywanie wartości z różnymi przypadkami i zwracanie wyniku na podstawie pasującego przypadku. Operator match jest podobny do operatora switch, ale posiada nieco inną składnię.
+
+Przykład użycia operatora match w PHP:
+*/
+
+$result = match ($value) {
+    'option1' => 'Wartość 1',
+    'option2' => 'Wartość 2',
+    'option3' => 'Wartość 3',
+    default => 'Inna wartość',
+};
+
+/*
+
+W powyższym przykładzie $value jest porównywane z różnymi przypadkami. Jeśli $value pasuje do jednego z przypadków, zostanie zwrócona odpowiadająca wartość. W przypadku braku dopasowania do żadnego z przypadków, zostanie zwrócona wartość default.
+
+Operator match w PHP pozwala również na użycie bardziej zaawansowanych przypadków, takich jak sprawdzanie typu, wyrażeń regularnych i inne wyrażenia logiczne. Możliwości operatora match są bardziej rozbudowane niż prosty operator switch, co czyni go bardziej elastycznym i wygodnym w niektórych przypadkach.
+
+*/
