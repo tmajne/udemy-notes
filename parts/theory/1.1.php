@@ -11,7 +11,7 @@
 */
 
 /*
- Do wyświetlenia tekstu służy konstrukcja "echo".
+ Do wyświetlenia tekstu służy konstrukcja językowa: "echo".
  Tekstu który, chcemy wyświetlić umieszczamy w apostrofach lub cudzysłowach. Obu możliwości możemy używać zamiennie
  jednak istnieje pomiędzy nimi różnica do której powrócimy w przyszłej części kursu
  UWAGA. Praktycznie każdą linię w PHP kończymy średnikiem. W dalszej części kursu omówimy kiedy średnik nie jest
