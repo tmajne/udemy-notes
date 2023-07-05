@@ -250,8 +250,8 @@ var_dump($lorem);
  !=
  !==
 
- Tutaj mamy analogiczną sytaucje jak przy operatórach równości, dodatkowy znakó równa informuje o tym,
- że będziemy spradzać również typ a nie samą wartość
+ Tutaj mamy analogiczną sytaucje jak przy operatórach równości, dodatkowy znaków równa informuje o tym,
+ że będziemy sprawdzać również typ a nie samą wartość
 */
 
 // var_dump('foo' != 'bar');
@@ -281,11 +281,11 @@ var_dump($lorem);
 /*
  <=> - space ship
  Ciekawym operatorem jest "space ship", tłumaczenie nazwy tego operatora będzie cokolwiek śmieszne.
- Genezą stojacą za nazwą jest wyglad samego operatora, który przywodzi na mysł Tie Fightera z Gwiezdnych Wojen.
- Operator ten jak każdy operator porónania porównuje dwie wartości i w zależności od nich może zwrócić:
+ Genezą stojącą za nazwą jest wygląda samego operatora, który przywodzi na myśl Tie Fightera z Gwiezdnych Wojen.
+ Operator ten jak każdy operator porównania porównuje dwie wartości i w zależności od nich może zwrócić:
   - 0 - gdy obie wartości są równe
   - -1 - gdy lewa wartość jest mniejsza od prawej
-  - 1 - gdy prawa wartośc jest większa od lewej
+  - 1 - gdy prawa wartość jest mniejsza od lewej
  Głównym zastosowanie tego operatora są funkcje sortujące o których zapewne wspomnimy w dalszej części kursu
 */
 
