@@ -33,7 +33,10 @@
   W drugiej części teoretycznej mocniej skupimy się na programowaniu obiektowym co jest tak naprawdę MUST HAVE w programowaniu PHP i nie tylko
 
   Cały czas nie tylko w części teoretycznej bedę starał się przemycać "dobre zasady programowania", które może nie są mocno wymagane na poziomie juniorskim,
-  ale nie są na tyle skomplikowane, że warto je znać i mogą być dla was przydatne nie tylko podczas rozmowy o pracę
+  ale nie są na tyle skomplikowane, że warto je znać i mogą być dla was przydatne nie tylko podczas rozmowy o pracę.
+  
+  Muszę nadmienić, że wiedza początkowa nie zawsze znaczy "najlepsze praktyki". W niektórych sekcjach poruszę/pokażę podejscia których się już niepraktykuje,
+  jednak trzeba je znać, ponieważ ta wiedzaj jest potrzebna aby zrobić następny krok.
 
   Druga część projektu to część praktyczna, gdzie naszym projektem będzie notatnik ...
   Tutaj poznamy w prawdziwym boju to czego nauczyliśmy się w pierwszej części kursu.

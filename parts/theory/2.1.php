@@ -251,6 +251,16 @@
  */
 
 /*
+CIEKAWOSTKA 2
+
+Operator warunkowy NULL Coalescing:
+
+zmienna = wyrażenie1 ?? wyrażenie2;
+
+Jeśli wyrażenie1 nie jest null, zmienna otrzymuje jego wartość, w przeciwnym razie otrzymuje wartość wyrażenie2.
+*/
+
+/*
  Operatory logiczne
  W lekcji o operatorach specjalnie omineliśmy jeden rodzaj operatorów aby móc do niego wrócić dokładnie w tym miejscu.
  Mowa o operatorach logicznych.

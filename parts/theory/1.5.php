@@ -18,8 +18,8 @@ $example2 = "Ala ma kota";
 */
 
 $age = 12;
-$example1 = 'Ali kot ma $age lat';
-$example1 = "Ali kot ma $age lat";
+$example1 = 'Kot Ali ma $age lat';
+$example1 = "Kot Ali ma $age lat";
 
 var_dump($example1);
 var_dump($example2);

@@ -27,3 +27,7 @@ echo PHP_COURSE_SIZE;
 // za pomocą słowa kluczowego 'const'
 const BEST_COURSE_PART = 3;
 echo BEST_COURSE_PART;
+
+konstrukacja:
+const SOMETHING = "bar"
+jest zdecydowanie popularniejsza
