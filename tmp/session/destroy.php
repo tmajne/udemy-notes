@@ -6,4 +6,4 @@ session_start();
 session_destroy();
 
 // Wyświetlenie komunikatu o wylogowaniu
-echo "Zostałeś wylogowany.";<?php
+echo "Zostałeś wylogowany.";

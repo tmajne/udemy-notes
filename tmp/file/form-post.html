@@ -1,0 +1,74 @@
+<html>
+
+<head>
+
+    <style>
+        .rounded-form {
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #f2f2f2;
+            width: 50%;
+            margin: 0 auto;
+        }
+
+        /* Style dla pól formularza */
+        .rounded-form input[type="text"],
+        .rounded-form input[type="email"],
+        .rounded-form input[type="file"],
+        .rounded-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* Style dla tagów label */
+        .rounded-form label {
+            display: inline-block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        /* Umieszczenie etykiety i pola w jednej linii */
+        .rounded-form label,
+        .rounded-form input[type="text"],
+        .rounded-form input[type="email"],
+        .rounded-form input[type="file"],
+        .rounded-form textarea {
+            vertical-align: middle;
+        }
+
+        .rounded-form input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .rounded-form input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        /* Media queries dla responsywności */
+        @media (max-width: 600px) {
+            .rounded-form {
+                width: 90%;
+            }
+        }
+    </style>
+
+
+
+</head>
+
+<form class="rounded-form" action="post.php" method="post" enctype="multipart/form-data">
+    <h2>Przykładowy formularz</h2>
+    <div><label>Your nick: </label> <input type="text" name="nick" /></div>
+    <div><label>Your avatar: </label> <input type="file" name="avatar" /></div>
+    <div><input type="submit" value="Submit"></div>
+</form>
+
+</html>
